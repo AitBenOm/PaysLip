@@ -13,9 +13,7 @@ p{
   border-color: darkslategrey;
   text-align: center;
 }
-.card{
 
-}
 .card-body>div>div{
 
   border-bottom: solid;
@@ -38,3 +36,11 @@ input{
 }
 
 .card-header{padding: 0}
+#saveBtn {
+  margin-top: 5mm;margin-bottom: 5mm;
+  border-bottom: none;
+
+  border-left: none;
+  border-right: none;
+}
+

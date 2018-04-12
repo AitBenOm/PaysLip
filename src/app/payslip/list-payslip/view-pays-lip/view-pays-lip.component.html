@@ -1,50 +1,4 @@
 
-  <div class="row">
-    <div class="col-sm text-center" style="background-color: ">
-
-      <div class="card border-secondary mb-3" >
-        <div class="card-header">Variables</div>
-        <div class="col-sm-2 col-md-2"></div>
-        <div class="col-sm-9 col-md-9">
-          <div class="form-group row content">
-            <div class="col-sm-3 col-md-3 col-sm-3">
-              <div class="form-group row">
-                <label for="AMO" class="col-sm-4">AMO</label>
-                <div class="col-sm-8">
-                  <input type="text" [(ngModel)]="AMO" name="AMO" class="form-control" id="AMO"  placeholder="AMO" (change)="0">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3 col-md-3 col-sm-3">
-              <div class="form-group row">
-                <label for="CNSS" class="col-sm-4">CNSS</label>
-                <div class="col-sm-8">
-                  <input type="text" [(ngModel)]="CNSS" name="CNSS" class="form-control" id="CNSS"  placeholder="CNSS">
-                </div>
-              </div>
-
-            </div>
-            <div class="col-sm-3 col-md-3 col-sm-3">
-              <div class="form-group row">
-                <label for="IGR" class="col-sm-4">IGR</label>
-                <div class="col-sm-8">
-                  <input type="text" [(ngModel)]="IGR" name="IGR" class="form-control" id="IGR"  placeholder="IGR">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3 col-md-3 col-sm-3">
-              <button class="btn btn-outline-dark btn-sm float-right " (click)="validate()" > Actualiser</button>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="col-1"></div>
-
-
-      </div>
-    </div>
-  </div>
 
 <div class="row">
 
@@ -145,7 +99,7 @@
   </div>
 
 
-</div>
+
 <div class="card border-dark mb-3">
 
   <div class="card-body">
@@ -194,9 +148,9 @@
               <input class="form-control"  type="number"
                      #Gain name="{{rubrique.libelle+'_G'}}"
                      [(ngModel)]="labels[rubrique.libelle]['G']"
-                      readonly
+                     readonly
                      (input)="totalGain(Gain.value)" ></div>
-              <!--<input class="form-control" readonly type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <!--<input class="form-control" readonly type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
             <div class="col-sm-3 col-md-3" *ngIf="rubrique.proprety==='GAIN'">
               <input class="form-control" readonly type="number" ></div>
 
@@ -239,51 +193,51 @@
 
   <div class="card-body">
     <div class="row">
-    <div class="col-md-7 card text-center">
-      <p>Total</p>
-    </div>
+      <div class="col-md-7 card text-center">
+        <p>Total</p>
+      </div>
 
-    <div class="col-md-5 card text-center">
+      <div class="col-md-5 card text-center">
 
-      <div class="form-group row content">
-        <div class="col-sm-3 col-md-3">
+        <div class="form-group row content">
+          <div class="col-sm-3 col-md-3">
 
-        </div>
-        <div class="col-sm-3 col-md-3">
+          </div>
+          <div class="col-sm-3 col-md-3">
 
-        </div>
-        <div class="col-sm-3 col-md-3">
-          <input class="form-control"  name="totalGains" readonly type="number" value="{{totalGains}}">
-        </div>
-        <div class="col-sm-3 col-md-3">
-          <input class="form-control" readonly value="{{totalRetenues}}" name="totalRetenues" type="number">
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <input class="form-control"  name="totalGains" readonly type="number" value="{{totalGains}}">
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <input class="form-control" readonly value="{{totalRetenues}}" name="totalRetenues" type="number">
+          </div>
         </div>
       </div>
     </div>
-  </div>
     <div class="row">
-    <div class="col-md-7 card text-center">
-      <p>Net à Paye</p>
-    </div>
-    <div class="col-md-5 card text-center">
-      <div class="form-group row content">
-        <div class="col-sm-3 col-md-3">
+      <div class="col-md-7 card text-center">
+        <p>Net à Paye</p>
+      </div>
+      <div class="col-md-5 card text-center">
+        <div class="form-group row content">
+          <div class="col-sm-3 col-md-3">
 
-        </div>
-        <div class="col-sm-3 col-md-3">
+          </div>
+          <div class="col-sm-3 col-md-3">
 
-        </div>
-        <div class="col-sm-3 col-md-3">
+          </div>
+          <div class="col-sm-3 col-md-3">
 
-        </div>
-        <div class="col-sm-3 col-md-3">
-          <input class="form-control" value="{{netAPaye}}" name="netAPaye" readonly type="number">
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <input class="form-control" value="{{netAPaye}}" name="netAPaye" readonly type="number">
+          </div>
         </div>
       </div>
+
+
     </div>
-
-
-</div>
     <div class="row">
 
       <div class="col-sm-3 col-md-3 offset-9" id="saveBtn">
@@ -298,7 +252,7 @@
   </div>
 </div>
 
-
+</div>
 
 
 

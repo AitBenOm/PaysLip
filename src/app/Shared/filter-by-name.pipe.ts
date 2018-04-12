@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'filterByName'
@@ -9,19 +9,21 @@ export class FilterByNamePipe implements PipeTransform {
   transform(value: any, input: string, searchableList: any[]) {
     if (input) {
       input = input.toLowerCase();
-      return value.filter(function (el: any) {
+      return value.filter(function (employee: any) {
         let isTrue = false;
 
-        if (el[searchableList[0]].toLowerCase().indexOf(input) > -1) {
+        if (employee[searchableList[0]].indexOf(input) > -1) {
           isTrue = true;
-        }else if (el[searchableList[1]].toLowerCase().indexOf(input) > -1) {
+        } else if (employee[searchableList[1]].indexOf(input) > -1) {
+          isTrue = true;
+        } else if (employee[searchableList[2]] === Number((input))) {
           isTrue = true;
         }
         if (isTrue) {
-          return el
+          return employee;
         }
 
-      })
+      });
     }
     return value;
   }

@@ -23,6 +23,9 @@ import { FilterByNamePipe } from './Shared/filter-by-name.pipe';
 import { ProRecordComponent } from './employee/pro-record/pro-record.component';
 import {HeaderService} from "./header/header.service";
 
+import { ViewPaysLipComponent } from './payslip/list-payslip/view-pays-lip/view-pays-lip.component';
+
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import {HeaderService} from "./header/header.service";
     CurrentPayslipComponent,
     ListPayslipComponent,
     FilterByNamePipe,
-    ProRecordComponent
+    ProRecordComponent,
+
+    ViewPaysLipComponent,
+
 
   ],
   imports: [

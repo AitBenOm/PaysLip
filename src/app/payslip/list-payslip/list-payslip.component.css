@@ -43,3 +43,23 @@ p{
   padding-top: 4mm;
   float: left;
 }
+
+
+
+
+ .modal-dialog {
+  width: 1000px;
+}
+
+.modal-content{
+  width: 1000px;
+}
+
+ .modal {
+  width: 1000px;
+}
+
+.modal-body {
+  width: 1000px;
+  overflow-y: auto;
+}

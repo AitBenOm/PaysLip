@@ -11,30 +11,33 @@ import {HeaderService} from "../../header/header.service";
 export class EmployeeListComponent implements OnInit {
   searchableField: string[];
   keyWord: string;
-  hideListe: boolean= true;
+  hideListe: boolean = true;
 
   constructor(private employeeService: EmployeeService, private headerService: HeaderService) {
 
     this.searchableField = [
-      'nom','prenom'
+      'nom', 'prenom', 'matricule'
     ];
   }
-employees: EmployeeModel[];
+
+  employees: EmployeeModel[];
+
   ngOnInit() {
     this.headerService.onShowList.subscribe(
       (data: boolean) => {
-        this.hideListe=data;
+        this.hideListe = data;
       }
     );
-this.employeeService.onKewWordChanged.subscribe(
-  (data: string) => {
-    this.keyWord=data;
-  }
-);
-    this.employees= this.employeeService.getListEmployee();
+    this.employeeService.onKewWordChanged.subscribe(
+      (data: string) => {
+        this.keyWord = data;
+      }
+    );
+    this.employees = this.employeeService.getListEmployee();
   }
 
- hideList(){
-    this.hideListe=false;
- }
+  hideList(matricule: number) {
+    this.keyWord= matricule.toString();
+
+  }
 }

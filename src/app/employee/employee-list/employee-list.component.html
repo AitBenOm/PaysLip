@@ -1,7 +1,7 @@
 <table class="table table-hover" *ngIf="hideListe">
   <thead>
   <tr>
-    <th scope="col">#</th>
+    <th scope="col">Matricule</th>
     <th scope="col">Nom</th>
     <th scope="col">Prenom</th>
     <th scope="col">fonction</th>
@@ -9,7 +9,7 @@
   </thead>
   <tbody>
 
-  <tr *ngFor="let employee of employees | filterByName : keyWord :searchableField " routerLink="employee-details/{{employee.matricule.toString()}}" (click)="hideList()">
+  <tr *ngFor="let employee of employees | filterByName : keyWord :searchableField " routerLink="employee-details/{{employee.matricule.toString()}}" (click)="hideList(employee.matricule)">
     <th scope="row" >{{employee.matricule}}</th>
     <td>{{employee.nom}}</td>
     <td>{{employee.prenom}}</td>

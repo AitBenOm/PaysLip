@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {EmployeeModel} from '../employee/employee-model';
-import {LabelsRubric} from './PaysLip Shared/labelsRubric';
-import {PaysLip} from "./PaysLip Shared/pays-lip";
+import {LabelsRubric} from './PaysLipToolsShared/labelsRubric';
+import {PaysLip} from "./PaysLipToolsShared/pays-lip";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class PayslipService {
@@ -9,6 +10,7 @@ export class PayslipService {
   constructor() {
   }
 
+  onAddPaysLip = new Subject<PaysLip>();
   listRubrique: LabelsRubric[] = [
     new LabelsRubric('Salaire de base', 'GAIN', 'nb', 'SDB'),
 
