@@ -1,0 +1,382 @@
+<div class="row">
+
+  <div class=" col-md-7 card text-center">
+    <div class="card border-dark mb-3">
+      <div class="card-header">darkrmations Profesionelles</div>
+      <div class="card-body">
+        <div class="row" style="border-top: solid;   border-width: 0.2mm;">
+          <div class="col-md-6">
+            <p>STE TANOUT PRIVEE SARL</p>
+          </div>
+          <div class="col-md-6"><p>AFF. CNSS 8880157</p></div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Matricule</div>
+          <div class="col-md-9">Nom et Prenom</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">{{employee.matricule}}</div>
+          <div class="col-md-9">{{employee.nom | uppercase }} {{employee.prenom | uppercase}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">Date Emb</div>
+          <div class="col-md-3">N° CIN</div>
+          <div class="col-md-3">Date Naissance</div>
+          <div class="col-md-3">
+            SF-NE-ND
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">27/08/2016</div>
+          <div class="col-md-3">{{employee.numCin | uppercase}}</div>
+          <div class="col-md-3">13/04/1991</div>
+          <div class="col-md-3">
+            {{employee.situationFamiliale }} {{'-'}} {{ employee.nbEnfant }} {{'-'}} {{ employee.sex}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">N° CNSS</div>
+          <div class="col-md-3">N° CIMR</div>
+          <div class="col-md-3">Service</div>
+          <div class="col-md-3">
+            Paiement
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-3">{{employee.numCNSS}}</div>
+          <div class="col-md-3">---</div>
+          <div class="col-md-3">---</div>
+          <div class="col-md-3">
+            ---
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class=" col-md-5 card text-center">
+    <div class="card border-dark mb-3">
+      <div class="card-header"> Profesionelles</div>
+
+
+      <div class="card-body  ">
+        <div class="row" style="border-top: solid;   border-width: 0.2mm;">
+          <div class="col-md-7">
+            <p>{{'quartier tanout Azilal' | uppercase}}</p>
+          </div>
+          <div class="col-md-5"><p>Fiche de Paie</p></div>
+        </div>
+        <div class="row text-center">
+          PERIODE DE PAIE
+        </div>
+        <div class="row">
+          01/02/2016 AU 28/02/2016
+
+        </div>
+
+        <div class="row">
+          Adresse du salarié
+        </div>
+        <div class="row">
+          {{employee.adresse}}
+        </div>
+        <div class="row">
+          Fonction
+        </div>
+        <div class="row">
+          {{employee.fonction}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="card border-dark mb-3">
+
+  <div class="card-body">
+    <form action="">
+      <div class="row">
+        <div class="col-md-7 card text-center">
+          <p>RUBTIQUE</p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row">
+            <div class="col-3">
+              BASE
+            </div>
+            <div class="col-3">
+              NB/Taux
+            </div>
+            <div class="col-3">
+              Gains
+            </div>
+            <div class="col-3">
+              Retenues
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Salaire de Base </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name="sdb_B"></div>
+            <div class="col-3">
+              <input class="form-control" type="number" name="sdb_T" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" name="sdb_G" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" name="sdb_R"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Ancienté </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name="an_B"></div>
+            <div class="col-3">
+              <input class="form-control" type="number" name="an_T" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" name="an_G" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled  name="an_R" type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Indem.Transport </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name="it_B"></div>
+            <div class="col-3">
+              <input class="form-control" type="number" name="it_T" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" name="it_G" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled name="it_R" type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Indem.Representation </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name=""></div>
+            <div class="col-3">
+              <input class="form-control" type="number" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Rubrique </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name=""></div>
+            <div class="col-3">
+              <input class="form-control" type="number" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Rubrique </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name=""></div>
+            <div class="col-3">
+              <input class="form-control" type="number" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Rubrique </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name=""></div>
+            <div class="col-3">
+              <input class="form-control" type="number" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Rubrique </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name=""></div>
+            <div class="col-3">
+              <input class="form-control" type="number" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Rubrique </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name=""></div>
+            <div class="col-3">
+              <input class="form-control" type="number" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-7 card text-center content">
+          <p>Rubrique </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-3 ">
+              <input class="form-control" type="number" name=""></div>
+            <div class="col-3">
+              <input class="form-control" type="number" #Taux (change)="0"  ></div>
+
+            <div class="col-3" >
+              <input class="form-control" disabled type="text" value=""></div>
+            <!--<input class="form-control" disabled type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-3" >
+              <input class="form-control" disabled type="text"></div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="card border-dark mb-3">
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-7 card text-center">
+        <p>Total</p>
+      </div>
+      <div class="col-md-5 card text-center">
+        <div class="form-group row content">
+          <div class="col-3">
+
+          </div>
+          <div class="col-3">
+
+          </div>
+          <div class="col-3">
+            <input class="form-control" disabled type="text">
+          </div>
+          <div class="col-3">
+            <input class="form-control" disabled type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7 card text-center">
+        <p>Net à Paye</p>
+      </div>
+      <div class="col-md-5 card text-center">
+        <div class="form-group row content">
+          <div class="col-3">
+
+          </div>
+          <div class="col-3">
+
+          </div>
+          <div class="col-3">
+
+          </div>
+          <div class="col-3">
+            <input class="form-control" disabled type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

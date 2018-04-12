@@ -1,0 +1,41 @@
+
+/*div.row {*/
+  /*border-bottom: solid;*/
+
+  /*border-left: solid;*/
+  /*border-width: 0.2mm;*/
+  /*border-color: #17a2b8;*/
+/*}*/
+
+/*div.row>div {*/
+
+  /*border-right: solid;*/
+  /*border-color: #17a2b8;*/
+
+  /*border-width: 0.2mm;*/
+/*}*/
+p{
+  padding-top: 3mm;
+  text-transform: uppercase;
+  text-align: center;
+}
+.card-body>div{
+
+  border-bottom: solid;
+
+  border-left: solid;
+  border-right: solid;
+  border-width: 0.2mm;
+  border-color: darkgrey;
+  text-align: center;
+}
+
+.card-body>div>div{
+
+  border-bottom: solid;
+
+  border-left: solid;
+  border-right: solid;
+  border-width: 0.2mm;
+  border-color: darkgray;
+}

@@ -1,0 +1,291 @@
+
+  <div class="row">
+    <div class="col-sm text-center" style="background-color: ">
+
+      <div class="card border-secondary mb-3" >
+        <div class="card-header">Variables</div>
+        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-sm-9 col-md-9">
+          <div class="form-group row content">
+            <div class="col-sm-3 col-md-3 col-sm-3">
+              <div class="form-group row">
+                <label for="AMO" class="col-sm-4">AMO</label>
+                <div class="col-sm-8">
+                  <input type="text" [(ngModel)]="AMO" name="AMO" class="form-control" id="AMO"  placeholder="AMO" (change)="0">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-sm-3">
+              <div class="form-group row">
+                <label for="CNSS" class="col-sm-4">CNSS</label>
+                <div class="col-sm-8">
+                  <input type="text" [(ngModel)]="CNSS" name="CNSS" class="form-control" id="CNSS"  placeholder="CNSS">
+                </div>
+              </div>
+
+            </div>
+            <div class="col-sm-3 col-md-3 col-sm-3">
+              <div class="form-group row">
+                <label for="IGR" class="col-sm-4">IGR</label>
+                <div class="col-sm-8">
+                  <input type="text" [(ngModel)]="IGR" name="IGR" class="form-control" id="IGR"  placeholder="IGR">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-sm-3">
+              <button class="btn btn-outline-dark btn-sm float-right " (click)="validate()" > Actualiser</button>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-1"></div>
+
+
+      </div>
+    </div>
+  </div>
+
+<div class="row">
+
+  <div class=" col-md-7 card text-center">
+    <div class="card border-dark mb-3">
+      <div class="card-header">darkrmations Profesionelles</div>
+      <div class="card-body">
+        <div class="row" style="border-top: solid;   border-width: 0.2mm;">
+          <div class="col-md-6">
+            <p>STE TANOUT PRIVEE SARL</p>
+          </div>
+          <div class="col-md-6"><p>AFF. CNSS 8880157</p></div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-3">Matricule</div>
+          <div class="col-md-9">Nom et Prenom</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-3">{{employee.matricule}}</div>
+          <div class="col-md-9">{{employee.nom | uppercase }} {{employee.prenom | uppercase}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-sm-3">Date Emb</div>
+          <div class="col-md-3 col-sm-3">N° CIN</div>
+          <div class="col-md-3 col-sm-3">Date Naissance</div>
+          <div class="col-md-3 col-sm-3">
+            SF-NE-ND
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-3">{{employee.date_emb | date:'dd/MM/yyy' }}</div>
+          <div class="col-md-3 col-sm-3">{{employee.numCin | uppercase}}</div>
+          <div class="col-md-3 col-sm-3">{{employee.date_de_naissance | date:'dd/MM/yyy' }}</div>
+          <div class="col-md-3 col-sm-3">
+            {{employee.situationFamiliale }} {{'-'}} {{ employee.nbEnfant }} {{'-'}} {{ employee.sex}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-3">N° CNSS</div>
+          <div class="col-md-3 col-sm-3">N° CIMR</div>
+          <div class="col-md-3 col-sm-3">Service</div>
+          <div class="col-md-3 col-sm-3">
+            Paiement
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-3">{{employee.numCNSS}}</div>
+          <div class="col-md-3 col-sm-3">---</div>
+          <div class="col-md-3 col-sm-3">---</div>
+          <div class="col-md-3 col-sm-3">
+            ---
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class=" col-md-5 card text-center">
+    <div class="card border-dark mb-3">
+      <div class="card-header"> Profesionelles</div>
+
+
+      <div class="card-body  ">
+        <div class="row" style="border-top: solid;   border-width: 0.2mm;">
+          <div class="col-md-7">
+            <p>{{'quartier tanout Azilal' | uppercase}}</p>
+          </div>
+          <div class="col-md-5"><p>Fiche de Paie</p></div>
+        </div>
+        <div class="row text-center">
+          PERIODE DE PAIE
+        </div>
+        <div class="row">
+          01/02/2016 AU 28/02/2016
+
+        </div>
+
+        <div class="row">
+          Adresse du salarié
+        </div>
+        <div class="row">
+          {{employee.adresse}}
+        </div>
+        <div class="row">
+          Fonction
+        </div>
+        <div class="row">
+          {{employee.fonction}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<div class="card border-dark mb-3">
+
+  <div class="card-body">
+    <form #form  action="">
+      <div class="row">
+
+
+        <div class="col-md-5 card text-center">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 card text-center">
+          <p>RUBTIQUE</p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row">
+            <div class="col-sm-3 col-md-3">
+              BASE
+            </div>
+            <div class="col-sm-3 col-md-3">
+              NB/Taux
+            </div>
+            <div class="col-sm-3 col-md-3">
+              Gains
+            </div>
+            <div class="col-sm-3 col-md-3">
+              Retenues
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngFor="let rubrique of labelRubrics">
+        <div class="col-md-7 card text-center content">
+          <p>{{rubrique.nom}}  </p>
+        </div>
+        <div class="col-md-5 card text-center">
+          <div class="form-group row content">
+            <div class="col-sm-3 col-md-3 ">
+              <input class="form-control" type="number" #Base name="{{rubrique.libelle+'_B'}}" [(ngModel)]="labels[rubrique.libelle]['B']"></div>
+            <div class="col-sm-3 col-md-3">
+              <input class="form-control" type="number" name="{{rubrique.libelle+'_T'}}"  [(ngModel)]="labels[rubrique.libelle]['T']"  #Taux (input)="claculate(rubrique.libelle)"  ></div>
+
+
+            <div class="col-sm-3 col-md-3" *ngIf="rubrique.proprety==='GAIN'; else RET">
+              <input class="form-control"  type="number"
+                     #Gain name="{{rubrique.libelle+'_G'}}"
+                     [(ngModel)]="labels[rubrique.libelle]['G']"
+                      readonly
+                     (input)="totalGain(Gain.value)" ></div>
+              <!--<input class="form-control" readonly type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+            <div class="col-sm-3 col-md-3" *ngIf="rubrique.proprety==='GAIN'">
+              <input class="form-control" readonly type="number" ></div>
+
+
+            <ng-template #RET>
+              <div class="col-sm-3 col-md-3">
+                <input class="form-control" readonly ></div>
+              <div class="col-sm-3 col-md-3">
+                <input class="form-control" name="{{rubrique.libelle+'_R'}}"
+                       #Ret readonly type="number"
+
+                       [(ngModel)]="labels[rubrique.libelle]['R']"
+                       (input)="totalRetenue(Ret.value)"></div>
+            </ng-template>
+            <div class="col-sm-3 col-md-3"></div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-5 row float-right">
+        <div class="col-sm-3 col-md-3"></div>
+        <div class="col-sm-3 col-md-3">
+          <button class="btn btn-outline-dark " (click)="savePaysLip()" > Enregistrer</button>
+        </div>
+
+        <div class="col-sm-3 col-md-3">
+          <button class="btn btn-outline-dark " (click)="reset(form)" > Reset</button>
+        </div>
+        <div class="col-sm-3 col-md-3">
+          <button class="btn btn-outline-dark " (click)="validate()" > Valider</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="card border-dark mb-3">
+
+  <div class="card-body">
+    <div class="row">
+    <div class="col-md-7 card text-center">
+      <p>Total</p>
+    </div>
+
+    <div class="col-md-5 card text-center">
+
+      <div class="form-group row content">
+        <div class="col-sm-3 col-md-3">
+
+        </div>
+        <div class="col-sm-3 col-md-3">
+
+        </div>
+        <div class="col-sm-3 col-md-3">
+          <input class="form-control"  name="totalGains" readonly type="number" value="{{totalGains}}">
+        </div>
+        <div class="col-sm-3 col-md-3">
+          <input class="form-control" readonly value="{{totalRetenues}}" name="totalRetenues" type="number">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-md-7 card text-center">
+      <p>Net à Paye</p>
+    </div>
+    <div class="col-md-5 card text-center">
+      <div class="form-group row content">
+        <div class="col-sm-3 col-md-3">
+
+        </div>
+        <div class="col-sm-3 col-md-3">
+
+        </div>
+        <div class="col-sm-3 col-md-3">
+
+        </div>
+        <div class="col-sm-3 col-md-3">
+          <input class="form-control" value="{{netAPaye}}" name="netAPaye" readonly type="number">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
