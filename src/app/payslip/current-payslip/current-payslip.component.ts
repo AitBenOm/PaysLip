@@ -30,6 +30,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   labelRubrics: LabelsRubric[];
   rubrics: Rubric[] = [];
 
+
   @Input() employee: EmployeeModel = null;
 
   ngOnChanges(employee: SimpleChanges): void {
@@ -42,10 +43,8 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   }
 
 
-
   constructor(private payslipService: PayslipService, private employeeService: EmployeeService) {
   }
-
 
 
   ngOnInit() {
@@ -148,6 +147,9 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   }
 
   storRubrics() {
+    const totalRet = new Rubric('totalRet', 0, true, this.totalRetenue(), 999);
+    const totalGain = new Rubric('totalGain', 0, true, this.totalGain(), 999);
+    const netApaye = new Rubric('netApaye', 0, true, this.netAPaye, 999);
 
     for (const label in this.labels) {
       let GainRet: boolean = true;
@@ -159,11 +161,12 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
         GainRet = true;
         value = this.labels[label]['G'];
       }
-      const rub = new Rubric(label, this.labels[label]['T'], GainRet, value);
-      console.log(rub);
+      const rub = new Rubric(label, this.labels[label]['T'], GainRet, Number(value), this.labels[label]['B']);
+
       this.rubrics.push(rub);
 
     }
+    this.rubrics.push(totalGain, totalRet, netApaye);
     return this.rubrics;
   }
 

@@ -3,6 +3,9 @@ import {EmployeeModel} from "../../../employee/employee-model";
 import {LabelsRubric} from "../../PaysLipToolsShared/labelsRubric";
 import {PayslipService} from "../../payslip.service";
 import {EmployeeService} from "../../../employee/employee.service";
+import {PaysLip} from "../../PaysLipToolsShared/pays-lip";
+import {Rubric} from "../../PaysLipToolsShared/rubric";
+import {isNumber} from "util";
 
 @Component({
   selector: 'app-view-pays-lip',
@@ -13,22 +16,24 @@ export class ViewPaysLipComponent implements OnInit {
 
   labelRubrics: LabelsRubric[];
   @Input() employee: EmployeeModel = null;
-  labels = this.payslipService.labels;
-
-  netAPaye: number;
-  totalGains: number = 0;
-  totalRetenues: number = 0;
+  @Input() paysLipToshow: PaysLip;
+  labels: any;
+  rubricLabels: any;
   AMO = 2;
   CNSS = 4.48;
   IGR = 1;
-  indem = 0;
 
 
   constructor(private payslipService: PayslipService, private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
+    console.log(this.paysLipToshow);
     this.labelRubrics = this.payslipService.listRubrique;
+    this.labels = this.payslipService.labels;
+    this.rubricLabels = this.payslipService.rubricsLabels;
   }
+
+
 
 }

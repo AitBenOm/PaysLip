@@ -45,21 +45,9 @@ p{
 }
 
 
-
-
- .modal-dialog {
-  width: 1000px;
-}
-
-.modal-content{
-  width: 1000px;
-}
-
- .modal {
-  width: 1000px;
-}
-
-.modal-body {
-  width: 1000px;
-  overflow-y: auto;
+.admin .modal #showPaysLip {
+  /* new custom width */
+  width: 9000px;
+  /* must be half of the width, minus scrollbar on the left (30px) */
+  margin-left: -375px;
 }

@@ -10,7 +10,7 @@
   </thead>
   <tbody>
 
-  <tr *ngFor="let paysLip of paysLips  "  (click)="hideList()">
+  <tr *ngFor="let paysLip of paysLips  "  (click)="showPaysLip(paysLip)">
     <th scope="row" >{{paysLip.idPyasLip}}</th>
     <th scope="row" >{{employee.prenom}} {{employee.nom}}</th>
     <td>{{paysLip.period[0] | date:'dd/MM/yyy'}}</td>
@@ -23,14 +23,15 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showPaysLip">Large modal</button>
 
 <div id= "showPaysLip" class="modal fade" tabindex="-1" role="document" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">{{employee.nom | uppercase }} {{employee.prenom | uppercase}}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modal title</h4>
+
       </div>
       <div class="modal-body">
-        <app-view-pays-lip [employee]="employee"></app-view-pays-lip>
+        <app-view-pays-lip [employee]="employee" [paysLipToshow]="paysLipToshow"></app-view-pays-lip>
       </div>
 
     </div>

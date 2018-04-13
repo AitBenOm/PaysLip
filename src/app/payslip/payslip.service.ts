@@ -88,11 +88,23 @@ export class PayslipService {
         'R': 'ARR_R',
       },
     };
+  rubricsLabels: any
+    =
+    {
+      'SDB': 'Salaire de Base',
+  'ANT': 'Ancienté',
+  'CNSS': 'C.N.S.S',
+  'AMO': 'A.M.O',
+  'IGR': 'I.G.R',
+  'ARR': 'Arrondie',
+  'INDTR': 'Indem.Deplacement',
+  'PRITR': '  Prime de Transport',
+  'PRIPAN': 'Prime de Panier',
+  'INDRE': 'Indem . Rpresentation',
+};
 
 
-  paysLips: PaysLip[]=[
-
-    ]
+paysLips: PaysLip[] = []
 
 
 }

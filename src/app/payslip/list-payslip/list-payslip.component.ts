@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {EmployeeModel} from '../../employee/employee-model';
 import {PayslipService} from "../payslip.service";
 import {PaysLip} from "../PaysLipToolsShared/pays-lip";
+import {Rubric} from "../PaysLipToolsShared/rubric";
 
 @Component({
   selector: 'app-list-payslip',
@@ -10,6 +11,8 @@ import {PaysLip} from "../PaysLipToolsShared/pays-lip";
 })
 export class ListPayslipComponent implements OnInit {
   @Input() employee: EmployeeModel = null;
+  paysLipToshow: PaysLip;
+
   constructor(private paysLipsService: PayslipService) {
   }
 
@@ -17,7 +20,7 @@ export class ListPayslipComponent implements OnInit {
 
   ngOnInit() {
     this.paysLipsService.onAddPaysLip.subscribe(
-      (paysLip: PaysLip) =>{
+      (paysLip: PaysLip) => {
         this.paysLips = this.paysLipsService.paysLips;
         console.log(this.paysLips);
       }
@@ -26,4 +29,24 @@ export class ListPayslipComponent implements OnInit {
 
   }
 
+  showPaysLip(paysLip: PaysLip) {
+    console.log(paysLip);
+    this.cleanUpRubrics(paysLip.rubrics);
+    console.log(paysLip);
+    this.paysLipToshow = paysLip;
+  }
+
+  cleanUpRubrics(rubrics: Rubric[]) {
+
+    let i = 0;
+    while (i < rubrics.length) {
+      console.log(rubrics[i].label + "   " + rubrics[i].value + "  " + isNaN(rubrics[i].value));
+      if (isNaN(rubrics[i].value)) {
+        rubrics.splice(i, 1);
+        i--;
+      }
+      i++;
+    }
+
+  }
 }
