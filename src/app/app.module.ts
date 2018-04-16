@@ -24,6 +24,7 @@ import { ProRecordComponent } from './employee/pro-record/pro-record.component';
 import {HeaderService} from "./header/header.service";
 
 import { ViewPaysLipComponent } from './payslip/list-payslip/view-pays-lip/view-pays-lip.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -46,6 +47,8 @@ import { ViewPaysLipComponent } from './payslip/list-payslip/view-pays-lip/view-
     ProRecordComponent,
 
     ViewPaysLipComponent,
+
+    HomeComponent,
 
 
   ],

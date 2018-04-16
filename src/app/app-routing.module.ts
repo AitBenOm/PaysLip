@@ -6,12 +6,16 @@ import {EmployeeDetailsComponent} from "./employee/employee-details/employee-det
 import {EmployeeInfosComponent} from "./employee/employee-infos/employee-infos.component";
 import {PayslipComponent} from "./payslip/payslip.component";
 import {UpdateEmployeeComponent} from "./employee/update-employee/update-employee.component";
+import {HomeComponent} from "./home/home.component";
 
 const appRoutes: Routes = [
 
-  { path: '', redirectTo: 'employee-list', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
+
+  { path: 'home', component: HomeComponent },
   { path: 'employee-list', component: EmployeeComponent },
+
 
   { path: 'employee-list', component: EmployeeComponent,
   children:[

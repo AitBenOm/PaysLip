@@ -1,0 +1,10 @@
+.row {
+  border-top: none;
+  margin-bottom: 5mm;
+}
+.card-header{
+  background-color: white;
+}
+.card-footer{
+  background-color: white;
+}
