@@ -1,10 +1,25 @@
 .row {
   border-top: none;
   margin-bottom: 5mm;
+  margin-top: 5mm;
 }
 .card-header{
-  background-color: white;
+  background-color: darkgrey;
+
+  font-weight: bold;
+  color: #495057;
+
 }
 .card-footer{
   background-color: white;
+}
+.home{
+  background-color: white;
+}
+.list-group-item>a{
+  font-weight: bold;
+  color:rgba(204,112,23,0.86);
+}
+i{
+  color:#488f61;
 }

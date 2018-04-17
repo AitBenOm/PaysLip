@@ -1,3 +1,7 @@
 tr{
   cursor: pointer;
 }
+thead{
+  background-color: rgba(173,173,180,0.8);
+  color:rgba(204,112,23,0.86);
+}

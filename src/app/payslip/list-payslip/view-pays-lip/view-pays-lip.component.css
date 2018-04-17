@@ -12,6 +12,11 @@ p{
   border-width: 0.2mm;
   border-color: darkslategrey;
   text-align: center;
+
+}
+.card{
+  font-size: small;
+
 }
 
 .card-body>div>div{

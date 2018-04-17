@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {EmployeeService} from "../employee.service";
 import {EmployeeModel} from "../employee-model";
 import {HeaderService} from "../../header/header.service";
@@ -12,6 +12,8 @@ export class EmployeeListComponent implements OnInit {
   searchableField: string[];
   keyWord: string;
   hideListe: boolean = true;
+  @Input() employee: EmployeeModel = null;
+  @Output() employeeSelected = new EventEmitter<EmployeeModel>();
 
   constructor(private employeeService: EmployeeService, private headerService: HeaderService) {
 
@@ -21,6 +23,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   employees: EmployeeModel[];
+
 
   ngOnInit() {
     this.headerService.onShowList.subscribe(
@@ -36,8 +39,13 @@ export class EmployeeListComponent implements OnInit {
     this.employees = this.employeeService.getListEmployee();
   }
 
-  hideList(matricule: number) {
-    this.keyWord= matricule.toString();
+  getEmployee(employee: EmployeeModel) {
+    console.log(employee);
+    this.employeeSelected.emit(employee);
 
+  }
+
+  onSearch() {
+    this.employeeService.onKewWordChanged.emit(this.keyWord);
   }
 }

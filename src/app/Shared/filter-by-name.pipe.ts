@@ -12,11 +12,11 @@ export class FilterByNamePipe implements PipeTransform {
       return value.filter(function (employee: any) {
         let isTrue = false;
 
-        if (employee[searchableList[0]].indexOf(input) > -1) {
+        if (employee[searchableList[0]].toLowerCase().indexOf(input) > -1) {
           isTrue = true;
-        } else if (employee[searchableList[1]].indexOf(input) > -1) {
+        } else if (employee[searchableList[1]].toLowerCase().indexOf(input) > -1) {
           isTrue = true;
-        } else if (employee[searchableList[2]] === Number((input))) {
+        } else if (employee[searchableList[2]]===(Number(input))) {
           isTrue = true;
         }
         if (isTrue) {
@@ -24,8 +24,10 @@ export class FilterByNamePipe implements PipeTransform {
         }
 
       });
+    }else{
+      return null;
     }
-    return value;
+
   }
 
 }

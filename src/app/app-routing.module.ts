@@ -7,6 +7,7 @@ import {EmployeeInfosComponent} from "./employee/employee-infos/employee-infos.c
 import {PayslipComponent} from "./payslip/payslip.component";
 import {UpdateEmployeeComponent} from "./employee/update-employee/update-employee.component";
 import {HomeComponent} from "./home/home.component";
+import {CurrentPayslipComponent} from "./payslip/current-payslip/current-payslip.component";
 
 const appRoutes: Routes = [
 
@@ -14,9 +15,9 @@ const appRoutes: Routes = [
 
 
   { path: 'home', component: HomeComponent },
-  { path: 'employee-list', component: EmployeeComponent },
-
-
+  { path: 'paysLip', component: PayslipComponent, children: [
+    { path: 'employee-details/:id', component: PayslipComponent }
+] },
   { path: 'employee-list', component: EmployeeComponent,
   children:[
     { path: 'employee-details/:id', component: EmployeeDetailsComponent }

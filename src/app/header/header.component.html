@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">GSCA</a>
+<nav class="navbar navbar-expand-lg navbar-light  ">
+  <a class="navbar-brand" routerLink="home">GSCA</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,24 +8,39 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="employee-list" style="cursor: pointer">Liste des Employee</a>
+
+        <a class="nav-link" routerLink="home" style="cursor: pointer">       <i class="fas fa-home"></i> Home</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home" style="cursor: pointer"><i class="fas fa-user-circle"></i> Profil</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home" style= " border: none; cursor: pointer"><i class="fas fa-sliders-h" ></i> Administration</a>
+      </li>
+
+      <!--<li class="nav-item dropdown float-md-right">-->
+        <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+          <!--Dropdown-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+          <!--<a class="dropdown-item" href="#">Action</a>-->
+          <!--<a class="dropdown-item" href="#">Another action</a>-->
+          <!--<div class="dropdown-divider"></div>-->
+          <!--<a class="dropdown-item" href="#">Something else here</a>-->
+        <!--</div>-->
+      <!--</li>-->
 
     </ul>
-    <form class="form-inline my-2 my-lg-0 ">
-      <input class="form-control mr-sm-2 float-right" type="search" placeholder="Search"   name="keyWord" [(ngModel)]="keyWord" (keyup)="onSearch()" #keyword>
+    <!--<form class="form-inline my-2 my-lg-0 ">-->
+      <!--<input class="form-control mr-sm-2 float-right" type="search" placeholder="Search"   name="keyWord" [(ngModel)]="keyWord" (keyup)="onSearch()" #keyword>-->
 
-    </form>
+    <!--</form>-->
+  </div>
+  <div class="adminInfos">
+    <p>AIT BENAISSA OMAR</p>
+    <p>Dernier Connexion 13/04/1991 à 15:00</p>
+    <a routerLink="home" >Déconnexion<i class="fas fa-power-off" style="color: brown"></i></a>
   </div>
 </nav>

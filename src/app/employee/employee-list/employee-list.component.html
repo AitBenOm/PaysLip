@@ -1,4 +1,14 @@
-<table class="table table-hover" *ngIf="hideListe">
+
+<form class="form-inline my-2 my-lg-2 " style="width: 100%; background-color: rgba(173,173,180,0.8); height: 1.5cm" >
+
+  <input style="margin-left:1cm; width: 25%;" class="form-control mr-sm-2 float-right"
+         type="Search" placeholder="Chercher un Salarié"
+         name="keyWord" [(ngModel)]="keyWord" (keyup)="onSearch()" #keyword>
+  <span  data-toggle="tooltip" data-html="true" title=" Veuillez Taper le Nom ou le Prénom du Salarié"></span>
+  <span><i class="far fa-question-circle"></i></span>
+
+</form>
+<table class="table table-hover table-striped" *ngIf="hideListe">
   <thead>
   <tr>
     <th scope="col">Matricule</th>
@@ -9,7 +19,7 @@
   </thead>
   <tbody>
 
-  <tr *ngFor="let employee of employees | filterByName : keyWord :searchableField " routerLink="employee-details/{{employee.matricule.toString()}}" (click)="hideList(employee.matricule)">
+  <tr *ngFor="let employee of employees | filterByName : keyWord :searchableField "(click)="getEmployee(employee)" routerLink="employee-details/{{employee.matricule.toString()}}" >
     <th scope="row" >{{employee.matricule}}</th>
     <td>{{employee.nom}}</td>
     <td>{{employee.prenom}}</td>

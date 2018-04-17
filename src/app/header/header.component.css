@@ -1,0 +1,51 @@
+.navbar{
+  background-color: rgba(173,173,180,0.8);
+
+  height: 3cm;
+  margin-bottom: 5mm;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-top: none;
+}
+.navbar-brand :hover{
+  color: white;
+}
+.navbar-brand{
+  font-weight: bold;
+  color: #495057;
+  font-size: xx-large;
+  font-family: "Comic Sans MS";
+}
+.navbar-nav{
+  margin-left: 25%;
+}
+.nav-item>a{
+  text-align: center;
+  font-weight: bold;
+  color: #495057;
+  font-size: x-large;
+  height: 100%;
+  padding-right: 1cm;
+  padding-left: 1cm;
+  border-right: 2px solid black;
+
+}
+.nav-item>a:hover{
+  color:rgba(204,112,23,0.86);
+}
+.nav-item>a:active{
+  color: white;
+
+}
+.adminInfos{
+  border-left: 4px solid black;
+padding-right: 5mm;
+
+}
+
+.adminInfos *{
+  font-weight: bold;
+  color: #495057;
+
+
+padding-left: 5mm;
+}
