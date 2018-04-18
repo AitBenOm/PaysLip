@@ -17,6 +17,12 @@ export class PayslipComponent implements OnInit {
 employee: EmployeeModel = null;
 
   ngOnInit() {
+    this.employeeService.onKewWordChanged.subscribe(
+      (data: string) => {
+        this.showPaysLip=false;
+      }
+
+    );
 
     console.log('paysLip Componenet');
 

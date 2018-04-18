@@ -72,7 +72,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
     this.labels['SDB']['T'] = 1;
     this.labels['SDB']['G'] = this.labels['SDB']['B'] * this.labels['SDB']['T'];
 
-    this.labels['ANT']['T'] = (new Date().getFullYear() - employee.date_emb.getFullYear()) * 2;
+    this.labels['ANT']['T'] = this.anciente(employee.date_emb);
     this.labels['AMO']['T'] = this.AMO;
     this.labels['CNSS']['T'] = this.CNSS;
 
@@ -130,13 +130,16 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
       }
     }
 
-    return this.totalRetenues
+    return this.totalRetenues;
   }
 
   validate() {
     this.netAPaye = 0;
-    this.netAPaye = this.totalGain() - this.totalRetenue();
     ////console.log(this.netAPaye);
+    const net =this.totalGain() - this.totalRetenue();
+    const igr= this.igr( net);
+    this.totalRetenue();
+    this.netAPaye = net-igr;
   }
 
   reset(form: FormGroup) {
@@ -182,30 +185,73 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
     //console.log(paysLip1);
     this.payslipService.paysLips.push(paysLip1);
     this.payslipService.onAddPaysLip.next(paysLip1);
+    //
+    // periode2.push(new Date(y, 5, 1), new Date(y, 5 + 1, 0));
+    // //console.log(periode2);
+    // const paysLip2 = new PaysLip('1', periode2, this.storRubrics());
+    // //console.log(paysLip2);
+    // this.payslipService.paysLips.push(paysLip2);
+    // this.payslipService.onAddPaysLip.next(paysLip2);
+    //
+    // periode3.push(new Date(y, 6, 1), new Date(y, 6 + 1, 0));
+    // //console.log(periode3);
+    // const paysLip3 = new PaysLip('1', periode3, this.storRubrics());
+    // //console.log(paysLip3);
+    // //console.log(paysLip3);
+    // this.payslipService.paysLips.push(paysLip3);
+    // this.payslipService.onAddPaysLip.next(paysLip3);
+    //
+    // periode4.push(new Date(y, 7, 1), new Date(y, 7 + 1, 0));
+    //
+    // const paysLip4 = new PaysLip('1', periode4, this.storRubrics());
+    // //console.log(paysLip4);
+    // this.payslipService.paysLips.push(paysLip4);
+    //
+    // this.payslipService.onAddPaysLip.next(paysLip4);
 
-    periode2.push(new Date(y, 5, 1), new Date(y, 5 + 1, 0));
-    //console.log(periode2);
-    const paysLip2 = new PaysLip('1', periode2, this.storRubrics());
-    //console.log(paysLip2);
-    this.payslipService.paysLips.push(paysLip2);
-    this.payslipService.onAddPaysLip.next(paysLip2);
+  }
 
-    periode3.push(new Date(y, 6, 1), new Date(y, 6 + 1, 0));
-    //console.log(periode3);
-    const paysLip3 = new PaysLip('1', periode3, this.storRubrics());
-    //console.log(paysLip3);
-    //console.log(paysLip3);
-    this.payslipService.paysLips.push(paysLip3);
-    this.payslipService.onAddPaysLip.next(paysLip3);
+  anciente(dateEmb: Date) {
+    if (new Date().getFullYear() - dateEmb.getFullYear() < 3) {
+      return 5;
+    } else if (new Date().getFullYear() - dateEmb.getFullYear() < 6) {
+      return 10;
+    } else if (new Date().getFullYear() - dateEmb.getFullYear() < 13) {
+      return 15;
+    } else if (new Date().getFullYear() - dateEmb.getFullYear() < 21) {
+      return 20;
+    } else if (new Date().getFullYear() - dateEmb.getFullYear() < 21) {
+      return 25;
+    }
+  }
 
-    periode4.push(new Date(y, 7, 1), new Date(y, 7 + 1, 0));
+  igr(netImp: number) {
 
-    const paysLip4 = new PaysLip('1', periode4, this.storRubrics());
-    //console.log(paysLip4);
-    this.payslipService.paysLips.push(paysLip4);
-
-    this.payslipService.onAddPaysLip.next(paysLip4);
-
+    if (netImp > 2500 && netImp < 4166.68) {
+      this.labels['IGR']['B'] = netImp;
+      this.labels['IGR']['T'] = 10;
+      this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 250;
+      const test = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 250;
+      console.log('IGR : '+netImp);
+      console.log('IGR : '+test);
+    } else if(netImp >  4166.68 && netImp < 5001) {
+      this.labels['IGR']['B'] = netImp;
+      this.labels['IGR']['T'] = 20;
+      this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 666.67;
+    } else if (netImp > 5001 && netImp < 6666.67) {
+      this.labels['IGR']['B'] = netImp;
+      this.labels['IGR']['T'] = 30;
+      this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 1166.67;
+    } else if (netImp > 6666.67 && netImp < 150000) {
+      this.labels['IGR']['B'] = netImp;
+      this.labels['IGR']['T'] = 34;
+      this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 1433.33;
+    } else if (netImp > 15000) {
+      this.labels['IGR']['B'] = netImp;
+      this.labels['IGR']['T'] = 38;
+      this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 2033.33;
+    }
+    return this.labels['IGR']['R'];
   }
 
 }

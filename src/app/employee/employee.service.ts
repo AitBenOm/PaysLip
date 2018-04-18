@@ -15,14 +15,6 @@ export class EmployeeService {
       new EmployeeModel(1,"Ait benaissa","Omar",new Date('1991-04-12'),new Date('2015-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,1500),
       new EmployeeModel(2,"Benaissa","Omar",   new Date('1991-04-12'),new Date('2010-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,3500),
       new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
-      new EmployeeModel(3,"Lamnini","Ilias",    new Date('1991-04-12'),new Date('2016-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,2000),
       new EmployeeModel(4,"Rhallab","Chaimae",  new Date('1991-04-12'),new Date('2009-04-12'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,1650),
       new EmployeeModel(5,"Nouhi","Mohammed",   new Date('1991-04-12'),new Date('1991-05-05'),'Directeur','5 Rue Maurice Couderchet','0664941132','omar.benaissa@outlook.com','123456','ic60793','Homme','M',2,4500)
     ];
