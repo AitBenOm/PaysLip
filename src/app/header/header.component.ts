@@ -9,17 +9,12 @@ import {HeaderService} from "./header.service";
 })
 export class HeaderComponent implements OnInit {
 
-  keyWord: string;
+
 
   constructor(private employeeService: EmployeeService, private headerService: HeaderService
   ) { }
 
   ngOnInit() {
   }
-  onSearch(){
-this.employeeService.onKewWordChanged.emit(this.keyWord);
-  }
-  showList(){
-    this.headerService.onShowList.next(true);
-  }
+
 }

@@ -27,7 +27,7 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
       (params: Params) => {
         this.employee = this.employeeService.getEmployeebyMatricule(params['id']);
         console.log("routes changed");
-        this.employeeService.onKewWordChanged.next(this.employee.matricule.toString());
+        this.employeeService.onKewWordChanged.next(this.employee.nom);
         this.employeeService.employeeToShow.next(this.employee);
       }
     );

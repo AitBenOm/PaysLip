@@ -12,6 +12,7 @@ font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;;
 
 table {
   width: 100%;
+  border: 1px solid darkgrey;
 }
 
 thead, tbody, tr, td, th { display: block; }
@@ -44,3 +45,4 @@ tbody td, thead th {
   width: 25%;
   float: left;
 }
+

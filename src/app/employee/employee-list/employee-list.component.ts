@@ -49,4 +49,7 @@ export class EmployeeListComponent implements OnInit {
   onSearch() {
     this.employeeService.onKewWordChanged.emit(this.keyWord);
   }
+  cleanUpInput(){
+    this.keyWord='';
+  }
 }

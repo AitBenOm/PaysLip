@@ -11,7 +11,7 @@
     <input type="text" class="form-control" placeholder="Search for..."
            name="keyWord" [(ngModel)]="keyWord" (keyup)="onSearch()" #keyword >
     <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button" > <i class="fas fa-times-circle fa-1x"></i></button>
+        <button class="btn btn-secondary" type="button" (click)="cleanUpInput()" > <i class="fas fa-times-circle fa-1x"></i></button>
       </span>
     <span style="margin-left: 2mm; margin-top: 2mm;"  data-toggle="tooltip" data-html="true" title=" Veuillez Taper le Nom ou le Prénom du Salarié"><i class="far fa-question-circle"></i></span>
   </div>
