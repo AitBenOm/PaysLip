@@ -12,6 +12,7 @@ import {Rubric} from "../PaysLipToolsShared/rubric";
 export class ListPayslipComponent implements OnInit {
   @Input() employee: EmployeeModel = null;
   paysLipToshow: PaysLip;
+  paysLipDate: Date;
 
   constructor(private paysLipsService: PayslipService) {
   }
@@ -19,6 +20,7 @@ export class ListPayslipComponent implements OnInit {
   paysLips: PaysLip[];
 
   ngOnInit() {
+
     this.paysLipsService.onAddPaysLip.subscribe(
       (paysLip: PaysLip) => {
         this.paysLips = this.paysLipsService.paysLips;
@@ -30,9 +32,9 @@ export class ListPayslipComponent implements OnInit {
   }
 
   showPaysLip(paysLip: PaysLip) {
-    console.log(paysLip);
+    //console.log(paysLip);
     this.cleanUpRubrics(paysLip.rubrics);
-    console.log(paysLip);
+    //console.log(paysLip);
     this.paysLipToshow = paysLip;
   }
 
@@ -40,7 +42,7 @@ export class ListPayslipComponent implements OnInit {
 
     let i = 0;
     while (i < rubrics.length) {
-      console.log(rubrics[i].label + "   " + rubrics[i].value + "  " + isNaN(rubrics[i].value));
+     // console.log(rubrics[i].label + "   " + rubrics[i].value + "  " + isNaN(rubrics[i].value));
       if (isNaN(rubrics[i].value)) {
         rubrics.splice(i, 1);
         i--;
@@ -49,4 +51,6 @@ export class ListPayslipComponent implements OnInit {
     }
 
   }
+
+
 }

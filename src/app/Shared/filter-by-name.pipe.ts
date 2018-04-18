@@ -24,10 +24,8 @@ export class FilterByNamePipe implements PipeTransform {
         }
 
       });
-    }else{
-      return null;
     }
-
+    return value;
   }
 
 }

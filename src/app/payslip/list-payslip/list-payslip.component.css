@@ -52,3 +52,39 @@ p{
   margin-left: -375px;
 }
 
+
+
+table {
+  width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+thead th {
+  height: 1.5cm;
+
+  /*text-align: left;*/
+}
+
+tbody {
+  min-height: 2cm;
+  max-height: 10cm;
+  overflow-y: auto;
+}
+
+thead {
+  /* fallback */
+}
+
+
+tbody td, thead th {
+  width: 25%;
+  float: left;
+}

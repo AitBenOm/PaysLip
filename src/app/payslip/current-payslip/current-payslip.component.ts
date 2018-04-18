@@ -36,7 +36,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   ngOnChanges(employee: SimpleChanges): void {
     for (const emp in employee) {
       const currentEmp = employee[emp];
-      // //console.log(currentEmp.currentValue);
+      // ////console.log(currentEmp.currentValue);
       this.employeeService.employeeToShow.next(currentEmp.currentValue);
 
     }
@@ -51,13 +51,13 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
     const firstDay = new Date(y, m, 1);
     const lastDay = new Date(y, m + 1, 0);
-    //console.log(firstDay+ '  '+ lastDay);
-    //console.log(this.employee.date_emb);
+    ////console.log(firstDay+ '  '+ lastDay);
+    ////console.log(this.employee.date_emb);
     this.labelRubrics = this.payslipService.listRubrique;
     this.initialisation(this.employee);
     this.employeeService.employeeToShow.subscribe(
       (employee: EmployeeModel) => {
-        //console.log(employee);
+        ////console.log(employee);
         this.initialisation(employee);
       }
     );
@@ -65,9 +65,9 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   }
 
   initialisation(employee: EmployeeModel) {
-    //console.log(this.employee);
+    ////console.log(this.employee);
 
-    //console.log(employee.salaireDeBase);
+    ////console.log(employee.salaireDeBase);
     this.labels['SDB']['B'] = employee.salaireDeBase;
     this.labels['SDB']['T'] = 1;
     this.labels['SDB']['G'] = this.labels['SDB']['B'] * this.labels['SDB']['T'];
@@ -93,7 +93,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   }
 
   claculate(rubLib: string) {
-    //console.log (rubLib);
+    ////console.log (rubLib);
 
 
     this.labels[rubLib]['G'] = this.labels[rubLib]['B'] * this.labels[rubLib]['T'];
@@ -136,11 +136,11 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   validate() {
     this.netAPaye = 0;
     this.netAPaye = this.totalGain() - this.totalRetenue();
-    //console.log(this.netAPaye);
+    ////console.log(this.netAPaye);
   }
 
   reset(form: FormGroup) {
-    //console.log(form);
+    ////console.log(form);
     form.reset();
     this.initialisation(this.employee);
 
@@ -171,16 +171,40 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   }
 
   savePaysLip() {
-    const periode: Date[] = [];
+    const periode1: Date[] = [];
+    const periode2: Date[] = [];
+    const periode3: Date[] = [];
+    const periode4: Date[] = [];
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    const firstDay = new Date(y, m, 1);
-    const lastDay = new Date(y, m + 1, 0);
-    periode.push(firstDay, lastDay);
-    console.log(periode);
-    const paysLip = new PaysLip('1', periode, this.storRubrics());
-    console.log(paysLip);
-    this.payslipService.paysLips.push(paysLip);
-    this.payslipService.onAddPaysLip.next(paysLip);
+    periode1.push(new Date(y, 4, 1), new Date(y, 4 + 1, 0));
+    //console.log(periode1);
+    const paysLip1 = new PaysLip('1', periode1, this.storRubrics());
+    //console.log(paysLip1);
+    this.payslipService.paysLips.push(paysLip1);
+    this.payslipService.onAddPaysLip.next(paysLip1);
+
+    periode2.push(new Date(y, 5, 1), new Date(y, 5 + 1, 0));
+    //console.log(periode2);
+    const paysLip2 = new PaysLip('1', periode2, this.storRubrics());
+    //console.log(paysLip2);
+    this.payslipService.paysLips.push(paysLip2);
+    this.payslipService.onAddPaysLip.next(paysLip2);
+
+    periode3.push(new Date(y, 6, 1), new Date(y, 6 + 1, 0));
+    //console.log(periode3);
+    const paysLip3 = new PaysLip('1', periode3, this.storRubrics());
+    //console.log(paysLip3);
+    //console.log(paysLip3);
+    this.payslipService.paysLips.push(paysLip3);
+    this.payslipService.onAddPaysLip.next(paysLip3);
+
+    periode4.push(new Date(y, 7, 1), new Date(y, 7 + 1, 0));
+
+    const paysLip4 = new PaysLip('1', periode4, this.storRubrics());
+    //console.log(paysLip4);
+    this.payslipService.paysLips.push(paysLip4);
+
+    this.payslipService.onAddPaysLip.next(paysLip4);
 
   }
 

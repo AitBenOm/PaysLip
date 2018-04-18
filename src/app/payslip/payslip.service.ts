@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {EmployeeModel} from '../employee/employee-model';
 import {LabelsRubric} from './PaysLipToolsShared/labelsRubric';
 import {PaysLip} from "./PaysLipToolsShared/pays-lip";
@@ -106,5 +106,5 @@ export class PayslipService {
 
 paysLips: PaysLip[] = []
 
-
+  onDateChanged = new EventEmitter<Date>();
 }

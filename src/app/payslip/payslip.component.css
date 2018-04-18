@@ -44,9 +44,9 @@ p{
   font-weight: bold;
   color: #495057;
 
-
-  border-right: 2px solid black;
-  border-left: 2px solid black;
+border-top:2px solid #6c757d ;
+  border-right: 2px solid #6c757d;
+  border-left: 2px solid #6c757d;
 }
 .nav-item>a:hover {
 
