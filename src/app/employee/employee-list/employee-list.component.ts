@@ -41,6 +41,7 @@ export class EmployeeListComponent implements OnInit {
 
   getEmployee(employee: EmployeeModel) {
     console.log(employee);
+    this.keyWord=employee.nom;
     this.employeeSelected.emit(employee);
 
   }

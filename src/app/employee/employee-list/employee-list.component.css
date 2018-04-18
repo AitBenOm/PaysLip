@@ -2,6 +2,7 @@ tr{
   cursor: pointer;
 }
 thead{
-  background-color: rgba(173,173,180,0.8);
-  color:rgba(204,112,23,0.86);
+  background-color: #6c757d;
+  color:white;
+font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;;
 }

@@ -1,27 +1,31 @@
 .navbar{
-  background-color: rgba(173,173,180,0.8);
+
+  background-color: #6c757d;
 
   height: 3cm;
   margin-bottom: 5mm;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-top: none;
 }
-.navbar-brand :hover{
-  color: white;
-}
+
 .navbar-brand{
   font-weight: bold;
-  color: #495057;
+  color:rgba(222, 226, 230, 0.8);
   font-size: xx-large;
-  font-family: "Comic Sans MS";
+  font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.navbar-brand:hover{
+  color: white;
 }
 .navbar-nav{
   margin-left: 25%;
 }
 .nav-item>a{
+  color:rgba(222, 226, 230, 0.8);
+  font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
   text-align: center;
   font-weight: bold;
-  color: #495057;
+
   font-size: x-large;
   height: 100%;
   padding-right: 1cm;
@@ -30,21 +34,22 @@
 
 }
 .nav-item>a:hover{
-  color:rgba(204,112,23,0.86);
+  color:rgba(237,121,16,0.69);
 }
-.nav-item>a:active{
+a:active{
   color: white;
 
 }
 .adminInfos{
-  border-left: 4px solid black;
+
 padding-right: 5mm;
 
 }
 
-.adminInfos *{
+.adminInfos >p{
   font-weight: bold;
-  color: #495057;
+  color:rgba(222, 226, 230, 0.8);
+  font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
 
 
 padding-left: 5mm;
