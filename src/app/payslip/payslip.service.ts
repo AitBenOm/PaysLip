@@ -21,7 +21,10 @@ export class PayslipService {
     new LabelsRubric('Prime Panier', 'GAIN', 'nb', 'PRIPAN'),
     new LabelsRubric('A.M.O', 'RET', 'tx', 'AMO'),
     new LabelsRubric('C.N.S.S', 'RET', 'tx', 'CNSS'),
+    new LabelsRubric('Taxe Profesionelle', 'RET', 'tx', 'TXPRO'),
+    new LabelsRubric('Personnes a Charge', 'RET', 'nb', 'PRCHG'),
     new LabelsRubric('I.G.R', 'RET', 'tx', 'IGR'),
+
     new LabelsRubric('ARRONDI', 'GAIN', 'nb', 'ARR')
   ];
   labels: any
@@ -75,18 +78,32 @@ export class PayslipService {
         'G': 'CNSS_G',
         'R': 'CNSS_R',
       },
+      'PRCHG': {
+        'B': 'PRCHG_B',
+        'T': 'PRCHG_T',
+        'G': 'PRCHG_G',
+        'R': 'PRCHG_R',
+      },
+      'TXPRO': {
+        'B': 'TXPRO_B',
+        'T': 'TXPRO_T',
+        'G': 'TXPRO_G',
+        'R': 'TXPRO_R',
+      },
       'IGR': {
         'B': 'IGR_B',
         'T': 'IGR_T',
         'G': 'IGR_G',
         'R': 'IGR_R',
       },
+
       'ARR': {
         'B': 'ARR_B',
         'T': 'ARR_T',
         'G': 'ARR_G',
         'R': 'ARR_R',
       },
+
     };
   rubricsLabels: any
     =
@@ -101,10 +118,12 @@ export class PayslipService {
   'PRITR': '  Prime de Transport',
   'PRIPAN': 'Prime de Panier',
   'INDRE': 'Indem . Rpresentation',
+  'TXPRO': 'Taxe . Professionelle',
+  'PRCHG': 'Personnes a Charge',
 };
 
 
-paysLips: PaysLip[] = []
+paysLips: PaysLip[] = [];
 
   onDateChanged = new EventEmitter<Date>();
 }

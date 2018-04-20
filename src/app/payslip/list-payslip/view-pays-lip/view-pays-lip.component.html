@@ -143,7 +143,12 @@
                 {{paysLipRubric.base}}
               </div>
 
-              <div class="col-sm-3 col-md-3" *ngIf="paysLipRubric.label==='SDB' ||paysLipRubric.label==='INDTR'||paysLipRubric.label==='INDRE'||paysLipRubric.label==='PRIPAN'||paysLipRubric.label==='PRITR'; else percent">
+              <div class="col-sm-3 col-md-3" *ngIf="paysLipRubric.label==='SDB'
+              ||paysLipRubric.label==='INDTR'
+              ||paysLipRubric.label==='INDRE'
+              ||paysLipRubric.label==='PRIPAN'
+              ||paysLipRubric.label==='PRITR'
+              ||paysLipRubric.label==='PRCHG'; else percent">
                 <!--<input class="form-control" type="number" name="{{rubrique.libelle+'_T'| number: '1.0-2' }}"  [(ngModel)]="labels[rubrique.libelle]['T']"  #Taux (input)="claculate(rubrique.libelle)"  ></div>-->
                 {{paysLipRubric.rate| number: '1.0-2' }}
               </div>

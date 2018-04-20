@@ -42,12 +42,12 @@
 
 }
 .nav-item>a:hover{
-  color:rgba(150,191,130,0.93);
+  color:rgba(204,112,23,0.86);
 }
-a:active{
-  color: white;
+.nav-item>a:active{
+  color:rgba(204,112,23,0.86);
+}
 
-}
 .adminInfos{
 
 padding-right: 5mm;
