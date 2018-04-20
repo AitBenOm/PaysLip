@@ -5,8 +5,8 @@
 }
 .card-header{
 
-  background: linear-gradient(135deg,rgba(204,112,23,0.86), #21a9af);
-  color:rgba(222, 226, 230, 0.8);
+  background-color: white;
+  color:#495057;
   font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
 
   font-weight: bold;
@@ -17,16 +17,18 @@
 h5{
   padding-top: 2mm;
 }
-.card-footer{
-  background-color: white;
-}
+
 .home{
-  /*background-color: white;*/
+  background-color: rgba(39,49,61,0.5);
 }
 .list-group-item>a{
   font-weight: bold;
   color:rgba(204,112,23,0.86);
 }
 i{
-  color:white;
+  padding-right: 1mm;
+  color:rgba(145,180,47,0.97);
+}
+.card{
+  background-color: rgba(39,49,61,0.5);
 }

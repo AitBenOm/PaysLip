@@ -1,5 +1,15 @@
 .container-fluid{
-  background: linear-gradient(135deg, #184e8e, #21a9af);
+  background: linear-gradient(135deg, rgba(228,109,0,0.93), #378e7c);
   font-family: 'Source Sans Pro', sans-serif;
 }
-
+.image {
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  background: url('../assets/HR.jpg') no-repeat center fixed;
+  background-size: contain;
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  /*background-size: cover; !* version standardisée *!*/
+}

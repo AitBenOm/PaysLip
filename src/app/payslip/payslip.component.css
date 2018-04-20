@@ -1,19 +1,8 @@
+body{
+  border-radius: 15px;
+  background-color: rgba(39, 49, 66 ,0.9);
+}
 
-/*div.row {*/
-  /*border-bottom: solid;*/
-
-  /*border-left: solid;*/
-  /*border-width: 0.2mm;*/
-  /*border-color: #17a2b8;*/
-/*}*/
-
-/*div.row>div {*/
-
-  /*border-right: solid;*/
-  /*border-color: #17a2b8;*/
-
-  /*border-width: 0.2mm;*/
-/*}*/
 p{
   padding-top: 3mm;
   text-transform: uppercase;
@@ -40,21 +29,42 @@ p{
   border-color: darkgray;
 }
 .nav-item{
+  margin-right: 4mm;
   text-align: center;
   font-weight: bold;
-  color: #495057;
 
-border-top:2px solid #6c757d ;
-  border-right: 2px solid #6c757d;
-  border-left: 2px solid #6c757d;
+
+  /*border-top:2px solid white ;*/
+  /*border-right: 2px solid white;*/
+  /*border-left: 2px solid white;*/
+  border: 2px solid white;
   border-radius: 5px 5px 5px 5px ;
 }
-.nav-item>a:hover {
 
+
+.nav-item>a {
+  color: white;
+
+}
+.nav-item>a:active {
+  color: #495057;
+
+}
+
+#myTab {
+  margin-left: 3%;
+}
+.nav-tabs{
+  border-bottom: none;
+}
+.nav-tabs .nav-link.active{
   color: rgba(204, 112, 23, 0.86);
 
 }
-.nav-item>a {
-  color: #495057;
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid  rgba(38,175,120,0.58);;
 
 }

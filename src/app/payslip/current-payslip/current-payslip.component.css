@@ -1,7 +1,11 @@
+.card{
+  background-color: whitesmoke;
 
+}
 p{
   height: 2mm;
   text-align: left;
+  color:#495057 ;
 }
 .card-body>div{
 
@@ -10,18 +14,19 @@ p{
   border-left: solid;
   border-right: solid;
   border-width: 0.2mm;
-  border-color: darkslategrey;
+  border-color: #495057;
   text-align: center;
+  color:#495057 ;
 }
 
 .card-body>div>div{
 
   border-bottom: solid;
-
+  color:#495057 ;
   border-left: solid;
   border-right: solid;
   border-width: 0.2mm;
-  border-color: darkslategrey;
+  border-color: #495057;
 }
 .content{
   padding-top: 4mm;
@@ -35,7 +40,8 @@ input{
   height: 5mm;
 }
 
-.card-header{padding: 0}
+.card-header{
+  padding: 0}
 #saveBtn {
   margin-top: 5mm;margin-bottom: 5mm;
   border-bottom: none;

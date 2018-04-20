@@ -1,0 +1,17 @@
+.card{
+  background-color: rgba(39,49,61,0.5);
+
+}
+.border-success{
+
+  color: white;
+}
+label{
+  color: white;
+}
+.card-header{
+  background-color: rgba(38,175,120,0.58);
+  color: white;
+  font-weight: bold;
+  font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
