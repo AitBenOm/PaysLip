@@ -1,14 +1,40 @@
 <div class="container-fluid home">
+  <br>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="card card-default">
+        <ul class="list-inline card-header">
+          <li class="list-inline-item"> Mes Informations</li>
+          <li class="list-inline-item float-sm-right" >
+            <a class="-pull-right" routerLink="home" style="color:rgba(222, 226, 230, 0.8);">Déconnexion<i class="fas fa-power-off" style="color: brown; padding-left: 2mm"></i></a></li>
+        </ul>
+        <div class="card-block">
+          <ul class="list-group">
+            <li class="list-group-item " > Bonjou  Mr Ait Benaissa Omar</li>
+            <li class="list-group-item " >Derniere Connexion : 20/04/2018 a 10:45</li>
+            <li class="list-group-item " >
+
+            </li>
+         </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="row">
         <div class="col-sm-1"></div>
         <div class=" col-sm-5">
           <div class="card card-default">
-            <h5 class="card-header">
-              Gérer les salariés
-              <i class="float-right fas fa-users fa-2x"></i>
-            </h5>
+            <ul class="list-inline card-header">
+              <li class="list-inline-item"> Gérer les salariés</li>
+              <li class="list-inline-item float-sm-right" >
+                <i class="float-right fas fa-users fa-2x"></i></li>
+            </ul>
+
             <div class="card-block">
               <ul class="list-group">
                 <li class="list-group-item " ><a routerLink="/employee-list"><i class="fas fa-angle-right"></i> Liste des Salarié</a></li>
@@ -23,10 +49,12 @@
 
         <div class="  col-sm-5">
           <div class="card">
-            <h5 class="card-header">
-             Gérer les éetudiants
-              <i class="float-right fas fa-graduation-cap fa-2x"></i>
-            </h5>
+            <ul class="list-inline card-header">
+              <li class="list-inline-item"> Gérer les éetudiants</li>
+              <li class="list-inline-item float-sm-right" >
+                <i class="float-right fas fa-graduation-cap fa-2x"></i></li>
+            </ul>
+
             <div class="card-block">
               <ul class="list-group">
                 <li class="list-group-item " > <a routerLink="/employee-list"><i class="fas fa-angle-right"></i>Liste des Etudiants</a></li>

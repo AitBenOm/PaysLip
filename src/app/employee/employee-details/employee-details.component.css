@@ -1,4 +1,5 @@
 .nav-item{
+  margin-right: 4mm;
   text-align: center;
   font-weight: bold;
   color: #495057;
@@ -6,6 +7,7 @@
   border-top:2px solid #6c757d ;
   border-right: 2px solid #6c757d;
   border-left: 2px solid #6c757d;
+  border-radius: 5px 5px 5px 5px ;
 }
 .nav-item>a:hover {
 
@@ -15,6 +17,10 @@
 .nav-item>a {
   color: #495057;
 
+}
+.nav-item>a:active {
+  color: #495057;
+  border-radius: 25px;
 }
 #myTab{
   margin-left: 8.5%;

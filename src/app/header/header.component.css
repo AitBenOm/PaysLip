@@ -1,14 +1,17 @@
 .navbar{
 
-  background-color: #6c757d;
+  background-color: rgba(71,64,60,0.17);
 
-  height: 3cm;
+  height: 1.5cm;
   margin-bottom: 5mm;
+
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-top: none;
+  box-shadow: 2px 2px 2px white;
 }
 
 .navbar-brand{
+
   font-weight: bold;
   color:rgba(222, 226, 230, 0.8);
   font-size: xx-large;
@@ -20,21 +23,26 @@
 .navbar-nav{
   margin-left: 25%;
 }
+.nav-item{
+  margin-right: 3mm;
+}
 .nav-item>a{
-  color:rgba(222, 226, 230, 0.8);
+  color:white;
   font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
   text-align: center;
   font-weight: bold;
 
-  font-size: x-large;
-  height: 100%;
+  font-size: llarge;
+
   padding-right: 1cm;
   padding-left: 1cm;
   border-right: 2px solid black;
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 20px;
 
 }
 .nav-item>a:hover{
-  color:rgba(237,121,16,0.69);
+  color:rgba(150,191,130,0.93);
 }
 a:active{
   color: white;

@@ -5,7 +5,7 @@
 }
 .card-header{
 
-  background-color: #6c757d;
+  background: linear-gradient(135deg,rgba(204,112,23,0.86), #21a9af);
   color:rgba(222, 226, 230, 0.8);
   font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
 
@@ -21,12 +21,12 @@ h5{
   background-color: white;
 }
 .home{
-  background-color: white;
+  /*background-color: white;*/
 }
 .list-group-item>a{
   font-weight: bold;
   color:rgba(204,112,23,0.86);
 }
 i{
-  color:rgba(150,191,130,0.93);
+  color:white;
 }

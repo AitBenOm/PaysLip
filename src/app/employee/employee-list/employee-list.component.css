@@ -2,7 +2,7 @@ tr{
   cursor: pointer;
 }
 thead{
-  background-color: #6c757d;
+  background-color: rgba(190,112,23,0.3);
   color:white;
 font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;;
 }
@@ -12,10 +12,15 @@ font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;;
 
 table {
   width: 100%;
-  border: 1px solid darkgrey;
+
+
 }
 
-thead, tbody, tr, td, th { display: block; }
+thead, tbody, tr, td, th { display: block;
+color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+}
 
 tr:after {
   content: ' ';
