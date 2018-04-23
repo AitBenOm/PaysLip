@@ -1,5 +1,15 @@
 <div class="logo"  *ngIf="paysLipToshow!=null" id="HTMLPaysLip">
   <div class="row">
+    <div class="col">
+      <h4> Groupe Scolaire Charif Al Idrissi</h4>
+    </div>
+    <div class="col">  <img src="../../../../assets/LogoGSCA.PNG"></div>
+    <div class="col">
+
+    </div>
+  </div>
+
+  <div class="row">
 
     <div class=" col-sm-7 card text-center">
       <div class="card border-dark mb-3">
@@ -129,7 +139,7 @@
         <div class="row" *ngFor="let paysLipRubric of paysLipToshow.rubrics" >
 
           <div *ngIf="paysLipRubric.base!=999" class="col-sm-7 card text-center content">
-            {{rubricLabels[paysLipRubric.label]}}
+           {{rubricLabels[paysLipRubric.label]}}
           </div>
           <div *ngIf="paysLipRubric.base!=999" class="col-sm-5 card text-center">
             <div class="form-group row content">
@@ -215,11 +225,36 @@
             </div>
             <div class=" col-sm-3">
               <!--<input class="form-control"  name="totalGains" readonly type="number" value="{{paysLipToshow.rubrics[paysLipToshow.rubrics.length-1].value}}">-->
-              {{paysLipToshow.rubrics[paysLipToshow.rubrics.length-3].value| number: '1.0-2' }}
+              {{paysLipToshow.rubrics[paysLipToshow.rubrics.length-4].value| number: '1.0-2' }}
             </div>
             <div class=" col-sm-3">
               <!--<input class="form-control" readonly value="{{totalRetenues}}" name="totalRetenues" type="number">-->
-              {{paysLipToshow.rubrics[paysLipToshow.rubrics.length-2].value| number: '1.0-2' }}
+              {{paysLipToshow.rubrics[paysLipToshow.rubrics.length-3].value| number: '1.0-2' }}
+            </div>
+
+          </div>
+        </div>
+      </div>    <div class="row">
+        <div class="col-sm-7 card text-center" style="padding-top: 4mm;">
+          Net Imposable
+        </div>
+
+        <div class="col-sm-5 card text-center">
+
+          <div class="form-group row content">
+            <div class=" col-sm-3">
+
+            </div>
+            <div class=" col-sm-3">
+
+            </div>
+            <div class=" col-sm-3">
+              <!--<input class="form-control"  name="totalGains" readonly type="number" value="{{paysLipToshow.rubrics[paysLipToshow.rubrics.length-1].value}}">-->
+              {{paysLipToshow.rubrics[paysLipToshow.rubrics.length-1].value| number: '1.0-2' }}
+            </div>
+            <div class=" col-sm-3">
+              <!--<input class="form-control" readonly value="{{totalRetenues}}" name="totalRetenues" type="number">-->
+
             </div>
 
           </div>
@@ -240,7 +275,7 @@
 
             <div class=" col-sm-6">
               <!--<input class="form-control" value="{{netAPaye}}" name="netAPaye" readonly type="number">-->
-              {{paysLipToshow.rubrics[paysLipToshow.rubrics.length-1].value| number: '1.0-2' }} DH
+              {{paysLipToshow.rubrics[paysLipToshow.rubrics.length-2].value| number: '1.0-2' }} DH
             </div>
           </div>
         </div>

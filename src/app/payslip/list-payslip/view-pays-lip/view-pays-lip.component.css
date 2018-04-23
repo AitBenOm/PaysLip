@@ -1,3 +1,10 @@
+img{
+  text-align: center;
+  height: 2cm;
+  width: 3cm;
+  margin-left: 2cm;
+}
+
 #logo {
   margin:0;
   padding:0;
@@ -63,3 +70,8 @@ input{
   padding-right: 30cm;
 }
 
+h3{
+  font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+
+  font-weight: bold;
+}

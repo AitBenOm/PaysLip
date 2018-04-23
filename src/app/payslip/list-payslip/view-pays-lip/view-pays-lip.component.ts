@@ -30,8 +30,7 @@ export class ViewPaysLipComponent implements OnInit {
   ngOnInit() {
     console.log(this.paysLipToshow);
     this.labelRubrics = this.payslipService.listRubrique;
-    this.labels = this.payslipService.labels;
-    this.rubricLabels = this.payslipService.rubricsLabels;
+    this.rubricLabels = this.payslipService.rubricsTitles;
   }
 
   generatePaysLip() {

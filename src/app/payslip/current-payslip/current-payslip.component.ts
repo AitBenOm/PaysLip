@@ -17,15 +17,17 @@ import {isNumeric} from "rxjs/util/isNumeric";
 })
 export class CurrentPayslipComponent implements OnInit, OnChanges {
 
-  labels = this.payslipService.labels;
+  labels = this.payslipService.labelsVariabls;
 
   netAPaye: number;
+  netImpo: number;
   totalGains: number = 0;
   totalRetenues: number = 0;
-  AMO = 2;
+  AMO = 2.28;
   CNSS = 4.48;
   IGR = 1;
   indem = 0;
+  validation: boolean = false;
 
   labelRubrics: LabelsRubric[];
   rubrics: Rubric[] = [];
@@ -73,7 +75,6 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
     this.labels['SDB']['G'] = this.labels['SDB']['B'] * this.labels['SDB']['T'];
 
 
-
     this.labels['ANT']['T'] = this.anciente(employee.date_emb);
     this.labels['AMO']['T'] = this.AMO;
     this.labels['CNSS']['T'] = this.CNSS;
@@ -92,12 +93,17 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
       }
 
     }
-    this.labels['PRCHG']['B'] =  30;
+    this.labels['PRCHG']['B'] = 30;
     this.labels['PRCHG']['T'] = this.employee.nbEnfant;
     this.labels['PRCHG']['R'] = this.labels['PRCHG']['B'] * this.labels['PRCHG']['T'];
+    this.labels['TXPRO']['B'] = '';
+    this.labels['TXPRO']['T'] = '';
+    this.labels['TXPRO']['R'] = '';
   }
+resetInput(rubrique: string){
 
-  claculate(rubLib: string) {
+}
+  calculate(rubLib: string, form: FormGroup) {
     ////console.log (rubLib);
 
 
@@ -123,7 +129,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
 
     }
 
-    return this.totalGains;
+    return Number(this.totalGains);
 
   }
 
@@ -135,18 +141,21 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
       }
     }
 
-    return this.totalRetenues;
+    return Number(this.totalRetenues);
   }
 
-  validate() {
+  validate(form: FormGroup) {
     this.netAPaye = 0;
-    const SDB =this.totalGain();
+    const SDB = this.totalGain();
 
-    const  netImposable = SDB- this.totalRetenue()-this.txPro(SDB);
+    const netImposable = SDB - this.totalRetenue() - this.txPro(SDB);
 
+    this.netImpo= Number(netImposable);
     const igr = this.igr(netImposable);
     this.totalRetenue();
+
     this.netAPaye = netImposable - igr;
+    this.validation = true;
   }
 
   reset(form: FormGroup) {
@@ -160,6 +169,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
     const totalRet = new Rubric('totalRet', 0, true, this.totalRetenue(), 999);
     const totalGain = new Rubric('totalGain', 0, true, this.totalGain(), 999);
     const netApaye = new Rubric('netApaye', 0, true, this.netAPaye, 999);
+    const netImpo = new Rubric('netImpo', 0, true, this.netImpo, 999);
 
     for (const label in this.labels) {
       let GainRet: boolean = true;
@@ -176,17 +186,14 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
       this.rubrics.push(rub);
 
     }
-    this.rubrics.push(totalGain, totalRet, netApaye);
+    this.rubrics.push(totalGain, totalRet, netApaye,netImpo);
     return this.rubrics;
   }
 
   savePaysLip() {
     const periode1: Date[] = [];
-    const periode2: Date[] = [];
-    const periode3: Date[] = [];
-    const periode4: Date[] = [];
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    periode1.push(new Date(y, 4, 1), new Date(y, 4 + 1, 0));
+    periode1.push(new Date(y, m, 1), new Date(y, m + 1, 0));
     //console.log(periode1);
     const paysLip1 = new PaysLip('1', periode1, this.storRubrics());
     //console.log(paysLip1);
@@ -233,6 +240,8 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 38;
       this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 2033.33;
+    } else if (netImp < 2500) {
+      return 0;
     }
     return this.labels['IGR']['R'];
   }

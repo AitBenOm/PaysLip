@@ -12,22 +12,22 @@ export class PayslipService {
 
   onAddPaysLip = new Subject<PaysLip>();
   listRubrique: LabelsRubric[] = [
-    new LabelsRubric('Salaire de base', 'GAIN', 'nb', 'SDB'),
+    new LabelsRubric('Salaire de base', 'GAIN', 'nb', 'SDB', true),
 
-    new LabelsRubric('Ancienté', 'GAIN', 'tx', 'ANT'),
-    new LabelsRubric('Indem.Deplacement', 'GAIN', 'nb', 'INDTR'),
-    new LabelsRubric('Indem.Representation', 'GAIN', 'nb', 'INDRE'),
-    new LabelsRubric('Prime Transport', 'GAIN', 'nb', 'PRITR'),
-    new LabelsRubric('Prime Panier', 'GAIN', 'nb', 'PRIPAN'),
-    new LabelsRubric('A.M.O', 'RET', 'tx', 'AMO'),
-    new LabelsRubric('C.N.S.S', 'RET', 'tx', 'CNSS'),
-    new LabelsRubric('Taxe Profesionelle', 'RET', 'tx', 'TXPRO'),
-    new LabelsRubric('Personnes a Charge', 'RET', 'nb', 'PRCHG'),
-    new LabelsRubric('I.G.R', 'RET', 'tx', 'IGR'),
+    new LabelsRubric('Ancienté', 'GAIN', 'tx', 'ANT',true),
+    new LabelsRubric('Indem.Deplacement', 'GAIN', 'nb', 'INDTR', false),
+    new LabelsRubric('Indem.Representation', 'GAIN', 'nb', 'INDRE',false),
+    new LabelsRubric('Prime Transport', 'GAIN', 'nb', 'PRITR', false),
+    new LabelsRubric('Prime Panier', 'GAIN', 'nb', 'PRIPAN', false),
+    new LabelsRubric('A.M.O', 'RET', 'tx', 'AMO', true),
+    new LabelsRubric('C.N.S.S', 'RET', 'tx', 'CNSS',true),
+    new LabelsRubric('Taxe Profesionelle', 'RET', 'tx', 'TXPRO', true),
+    new LabelsRubric('Personnes a Charge', 'RET', 'nb', 'PRCHG', true),
+    new LabelsRubric('I.G.R', 'RET', 'tx', 'IGR', true),
 
-    new LabelsRubric('ARRONDI', 'GAIN', 'nb', 'ARR')
+    new LabelsRubric('ARRONDI', 'GAIN', 'nb', 'ARR',true)
   ];
-  labels: any
+  labelsVariabls: any
     =
     {
       'SDB': {
@@ -105,7 +105,7 @@ export class PayslipService {
       },
 
     };
-  rubricsLabels: any
+  rubricsTitles: any
     =
     {
       'SDB': 'Salaire de Base',
