@@ -4,8 +4,8 @@ import {LabelsRubric} from "../../PaysLipToolsShared/labelsRubric";
 import {PayslipService} from "../../payslip.service";
 import {EmployeeService} from "../../../employee/employee.service";
 import {PaysLip} from "../../PaysLipToolsShared/pays-lip";
-import {Rubric} from "../../PaysLipToolsShared/rubric";
-import {isNumber} from "util";
+import * as html2canvas from 'html2canvas';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-view-pays-lip',
@@ -34,6 +34,15 @@ export class ViewPaysLipComponent implements OnInit {
     this.rubricLabels = this.payslipService.rubricsLabels;
   }
 
-
+  generatePaysLip() {
+    html2canvas(document.querySelector('#HTMLPaysLip')).then(
+      canvas => {
+        //console.log(canvas.toDataURL('image/png'));
+        const jspdf = new jsPDF();
+        jspdf.addImage(canvas.toDataURL('image/png'), 4, 10);
+        jspdf.save(this.employee.nom + ' ' + this.employee.prenom + ' ' + this.paysLipToshow.period[0].getMonth() + '/' + this.paysLipToshow.period[0].getFullYear());
+      }
+    );
+  }
 
 }

@@ -1,3 +1,14 @@
+#logo {
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: auto;
+position: absolute;
+  left:0;
+  top:0; /*If you want it at the bottom you probably want bottom:0 instead*/
+  z-index: 100;
+opacity: 0.1;
+}
 
 p{
   height: 2mm;

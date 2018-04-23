@@ -142,7 +142,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
     this.netAPaye = 0;
     const SDB =this.totalGain();
 
-    const  netImposable = SDB- this.totalRetenue()-this.txPro(SDB)- this.employee.nbEnfant*30;
+    const  netImposable = SDB- this.totalRetenue()-this.txPro(SDB);
 
     const igr = this.igr(netImposable);
     this.totalRetenue();
