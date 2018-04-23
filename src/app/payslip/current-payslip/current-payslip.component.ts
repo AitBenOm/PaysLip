@@ -103,10 +103,8 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
 resetInput(rubrique: string){
 
 }
-  calculate(rubLib: string, form: FormGroup) {
-    ////console.log (rubLib);
-
-
+  calculate(rubLib: string, form: any) {
+  console.log(form);
     this.labels[rubLib]['G'] = this.labels[rubLib]['B'] * this.labels[rubLib]['T'];
     this.indem = this.indem + this.labels[rubLib]['G'];
     if (this.indem - 300 > 0) {

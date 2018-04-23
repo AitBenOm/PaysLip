@@ -141,12 +141,12 @@
             <div class="col-sm-3 col-md-3 ">
 
               <input class="form-control" type="number" #Base name="{{rubrique.libelle+'_B'}}"
-                     [disabled]="rubrique.disabled===true || "
-                     [(ngModel)]="labels[rubrique.libelle]['B']" (change)="resetInput(rubrique.libelle)"></div>
+                     [disabled]="rubrique.disabled===true  "
+                     [(ngModel)]="labels[rubrique.libelle]['B']" (change)="resetInput(rubrique.libelle, Base.)"></div>
             <div class="col-sm-3 col-md-3">
-              <input class="form-control" type="number" name="{{rubrique.libelle+'_T'}}"
+              <input class="form-control"  type="number" name="{{rubrique.libelle+'_T'}}"
                      [disabled]="rubrique.disabled===true"
-                     [(ngModel)]="labels[rubrique.libelle]['T']" (change)="resetInput(rubrique.libelle)"  #Taux (input)="calculate(rubrique.libelle)"  ></div>
+                     [(ngModel)]="labels[rubrique.libelle]['T']" (change)="resetInput(rubrique.libelle, Taux )"  #Taux (input)="calculate(rubrique.libelle)"  ></div>
 
 
             <div class="col-sm-3 col-md-3" *ngIf="rubrique.proprety==='GAIN'; else RET">
