@@ -1,3 +1,90 @@
-<p>
-  add-employee works!
-</p>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+
+    <div class="card border-secondary mb-3">
+      <div class="card-header">Informations Personelle</div>
+      <div class="card-body text-secondary">
+        <form  method="" action="">
+          <div >
+            <div class="form-group">
+              <label >Nom</label>
+              <input required type="text" class="form-control" (ngModel)="employee.nom" >
+            </div>
+            <div class="form-group" >
+              <label >Prenom</label>
+              <input required type="text" class="form-control" (ngModel)="employee.prenom" >
+            </div>
+            <div class="form-group" >
+              <label >Date de Naissance</label>
+              <input required type="date" class="form-control" (ngModel)="employee.date_de_naissance">
+            </div>
+            <div class="form-group" >
+              <label>Adresse</label>
+              <input required type="text" class="form-control"  (ngModel)="employee.adresse" >
+            </div>
+            <div class="form-group" >
+              <label>Téléphone</label>
+              <input required type="text" class="form-control" (ngModel)="employee.telephone">
+            </div>
+            <div class="form-group" >
+              <label>E-Mail</label>
+              <input required type="text" class="form-control" (ngModel)="employee.email">
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-5">
+
+    <div class="card border-secondary mb-3">
+      <div class="card-header">Informations Profesionelles</div>
+      <div class="card-body text-secondary">
+        <form #newEmployee >
+          <div >
+            <div class="form-group">
+              <label >N° CIN</label>
+              <input required type="text" class="form-control" (ngModel)="employee.numCin" >
+            </div>
+            <div class="form-group" >
+              <label >N° C.N.S.S</label>
+              <input required type="text" class="form-control" (ngModel)="employee.numCNSS" >
+            </div>
+            <div class="form-group" >
+              <label >Date d'embauche</label>
+              <input required type="date" class="form-control" (ngModel)="employee.date_emb">
+            </div>
+            <div class="form-group" >
+              <label>Fonction</label>
+              <select class="custom-select custom-select-lg mb-3" (ngModel)="employee.fonction" >
+                <option *ngFor="let function of listFonction"
+                        value="{{function.fonction}}">{{function.fonction}}</option>
+
+              </select>
+            </div>
+
+            <div class="form-group" >
+              <label>Salare de Base</label>
+              <input  type="text" class="form-control" id="NbrMaxFile" (ngModel)="employee.salaireDeBase" >
+            </div>
+            <hr>
+            <div class="form-group" >
+
+              <input  type="submit" class="btn btn-outline-success float-right" value="Ajouter" >
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-1"></div>
+</div>
+

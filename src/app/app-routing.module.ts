@@ -8,6 +8,7 @@ import {PayslipComponent} from "./payslip/payslip.component";
 import {UpdateEmployeeComponent} from "./employee/update-employee/update-employee.component";
 import {HomeComponent} from "./home/home.component";
 import {CurrentPayslipComponent} from "./payslip/current-payslip/current-payslip.component";
+import {AddEmployeeComponent} from "./employee/add-employee/add-employee.component";
 
 const appRoutes: Routes = [
 
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
 
 
   { path: 'home', component: HomeComponent },
+  { path: 'Ajout nouveau salarie', component: AddEmployeeComponent },
   { path: 'paysLip', component: PayslipComponent, children: [
     { path: 'employee-details/:id', component: PayslipComponent }
 ] },

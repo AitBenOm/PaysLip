@@ -34,4 +34,7 @@ employee: EmployeeModel = null;
     this.showPaysLip = true;
     console.log(event +" ----- "+ this.showPaysLip);
   }
+  reset(test:boolean) {
+    this.showPaysLip = test;
+  }
 }

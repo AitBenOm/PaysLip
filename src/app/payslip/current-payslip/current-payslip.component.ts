@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {EmployeeModel} from '../../employee/employee-model';
 import {PayslipService} from '../payslip.service';
 import {LabelsRubric} from '../PaysLipToolsShared/labelsRubric';
@@ -8,6 +8,7 @@ import {Rubric} from "../PaysLipToolsShared/rubric";
 
 import {PaysLip} from "../PaysLipToolsShared/pays-lip";
 import {isNumeric} from "rxjs/util/isNumeric";
+import * as $ from 'jquery';
 
 
 @Component({
@@ -15,30 +16,41 @@ import {isNumeric} from "rxjs/util/isNumeric";
   templateUrl: './current-payslip.component.html',
   styleUrls: ['./current-payslip.component.css']
 })
-export class CurrentPayslipComponent implements OnInit, OnChanges {
+export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   labels = this.payslipService.labelsVariabls;
 
-  netAPaye: number;
-  netImpo: number;
+  netAPaye: number = 0;
+  netImpo: number = 0;
   totalGains: number = 0;
   totalRetenues: number = 0;
-  AMO = 2.28;
-  CNSS = 4.48;
+  AMO = 2;
+  CNSS = 4.29;
   IGR = 1;
   indem = 0;
-  validation: boolean = false;
+  nbRet: number = 0;
+  nbGain: number = 0;
 
   labelRubrics: LabelsRubric[];
   rubrics: Rubric[] = [];
 
 
   @Input() employee: EmployeeModel = null;
+  @Output() Cancel = new EventEmitter<boolean>();
 
   ngOnChanges(employee: SimpleChanges): void {
     for (const emp in employee) {
       const currentEmp = employee[emp];
       // ////console.log(currentEmp.currentValue);
+
+      for (const label in this.labels) {
+
+        if (label === 'INDTR' || label === 'INDRE' || label === 'PRITR' || label === 'PRIPAN') {
+          this.labels[label]['G'] = '';
+          this.labels[label]['B'] = '';
+          this.labels[label]['T'] = '';
+        }
+      }
       this.employeeService.employeeToShow.next(currentEmp.currentValue);
 
     }
@@ -49,6 +61,10 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   }
 
 
+  ngOnDestroy(): void {
+    console.log("destroy");
+  }
+
   ngOnInit() {
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
     const firstDay = new Date(y, m, 1);
@@ -56,10 +72,15 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
     ////console.log(firstDay+ '  '+ lastDay);
     ////console.log(this.employee.date_emb);
     this.labelRubrics = this.payslipService.listRubrique;
+    if (this.employee.nbEnfant > 0 ) {
+      this.labelRubrics.splice(10, 1);
+    }
+
     this.initialisation(this.employee);
     this.employeeService.employeeToShow.subscribe(
       (employee: EmployeeModel) => {
-        ////console.log(employee);
+
+
         this.initialisation(employee);
       }
     );
@@ -67,9 +88,9 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
   }
 
   initialisation(employee: EmployeeModel) {
-    ////console.log(this.employee);
+    console.log(this.employee);
 
-    ////console.log(employee.salaireDeBase);
+    console.log(employee.salaireDeBase);
     this.labels['SDB']['B'] = employee.salaireDeBase;
     this.labels['SDB']['T'] = 1;
     this.labels['SDB']['G'] = this.labels['SDB']['B'] * this.labels['SDB']['T'];
@@ -93,18 +114,23 @@ export class CurrentPayslipComponent implements OnInit, OnChanges {
       }
 
     }
-    this.labels['PRCHG']['B'] = 30;
-    this.labels['PRCHG']['T'] = this.employee.nbEnfant;
-    this.labels['PRCHG']['R'] = this.labels['PRCHG']['B'] * this.labels['PRCHG']['T'];
+    if (this.employee.nbEnfant > 0) {
+      this.labels['PRCHG']['B'] = 30;
+      this.labels['PRCHG']['T'] = this.employee.nbEnfant;
+      this.labels['PRCHG']['R'] = this.labels['PRCHG']['B'] * this.labels['PRCHG']['T'];
+    }
+
     this.labels['TXPRO']['B'] = '';
     this.labels['TXPRO']['T'] = '';
     this.labels['TXPRO']['R'] = '';
   }
-resetInput(rubrique: string){
 
-}
-  calculate(rubLib: string, form: any) {
-  console.log(form);
+  resetInput(rubrique: string) {
+
+  }
+
+  calculate(rubLib: string, form: FormGroup) {
+    var test = rubLib + '_B';
     this.labels[rubLib]['G'] = this.labels[rubLib]['B'] * this.labels[rubLib]['T'];
     this.indem = this.indem + this.labels[rubLib]['G'];
     if (this.indem - 300 > 0) {
@@ -113,7 +139,11 @@ resetInput(rubrique: string){
     }
     this.labels['AMO']['B'] = (this.labels['AMO']['B'] + (this.labels[rubLib]['G']));
     this.labels['AMO']['R'] = Number((this.labels['AMO']['B'] * this.labels['AMO']['T'])) / 100;
-
+    $(document).ready(function () {
+      console.log(test);
+      $("#" + rubLib + '_B').prop("disabled", true);
+      $("#" + rubLib + '_T').prop("disabled", true);
+    });
   }
 
 
@@ -144,22 +174,22 @@ resetInput(rubrique: string){
 
   validate(form: FormGroup) {
     this.netAPaye = 0;
-    const SDB = this.totalGain();
+    this.netImpo = 0;
+    const Brut = this.totalGain();
+    const charges = this.totalRetenue();
+    let igr;
 
-    const netImposable = SDB - this.totalRetenue() - this.txPro(SDB);
+    this.netImpo = Brut - charges - this.txPro(Brut);
+    igr = this.igr(this.netImpo);
+    this.totalRetenues = this.totalRetenues + this.txPro(Brut);
 
-    this.netImpo= Number(netImposable);
-    const igr = this.igr(netImposable);
-    this.totalRetenue();
+    this.netAPaye = Brut - igr - charges;
 
-    this.netAPaye = netImposable - igr;
-    this.validation = true;
   }
 
   reset(form: FormGroup) {
     ////console.log(form);
-    form.reset();
-    this.initialisation(this.employee);
+    this.Cancel.emit(false);
 
   }
 
@@ -170,8 +200,8 @@ resetInput(rubrique: string){
     const netImpo = new Rubric('netImpo', 0, true, this.netImpo, 999);
 
     for (const label in this.labels) {
-      let GainRet: boolean = true;
-      let value: number = 0;
+      let GainRet: boolean;
+      let value: number;
       if (isNumeric(this.labels[label]['R'])) {
         GainRet = false;
         value = this.labels[label]['R'];
@@ -184,7 +214,7 @@ resetInput(rubrique: string){
       this.rubrics.push(rub);
 
     }
-    this.rubrics.push(totalGain, totalRet, netApaye,netImpo);
+    this.rubrics.push(totalGain, totalRet, netApaye, netImpo);
     return this.rubrics;
   }
 

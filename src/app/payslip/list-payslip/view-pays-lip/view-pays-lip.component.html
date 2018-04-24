@@ -1,7 +1,7 @@
 <div class="logo"  *ngIf="paysLipToshow!=null" id="HTMLPaysLip">
   <div class="row">
     <div class="col">
-      <h4> Groupe Scolaire Charif Al Idrissi</h4>
+      <h4> GSCAI</h4>
     </div>
     <div class="col">  <img src="../../../../assets/LogoGSCA.PNG"></div>
     <div class="col">
@@ -13,7 +13,7 @@
 
     <div class=" col-sm-7 card text-center">
       <div class="card border-dark mb-3">
-        <div class="card-header">darkrmations Profesionelles</div>
+
         <div class="card-body">
           <div class="row" style="border-top: solid;   border-width: 0.2mm;">
             <div class="col-sm-7">
@@ -69,10 +69,10 @@
       </div>
 
     </div>
-
+    <br>
     <div class=" col-sm-5 card text-center">
       <div class="card border-dark mb-3">
-        <div class="card-header"> Profesionelles</div>
+
 
 
         <div class="card-body  ">
@@ -138,14 +138,14 @@
         </div>
         <div class="row" *ngFor="let paysLipRubric of paysLipToshow.rubrics" >
 
-          <div *ngIf="paysLipRubric.base!=999" class="col-sm-7 card text-center content">
+          <div *ngIf="paysLipRubric.base!=999 && paysLipRubric.base!='' && paysLipRubric.value!=0" class="col-sm-7 card text-center content">
            {{rubricLabels[paysLipRubric.label]}}
           </div>
-          <div *ngIf="paysLipRubric.base!=999" class="col-sm-5 card text-center">
+          <div *ngIf="paysLipRubric.base!=999  && paysLipRubric.base!='' && paysLipRubric.value!=0" class="col-sm-5 card text-center">
             <div class="form-group row content">
               <div class=" col-sm-3 ">
                 <!--<input class="form-control" type="number" #Base name="{{rubrique.libelle+'_B'}}" [(ngModel)]="labels[rubrique.libelle]['B']">-->
-                {{paysLipRubric.base}}
+                {{paysLipRubric.base | number: '1.0-2'}}
               </div>
 
               <div class=" col-sm-3" *ngIf="paysLipRubric.label==='SDB'

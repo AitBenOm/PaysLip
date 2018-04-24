@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EmployeeService} from "../employee.service";
+import {EmployeeModel} from "../employee-model";
+import {Fonction} from "../fonction";
 
 @Component({
   selector: 'app-add-employee',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  constructor() { }
+  employee: EmployeeModel;
+  listFonction: Fonction[];
+
+  constructor(private employeeService: EmployeeService) {
+  }
 
   ngOnInit() {
+    this.listFonction = this.employeeService.getListFunction();
   }
 
 }
