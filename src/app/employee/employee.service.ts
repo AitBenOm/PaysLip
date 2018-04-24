@@ -9,6 +9,7 @@ export class EmployeeService {
   constructor() { }
 
   employeeSelected= new  Subject <EmployeeModel>();
+  onEmployeeAdded= new  Subject <EmployeeModel>();
   employeeToShow= new  Subject <EmployeeModel>();
   onKewWordChanged = new EventEmitter<string>();
 
@@ -50,6 +51,10 @@ export class EmployeeService {
     const employee= this.getListEmployee().find(this.checkEmployeeByMatricule(index) );
 // console.log(employee);
  return employee;
+  }
+
+  onAddEmployee(employee: EmployeeModel){
+    this._listEmployee.push(employee);
   }
 }
 

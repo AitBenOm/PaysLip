@@ -29,7 +29,7 @@
   </thead>
   <tbody>
 
-  <tr *ngFor="let employee of employees | filterByName : keyWord :searchableField "(click)="getEmployee(employee)" routerLink="employee-details/{{employee.matricule.toString()}}" >
+  <tr *ngFor="let employee of employees | filterByName : keyWord :searchableField " (click)="getEmployee(employee)" routerLink="employee-details/{{employee.matricule.toString()}}" >
     <td class="col-xs-2" >{{employee.matricule}}</td>
     <td class="col-xs-4" >{{employee.nom}}</td>
     <td class="col-xs-4" >{{employee.prenom}}</td>
