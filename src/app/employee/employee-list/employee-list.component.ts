@@ -3,6 +3,7 @@ import {EmployeeService} from "../employee.service";
 import {EmployeeModel} from "../employee-model";
 import {HeaderService} from "../../header/header.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {PayslipService} from "../../payslip/payslip.service";
 
 @Component({
   selector: 'app-employee-list',
@@ -16,7 +17,7 @@ export class EmployeeListComponent implements OnInit {
   @Input() employee: EmployeeModel = null;
   @Output() employeeSelected = new EventEmitter<EmployeeModel>();
 
-  constructor(private employeeService: EmployeeService, private headerService: HeaderService, private router: Router, private route: ActivatedRoute) {
+  constructor(private employeeService: EmployeeService, private headerService: HeaderService, private router: Router, private route: ActivatedRoute, private paysLipService: PayslipService) {
 
     this.searchableField = [
       'nom', 'prenom', 'matricule'
@@ -27,6 +28,7 @@ export class EmployeeListComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.route.toString().split("'")[1]);
     this.headerService.onShowList.subscribe(
       (data: boolean) => {
         this.hideListe = data;
@@ -61,5 +63,13 @@ export class EmployeeListComponent implements OnInit {
       this.router.navigate(['employee-list']);
     }
 
+  }
+  testUrl(){
+    return this.route.toString().split("'")[1]==='paysLip';
+  }
+  generateAllPaysLip(){
+    console.log('onClick generate ALL');
+    this.paysLipService.onGenerateAllPaysLip.next(true);
+    this.router.navigate(['All PaysLip']);
   }
 }

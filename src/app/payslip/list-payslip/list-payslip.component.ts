@@ -23,7 +23,7 @@ export class ListPayslipComponent implements OnInit {
 
     this.paysLipsService.onAddPaysLip.subscribe(
       (paysLip: PaysLip) => {
-        this.paysLips = this.paysLipsService.paysLips;
+        this.paysLips = this.paysLipsService.paysLipsOfEmployee;
         console.log(this.paysLips);
       }
     );

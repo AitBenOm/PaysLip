@@ -17,8 +17,12 @@ label{
 }
 .row{
 
+border: 1px solid whitesmoke;
   border-radius: 15px;
   background-color: rgba(45, 55, 66 ,0.9);
 
 
+}
+.row>div {
+  margin-top: 5mm;
 }

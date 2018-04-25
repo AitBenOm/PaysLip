@@ -25,6 +25,7 @@
 }
 .nav-item{
   margin-right: 3mm;
+  background-color: rgba(50, 55, 66 ,1);
 }
 .nav-item>a{
   color:white;

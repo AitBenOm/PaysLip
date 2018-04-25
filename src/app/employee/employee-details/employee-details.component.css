@@ -37,3 +37,10 @@ hr {
   border-top: 1px solid  rgba(38,175,120,0.58);;
 
 }
+.row{
+  border: 1px solid whitesmoke;
+  border-radius: 15px;
+  background-color: rgba(45, 55, 66 ,0.9);
+
+
+}

@@ -6,6 +6,7 @@ import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class PayslipService {
+  onGenerateAllPaysLip = new Subject<boolean>();
 
   constructor() {
   }
@@ -14,18 +15,18 @@ export class PayslipService {
   listRubrique: LabelsRubric[] = [
     new LabelsRubric('Salaire de base', 'GAIN', 'nb', 'SDB', true),
 
-    new LabelsRubric('Ancienté', 'GAIN', 'tx', 'ANT',true),
+    new LabelsRubric('Ancienté', 'GAIN', 'tx', 'ANT', true),
     new LabelsRubric('Indem.Deplacement', 'GAIN', 'nb', 'INDTR', false),
-    new LabelsRubric('Indem.Representation', 'GAIN', 'nb', 'INDRE',false),
+    new LabelsRubric('Indem.Representation', 'GAIN', 'nb', 'INDRE', false),
     new LabelsRubric('Prime Transport', 'GAIN', 'nb', 'PRITR', false),
     new LabelsRubric('Prime Panier', 'GAIN', 'nb', 'PRIPAN', false),
     new LabelsRubric('A.M.O', 'RET', 'tx', 'AMO', true),
-    new LabelsRubric('C.N.S.S', 'RET', 'tx', 'CNSS',true),
+    new LabelsRubric('C.N.S.S', 'RET', 'tx', 'CNSS', true),
     new LabelsRubric('Taxe Profesionelle', 'RET', 'tx', 'TXPRO', true),
     new LabelsRubric('Personnes a Charge', 'RET', 'nb', 'PRCHG', true),
     new LabelsRubric('I.G.R', 'RET', 'tx', 'IGR', true),
 
-    new LabelsRubric('ARRONDI', 'GAIN', 'nb', 'ARR',true)
+    new LabelsRubric('ARRONDI', 'GAIN', 'nb', 'ARR', true)
   ];
   labelsVariabls: any
     =
@@ -109,21 +110,22 @@ export class PayslipService {
     =
     {
       'SDB': 'Salaire de Base',
-  'ANT': 'Ancienté',
-  'CNSS': 'C.N.S.S',
-  'AMO': 'A.M.O',
-  'IGR': 'I.G.R',
-  'ARR': 'Arrondie',
-  'INDTR': 'Indem.Deplacement',
-  'PRITR': '  Prime de Transport',
-  'PRIPAN': 'Prime de Panier',
-  'INDRE': 'Indem . Rpresentation',
-  'TXPRO': 'Taxe . Professionelle',
-  'PRCHG': 'Personnes a Charge',
-};
+      'ANT': 'Ancienté',
+      'CNSS': 'C.N.S.S',
+      'AMO': 'A.M.O',
+      'IGR': 'I.G.R',
+      'ARR': 'Arrondie',
+      'INDTR': 'Indem.Deplacement',
+      'PRITR': '  Prime de Transport',
+      'PRIPAN': 'Prime de Panier',
+      'INDRE': 'Indem . Rpresentation',
+      'TXPRO': 'Taxe . Professionelle',
+      'PRCHG': 'Personnes a Charge',
+    };
 
 
-paysLips: PaysLip[] = [];
+  paysLipsOfEmployee: PaysLip[] = [];
+  allPaysLips: PaysLip[] = [];
 
-  onDateChanged = new EventEmitter<Date>();
+
 }

@@ -26,6 +26,8 @@ import {HeaderService} from "./header/header.service";
 import { ViewPaysLipComponent } from './payslip/list-payslip/view-pays-lip/view-pays-lip.component';
 import { HomeComponent } from './home/home.component';
 import { FilterByDatePipe } from './Shared/filter-by-date.pipe';
+import {AllPaysLipComponent} from "./payslip/all-pays-lip/all-pays-lip.component";
+
 
 
 
@@ -52,6 +54,7 @@ import { FilterByDatePipe } from './Shared/filter-by-date.pipe';
     HomeComponent,
 
     FilterByDatePipe,
+    AllPaysLipComponent
 
 
   ],

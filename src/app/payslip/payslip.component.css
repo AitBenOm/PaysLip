@@ -1,5 +1,6 @@
 body{
   border-radius: 15px;
+  border: 1px solid whitesmoke;
   background-color: rgba(39, 49, 66 ,0.9);
 }
 
