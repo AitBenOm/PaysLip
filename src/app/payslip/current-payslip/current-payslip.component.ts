@@ -24,7 +24,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   netImpo: number = 0;
   totalGains: number = 0;
   totalRetenues: number = 0;
-  AMO = 2;
+  AMO = 2.28;
   CNSS = 4.29;
   IGR = 1;
   indem = 0;
@@ -32,7 +32,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   nbGain: number = 0;
 
   labelRubrics: LabelsRubric[];
-  rubrics: Rubric[] = [];
+
 
 
   @Input() employee: EmployeeModel = null;
@@ -40,19 +40,13 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(employee: SimpleChanges): void {
     this.labelRubrics=[];
-    this.rubrics=[];
+    this.labelRubrics = this.payslipService.listRubrique;
+
     this.netAPaye= 0;
     this.netImpo = 0;
     this.totalGains = 0;
     this.totalRetenues = 0;
-    this.payslipService.onGenerateAllPaysLip.subscribe(
-      (onGenerate: boolean) => {
-        console.log('onSubscribe');
-        if (onGenerate) {
-          this.saveAllPaysLips(this.employeeService.getListEmployee());
-        }
-      }
-    );
+
     for (const emp in employee) {
       const currentEmp = employee[emp];
       // ////console.log(currentEmp.currentValue);
@@ -77,31 +71,40 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     console.log("destroy");
+    for (const label in this.labels) {
+      this.labels[label]['B'] = '';
+      this.labels[label]['T'] = '';
+      this.labels[label]['R'] = '';
+      this.labels[label]['G'] = '';
+    }
+    this.labelRubrics=[];
+    this.netAPaye= 0;
+    this.netImpo = 0;
+    this.totalGains = 0;
+    this.totalRetenues = 0;
   }
 
   ngOnInit() {
 
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
-  this.labelRubrics=[];
+    this.labelRubrics=[];
     this.labelRubrics = this.payslipService.listRubrique;
-    if (this.employee.nbEnfant > 0) {
-      this.labelRubrics.splice(10, 1);
-    }
 
+    this.netAPaye= 0;
+    this.netImpo = 0;
+    this.totalGains = 0;
+    this.totalRetenues = 0;
     this.initialisation(this.employee);
     this.employeeService.employeeToShow.subscribe(
       (employee: EmployeeModel) => {
-
-
-        this.initialisation(employee);
+   this.initialisation(employee);
       }
     );
 
   }
 
   initialisation(employee: EmployeeModel) {
-    this.labelRubrics=[];
-    this.labelRubrics = this.payslipService.listRubrique;
+
     console.log(this.employee);
 
     console.log(employee.salaireDeBase);
@@ -203,6 +206,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   reset(form: FormGroup) {
     ////console.log(form);
+    this.ngOnDestroy();
     this.Cancel.emit(false);
 
   }
@@ -297,14 +301,6 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
     return this.labels['TXPRO']['R'];
   }
 
-  saveAllPaysLips(employees: EmployeeModel[]) {
-    console.log('onSave ALL');
-    for (const employee of employees) {
-      this.initialisation(employee);
-      this.validate();
-      this.savePaysLip(employee);
-    }
-  }
 
 
 }

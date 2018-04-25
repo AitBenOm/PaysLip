@@ -16,15 +16,15 @@ import * as $ from 'jquery';
   templateUrl: './all-pays-lip.component.html',
   styleUrls: ['./all-pays-lip.component.css']
 })
-export class AllPaysLipComponent implements OnInit {
+export class AllPaysLipComponent implements OnInit, OnDestroy {
 
-  labels = this.payslipService.labelsVariabls;
+  labels:any;
 
   netAPaye: number = 0;
   netImpo: number = 0;
   totalGains: number = 0;
   totalRetenues: number = 0;
-  AMO = 2;
+  AMO = 2.28;
   CNSS = 4.29;
   IGR = 1;
   indem = 0;
@@ -32,7 +32,7 @@ export class AllPaysLipComponent implements OnInit {
 
   labelRubrics: LabelsRubric[];
 
-  paysLip: PaysLip[];
+  ListpaysLip: PaysLip[];
 
 
   constructor(private payslipService: PayslipService, private employeeService: EmployeeService) {
@@ -40,15 +40,14 @@ export class AllPaysLipComponent implements OnInit {
 
   ngOnInit() {
     //cons.log("All PaysLip Component");
-
+    this.labels = this.payslipService.labelsVariabls;
 
     this.payslipService.onGenerateAllPaysLip.subscribe(
       (onGenerate: boolean) => {
         //cons.log('onSubscribe');
-
+        this.labels = this.payslipService.labelsVariabls;
         this.saveAllPaysLips(this.employeeService.getListEmployee());
-        this.paysLip = this.payslipService.allPaysLips;
-        console.log(this.paysLip);
+
       }
     );
 
@@ -92,23 +91,6 @@ export class AllPaysLipComponent implements OnInit {
     this.labels['TXPRO']['T'] = '';
     this.labels['TXPRO']['R'] = '';
   }
-
-  resetInput(rubrique: string) {
-
-  }
-
-  calculate(rubLib: string, form: FormGroup) {
-
-    this.labels[rubLib]['G'] = this.labels[rubLib]['B'] * this.labels[rubLib]['T'];
-    this.indem = this.indem + this.labels[rubLib]['G'];
-    if (this.indem - 300 > 0) {
-      this.labels['CNSS']['B'] = (this.labels['CNSS']['B'] + (this.indem - 300));
-      this.labels['CNSS']['R'] = Number((this.labels['CNSS']['B'] * this.labels['CNSS']['T'])) / 100;
-    }
-    this.labels['AMO']['B'] = (this.labels['AMO']['B'] + (this.labels[rubLib]['G']));
-    this.labels['AMO']['R'] = Number((this.labels['AMO']['B'] * this.labels['AMO']['T'])) / 100;
-  }
-
 
   totalGain() {
     this.totalGains = 0;
@@ -204,7 +186,9 @@ export class AllPaysLipComponent implements OnInit {
   }
 
   igr(netImp: number) {
-
+    this.labels['IGR']['B'] = '';
+    this.labels['IGR']['T'] = '';
+    this.labels['IGR']['R'] ='';
     if (netImp > 2500 && netImp < 4166.68) {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 10;
@@ -253,6 +237,18 @@ export class AllPaysLipComponent implements OnInit {
       this.validate();
       this.savePaysLip(employee);
     }
+    this.ListpaysLip = this.payslipService.allPaysLips;
+    console.log(this.ListpaysLip);
+  }
+
+  ngOnDestroy(): void {
+    console.log("destroy");
+    this.labelRubrics=[];
+    this.labels = '';
+    this.netAPaye= 0;
+    this.netImpo = 0;
+    this.totalGains = 0;
+    this.totalRetenues = 0;
   }
 
 
