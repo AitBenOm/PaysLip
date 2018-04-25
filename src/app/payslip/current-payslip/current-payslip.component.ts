@@ -27,9 +27,6 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   AMO = 2.28;
   CNSS = 4.29;
   IGR = 1;
-  indem = 0;
-  nbRet: number = 0;
-  nbGain: number = 0;
 
   labelRubrics: LabelsRubric[];
 
@@ -41,7 +38,9 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(employee: SimpleChanges): void {
     this.labelRubrics=[];
     this.labelRubrics = this.payslipService.listRubrique;
-
+    this.labels['IGR']['B'] = '';
+    this.labels['IGR']['T'] = '';
+    this.labels['IGR']['R'] ='';
     this.netAPaye= 0;
     this.netImpo = 0;
     this.totalGains = 0;
@@ -71,12 +70,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     console.log("destroy");
-    for (const label in this.labels) {
-      this.labels[label]['B'] = '';
-      this.labels[label]['T'] = '';
-      this.labels[label]['R'] = '';
-      this.labels[label]['G'] = '';
-    }
+
     this.labelRubrics=[];
     this.netAPaye= 0;
     this.netImpo = 0;
@@ -86,7 +80,6 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
 
-    const date = new Date(), y = date.getFullYear(), m = date.getMonth();
     this.labelRubrics=[];
     this.labelRubrics = this.payslipService.listRubrique;
 
@@ -105,9 +98,6 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   initialisation(employee: EmployeeModel) {
 
-    console.log(this.employee);
-
-    console.log(employee.salaireDeBase);
     this.labels['SDB']['B'] = employee.salaireDeBase;
     this.labels['SDB']['T'] = 1;
     this.labels['SDB']['G'] = this.labels['SDB']['B'] * this.labels['SDB']['T'];
@@ -131,9 +121,9 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
       }
 
     }
-    if (this.employee.nbEnfant > 0) {
+    if (employee.nbEnfant > 0) {
       this.labels['PRCHG']['B'] = 30;
-      this.labels['PRCHG']['T'] = this.employee.nbEnfant;
+      this.labels['PRCHG']['T'] = employee.nbEnfant;
       this.labels['PRCHG']['R'] = this.labels['PRCHG']['B'] * this.labels['PRCHG']['T'];
     }
 
@@ -147,17 +137,18 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   calculate(rubLib: string, form: FormGroup) {
-    var test = rubLib + '_B';
+    let indem:number=0;
+
     this.labels[rubLib]['G'] = this.labels[rubLib]['B'] * this.labels[rubLib]['T'];
-    this.indem = this.indem + this.labels[rubLib]['G'];
-    if (this.indem - 300 > 0) {
-      this.labels['CNSS']['B'] = (this.labels['CNSS']['B'] + (this.indem - 300));
+    indem = indem + this.labels[rubLib]['G'];
+    if (indem - 300 > 0) {
+      this.labels['CNSS']['B'] = (this.labels['CNSS']['B'] + (indem - 300));
       this.labels['CNSS']['R'] = Number((this.labels['CNSS']['B'] * this.labels['CNSS']['T'])) / 100;
     }
     this.labels['AMO']['B'] = (this.labels['AMO']['B'] + (this.labels[rubLib]['G']));
     this.labels['AMO']['R'] = Number((this.labels['AMO']['B'] * this.labels['AMO']['T'])) / 100;
     $(document).ready(function () {
-      console.log(test);
+
       $("#" + rubLib + '_B').prop("disabled", true);
       $("#" + rubLib + '_T').prop("disabled", true);
     });
@@ -195,8 +186,11 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
     const Brut = this.totalGain();
     const charges = this.totalRetenue();
     let igr;
-
+    console.log("net impo"+ Brut);
+    console.log("net impo"+ charges);
+    console.log("net impo"+ this.txPro(Brut));
     this.netImpo = Brut - charges - this.txPro(Brut);
+    console.log("net impo"+ this.netImpo);
     igr = this.igr(this.netImpo);
     this.totalRetenues = this.totalRetenues + this.txPro(Brut);
 
@@ -258,20 +252,20 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
       return 15;
     } else if (new Date().getFullYear() - dateEmb.getFullYear() < 21) {
       return 20;
-    } else if (new Date().getFullYear() - dateEmb.getFullYear() < 21) {
+    } else if (new Date().getFullYear() - dateEmb.getFullYear() > 21) {
       return 25;
     }
   }
 
   igr(netImp: number) {
-
+    this.labels['IGR']['B'] = '';
+    this.labels['IGR']['T'] = '';
+    this.labels['IGR']['R'] ='';
     if (netImp > 2500 && netImp < 4166.68) {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 10;
       this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 250;
-      const test = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 250;
-      console.log('IGR : ' + netImp);
-      console.log('IGR : ' + test);
+
     } else if (netImp > 4166.68 && netImp < 5001) {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 20;

@@ -18,7 +18,7 @@ import * as $ from 'jquery';
 })
 export class AllPaysLipComponent implements OnInit, OnDestroy {
 
-  labels:any;
+   labels = this.payslipService.labelsVariabls;
 
   netAPaye: number = 0;
   netImpo: number = 0;
@@ -27,7 +27,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   AMO = 2.28;
   CNSS = 4.29;
   IGR = 1;
-  indem = 0;
+
 
 
   labelRubrics: LabelsRubric[];
@@ -39,12 +39,18 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //cons.log("All PaysLip Component");
-    this.labels = this.payslipService.labelsVariabls;
+    this.labelRubrics=[];
+    this.labelRubrics = this.payslipService.listRubrique;
+
+    this.netAPaye= 0;
+    this.netImpo = 0;
+    this.totalGains = 0;
+    this.totalRetenues = 0;
+    // this.labels = this.payslipService.labelsVariabls;
 
     this.payslipService.onGenerateAllPaysLip.subscribe(
       (onGenerate: boolean) => {
-        //cons.log('onSubscribe');
+
         this.labels = this.payslipService.labelsVariabls;
         this.saveAllPaysLips(this.employeeService.getListEmployee());
 
@@ -55,8 +61,6 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   }
 
   initialisation(employee: EmployeeModel) {
-
-
     //cons.log(employee.salaireDeBase);
     this.labels['SDB']['B'] = employee.salaireDeBase;
     this.labels['SDB']['T'] = 1;
@@ -92,6 +96,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
     this.labels['TXPRO']['R'] = '';
   }
 
+
   totalGain() {
     this.totalGains = 0;
     for (const label in this.labels) {
@@ -116,15 +121,17 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
 
     return Number(this.totalRetenues);
   }
-
   validate() {
     this.netAPaye = 0;
     this.netImpo = 0;
     const Brut = this.totalGain();
     const charges = this.totalRetenue();
     let igr;
-
+    console.log("net impo"+ Brut);
+    console.log("net impo"+ charges);
+    console.log("net impo"+ this.txPro(Brut));
     this.netImpo = Brut - charges - this.txPro(Brut);
+    console.log("net impo"+ this.netImpo);
     igr = this.igr(this.netImpo);
     this.totalRetenues = this.totalRetenues + this.txPro(Brut);
 
@@ -132,16 +139,14 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
 
   }
 
-
   storRubrics() {
-    const  rubrics: Rubric[] = [];
+    const rubrics: Rubric[]=[];
     const totalRet = new Rubric('totalRet', 0, true, this.totalRetenue(), 999);
     const totalGain = new Rubric('totalGain', 0, true, this.totalGain(), 999);
     const netApaye = new Rubric('netApaye', 0, true, this.netAPaye, 999);
     const netImpo = new Rubric('netImpo', 0, true, this.netImpo, 999);
 
     for (const label in this.labels) {
-
       let GainRet: boolean;
       let value: number;
       if (isNumeric(this.labels[label]['R'])) {
@@ -153,7 +158,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
       }
       const rub = new Rubric(label, this.labels[label]['T'], GainRet, Number(value), this.labels[label]['B']);
 
-  rubrics.push(rub);
+      rubrics.push(rub);
 
     }
     rubrics.push(totalGain, totalRet, netApaye, netImpo);
@@ -161,16 +166,16 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   }
 
   savePaysLip(employee: EmployeeModel) {
+
     const periode1: Date[] = [];
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
     periode1.push(new Date(y, m, 1), new Date(y, m + 1, 0));
-    ////cons.log(periode1);
+    //console.log(periode1);
     const paysLip1 = new PaysLip('1', employee, periode1, this.storRubrics());
-    ////cons.log(paysLip1);
+    //console.log(paysLip1);
     this.payslipService.allPaysLips.push(paysLip1);
-
+    this.payslipService.onAddPaysLip.next(paysLip1);
   }
-
   anciente(dateEmb: Date) {
     if (new Date().getFullYear() - dateEmb.getFullYear() < 3) {
       return 5;
@@ -180,7 +185,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
       return 15;
     } else if (new Date().getFullYear() - dateEmb.getFullYear() < 21) {
       return 20;
-    } else if (new Date().getFullYear() - dateEmb.getFullYear() < 21) {
+    } else if (new Date().getFullYear() - dateEmb.getFullYear() > 21) {
       return 25;
     }
   }
@@ -193,9 +198,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 10;
       this.labels['IGR']['R'] = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 250;
-      const test = (Number((this.labels['IGR']['B'] * this.labels['IGR']['T'])) / 100) - 250;
-      //cons.log('IGR : ' + netImp);
-      //cons.log('IGR : ' + test);
+
     } else if (netImp > 4166.68 && netImp < 5001) {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 20;
@@ -225,14 +228,15 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
     return this.labels['TXPRO']['R'];
   }
 
+
+
+
   saveAllPaysLips(employees: EmployeeModel[]) {
     //cons.log('onSave ALL');
     for (const employee of employees) {
       console.log(employee);
       this.labelRubrics = this.payslipService.listRubrique;
-      if (employee.nbEnfant > 0) {
-        this.labelRubrics.splice(10, 1);
-      }
+
       this.initialisation(employee);
       this.validate();
       this.savePaysLip(employee);
@@ -243,9 +247,9 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log("destroy");
-    this.labelRubrics=[];
+    this.labelRubrics = [];
     this.labels = '';
-    this.netAPaye= 0;
+    this.netAPaye = 0;
     this.netImpo = 0;
     this.totalGains = 0;
     this.totalRetenues = 0;
