@@ -186,9 +186,9 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
     const Brut = this.totalGain();
     const charges = this.totalRetenue();
     let igr;
-    console.log("net impo"+ Brut);
-    console.log("net impo"+ charges);
-    console.log("net impo"+ this.txPro(Brut));
+    console.log("Brut"+ Brut);
+    console.log("Charge"+ charges);
+    console.log("taxe Pro"+ this.txPro(Brut));
     this.netImpo = Brut - charges - this.txPro(Brut);
     console.log("net impo"+ this.netImpo);
     igr = this.igr(this.netImpo);

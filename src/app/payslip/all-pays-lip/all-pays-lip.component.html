@@ -1,4 +1,309 @@
-<p *ngFor="let pay of " style="color:  white;">
- {{pay.employee.nom}}
- {{pay.rubrics[pay.rubrics.length]}}
-</p>
+<div class="logo" style="background-color: white;" *ngFor="let paysLip of listPaysLip, let i=index" id="{{Title+i}}">
+  <div  id="headPaysLip">
+    <div class="row">
+      <div class="col">
+        <h4> GSCAI</h4>
+      </div>
+      <div class="col">  <img src="../../../../assets/LogoGSCA.PNG"></div>
+      <div class="col">
+
+      </div>
+    </div>
+
+  </div>
+
+
+      <div class="card border-dark mb-3">
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="card-body">
+              <div class="row" style="border-top: solid;   border-width: 0.2mm;">
+                <div class="col-sm-7">
+                  <p>STE TANOUT PRIVEE SARL</p>
+                </div>
+                <div class="col-sm-5"><p>AFF. CNSS 8880157</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 ">Matricule</div>
+                <div class="col-sm-9">Nom et Prenom</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 ">{{paysLip.employee.matricule}}</div>
+                <div class="col-sm-9">{{paysLip.employee.nom | uppercase }} {{paysLip.employee.prenom | uppercase}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3 ">Date Emb</div>
+                <div class="col-sm-3 ">N° CIN</div>
+                <div class="col-sm-3 ">Date Naissance</div>
+                <div class="col-sm-3 ">
+                  SF-NE-ND
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 ">{{paysLip.employee.date_emb | date:'dd/MM/yyy' }}</div>
+                <div class="col-sm-3 ">{{paysLip.employee.numCin | uppercase}}</div>
+                <div class="col-sm-3 ">{{paysLip.employee.date_de_naissance | date:'dd/MM/yyy' }}</div>
+                <div class="col-sm-3 ">
+                  {{paysLip.employee.situationFamiliale }} {{'-'}} {{ paysLip.employee.nbEnfant }} {{'-'}} {{ paysLip.employee.sex}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 ">N° CNSS</div>
+                <div class="col-sm-3 ">N° CIMR</div>
+                <div class="col-sm-3 ">Service</div>
+                <div class="col-sm-3 ">
+                  Paiement
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-sm-3 ">{{paysLip.employee.numCNSS}}</div>
+                <div class="col-sm-3 ">---</div>
+                <div class="col-sm-3 ">---</div>
+                <div class="col-sm-3 ">
+                  ---
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="card-body  ">
+              <div class="row" style="border-top: solid;   border-width: 0.2mm;">
+
+                <p>{{'quartier tanout Azilal' | uppercase}}</p>
+
+
+              </div>
+              <div class="row text-center">
+                PERIODE DE PAIE
+              </div>
+              <div class="row">
+                {{paysLip.period[0]  | date:'dd/MM/yyy'}} AU    {{paysLip.period[1]  | date:'dd/MM/yyy'}}
+
+              </div>
+
+              <div class="row">
+                Adresse du salarié
+              </div>
+              <div class="row">
+                {{paysLip.employee.adresse}}
+              </div>
+              <div class="row">
+                Fonction
+              </div>
+              <div class="row">
+                {{paysLip.employee.fonction}}
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+  <div class="card border-dark mb-3">
+
+    <div  class="card-body">
+      <img id="logo" src="../../../../assets/LogoGSCA.PNG">
+      <form  #form  action="">
+
+        <div class="row">
+          <div class="col-sm-7 card text-center" style="padding-top: 4mm;">
+            RUBTIQUE
+          </div>
+          <div class="col-sm-5 card text-center" style="padding-top: 4mm;">
+            <div class="form-group row">
+              <div class=" col-sm-3">
+                BASE
+              </div>
+              <div class=" col-sm-3">
+                TUAX
+              </div>
+              <div class=" col-sm-3">
+                GAIN
+              </div>
+              <div class=" col-sm-3" style="font-size: smaller">
+                RETENUE
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngFor="let paysLipRubric of paysLip.rubrics" >
+
+          <div *ngIf="paysLipRubric.base!=999 && paysLipRubric.base!='' && paysLipRubric.value!=0" class="col-sm-7 card text-center content">
+            {{rubricLabels[paysLipRubric.label]}}
+          </div>
+          <div *ngIf="paysLipRubric.base!=999  && paysLipRubric.base!='' && paysLipRubric.value!=0" class="col-sm-5 card text-center">
+            <div class="form-group row content">
+              <div class=" col-sm-3 ">
+                <!--<input class="form-control" type="number" #Base name="{{rubrique.libelle+'_B'}}" [(ngModel)]="labels[rubrique.libelle]['B']">-->
+                {{paysLipRubric.base | number: '1.0-2'}}
+              </div>
+
+              <div class=" col-sm-3" *ngIf="paysLipRubric.label==='SDB'
+              ||paysLipRubric.label==='INDTR'
+              ||paysLipRubric.label==='INDRE'
+              ||paysLipRubric.label==='PRIPAN'
+              ||paysLipRubric.label==='PRITR'
+              ||paysLipRubric.label==='PRCHG'; else percent">
+                <!--<input class="form-control" type="number" name="{{rubrique.libelle+'_T'| number: '1.0-2' }}"  [(ngModel)]="labels[rubrique.libelle]['T']"  #Taux (input)="claculate(rubrique.libelle)"  ></div>-->
+                {{paysLipRubric.rate| number: '1.0-2' }}
+              </div>
+              <ng-template #percent>
+                <div class=" col-sm-3">
+                  <!--<input class="form-control" type="number" name="{{rubrique.libelle+'_T'| number: '1.0-2' }}"  [(ngModel)]="labels[rubrique.libelle]['T']"  #Taux (input)="claculate(rubrique.libelle)"  ></div>-->
+                  {{paysLipRubric.rate| number: '1.0-2' }} %
+                </div>
+
+              </ng-template>
+
+              <div class=" col-sm-3" *ngIf="paysLipRubric.Property; else RET">
+                <!--<input class="form-control"  type="number"-->
+                <!--#Gain name="{{rubrique.libelle+'_G'}}"-->
+                <!--[(ngModel)]="labels[rubrique.libelle]['G']"-->
+                <!--readonly-->
+                <!--(input)="totalGain(Gain.value)" >-->
+                {{paysLipRubric.value| number: '1.0-2' }}
+              </div>
+              <!--<input class="form-control" readonly type="text" value="{{rubrique._nbOrTaux==='TX'? (Base.value*Taux.value)/100 : (Base.value*Taux.value)}}"></div>-->
+              <div class=" col-sm-3" *ngIf="paysLipRubric.Property">
+                <!--<input class="form-control" readonly type="number" >-->
+                {{''}}
+              </div>
+
+
+              <ng-template #RET>
+                <div class=" col-sm-3">
+                  <!--<input class="form-control" readonly >-->
+                  {{''}}
+                </div>
+                <div class=" col-sm-3">
+                  <!--<input class="form-control" name="{{rubrique.libelle+'_R'| number: '1.0-2' }}"-->
+                  <!--#Ret readonly type="number"-->
+
+                  <!--[(ngModel)]="labels[rubrique.libelle]['R']"-->
+                  <!--(input)="totalRetenue(Ret.value)">-->
+                  {{paysLipRubric.value| number: '1.0-2' }}
+                </div>
+              </ng-template>
+              <div class=" col-sm-3"></div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="card border-dark mb-3">
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-7 card text-center" style="padding-top: 4mm;">
+          Total
+        </div>
+
+        <div class="col-sm-5 card text-center">
+
+          <div class="form-group row content">
+            <div class=" col-sm-3">
+
+            </div>
+            <div class=" col-sm-3">
+
+            </div>
+            <div class=" col-sm-3">
+              <!--<input class="form-control"  name="totalGains" readonly type="number" value="{{paysLip.rubrics[paysLip.rubrics.length-1].value}}">-->
+              {{paysLip.rubrics[paysLip.rubrics.length-4].value| number: '1.0-2' }}
+            </div>
+            <div class=" col-sm-3">
+              <!--<input class="form-control" readonly value="{{totalRetenues}}" name="totalRetenues" type="number">-->
+              {{paysLip.rubrics[paysLip.rubrics.length-3].value| number: '1.0-2' }}
+            </div>
+
+          </div>
+        </div>
+      </div>    <div class="row">
+      <div class="col-sm-7 card text-center" style="padding-top: 4mm;">
+        Net Imposable
+      </div>
+
+      <div class="col-sm-5 card text-center">
+
+        <div class="form-group row content">
+          <div class=" col-sm-3">
+
+          </div>
+          <div class=" col-sm-3">
+
+          </div>
+          <div class=" col-sm-3">
+            <!--<input class="form-control"  name="totalGains" readonly type="number" value="{{paysLip.rubrics[paysLip.rubrics.length-1].value}}">-->
+            {{paysLip.rubrics[paysLip.rubrics.length-1].value| number: '1.0-2' }}
+          </div>
+          <div class=" col-sm-3">
+            <!--<input class="form-control" readonly value="{{totalRetenues}}" name="totalRetenues" type="number">-->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-sm-7 card text-center" style="padding-top: 4mm;">
+          Net à Paye
+        </div>
+        <div class="col-sm-5 card text-center">
+          <div class="form-group row content">
+            <div class=" col-sm-3">
+
+            </div>
+            <div class=" col-sm-3">
+
+            </div>
+
+            <div class=" col-sm-6">
+              <!--<input class="form-control" value="{{netAPaye}}" name="netAPaye" readonly type="number">-->
+              {{paysLip.rubrics[paysLip.rubrics.length-2].value| number: '1.0-2' }} DH
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<!--Generation Button-->
+<div class="row">
+
+  <div class=" col-sm-3 offset-9" id="saveBtn" style="position: relative">
+    <button class="btn btn-outline-dark float-right" (click)="generatePaysLip()" > Generer PDF</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+

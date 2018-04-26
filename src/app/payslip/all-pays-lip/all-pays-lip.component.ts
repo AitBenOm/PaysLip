@@ -3,12 +3,12 @@ import {EmployeeModel} from '../../employee/employee-model';
 import {PayslipService} from '../payslip.service';
 import {LabelsRubric} from '../PaysLipToolsShared/labelsRubric';
 import {EmployeeService} from "../../employee/employee.service";
-import {FormGroup} from "@angular/forms";
+import * as html2canvas from 'html2canvas';
 import {Rubric} from "../PaysLipToolsShared/rubric";
 
 import {PaysLip} from "../PaysLipToolsShared/pays-lip";
 import {isNumeric} from "rxjs/util/isNumeric";
-import * as $ from 'jquery';
+import * as jsPDF from 'jspdf';
 
 
 @Component({
@@ -16,9 +16,9 @@ import * as $ from 'jquery';
   templateUrl: './all-pays-lip.component.html',
   styleUrls: ['./all-pays-lip.component.css']
 })
-export class AllPaysLipComponent implements OnInit, OnDestroy {
+export class AllPaysLipComponent implements OnInit {
 
-   labels = this.payslipService.labelsVariabls;
+  labels = this.payslipService.labelsVariabls;
 
   netAPaye: number = 0;
   netImpo: number = 0;
@@ -27,22 +27,26 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   AMO = 2.28;
   CNSS = 4.29;
   IGR = 1;
-
+  Title= 'HTMLPaysLip_';
 
 
   labelRubrics: LabelsRubric[];
 
-  ListpaysLip: PaysLip[];
+  rubricLabels: any;
+
+  listPaysLip: PaysLip[]=[];
+  employees: EmployeeModel[];
 
 
   constructor(private payslipService: PayslipService, private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
-    this.labelRubrics=[];
+    this.labelRubrics = [];
     this.labelRubrics = this.payslipService.listRubrique;
+    this.rubricLabels = this.payslipService.rubricsTitles;
 
-    this.netAPaye= 0;
+    this.netAPaye = 0;
     this.netImpo = 0;
     this.totalGains = 0;
     this.totalRetenues = 0;
@@ -52,15 +56,25 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
       (onGenerate: boolean) => {
 
         this.labels = this.payslipService.labelsVariabls;
+
         this.saveAllPaysLips(this.employeeService.getListEmployee());
 
+        console.log( this.listPaysLip);
       }
     );
 
+    this.listPaysLip = this.payslipService.allPaysLips;
+    if(this.listPaysLip.length!=0){
+      this.generatePaysLip(this.listPaysLip);
+    }
 
+    this.employees=this.employeeService.getListEmployee();
   }
 
   initialisation(employee: EmployeeModel) {
+    this.labels['IGR']['B'] = '';
+    this.labels['IGR']['T'] = '';
+    this.labels['IGR']['R'] = '';
     //cons.log(employee.salaireDeBase);
     this.labels['SDB']['B'] = employee.salaireDeBase;
     this.labels['SDB']['T'] = 1;
@@ -111,6 +125,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
 
   }
 
+
   totalRetenue() {
     this.totalRetenues = 0;
     for (const label in this.labels) {
@@ -121,17 +136,18 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
 
     return Number(this.totalRetenues);
   }
+
   validate() {
     this.netAPaye = 0;
     this.netImpo = 0;
     const Brut = this.totalGain();
     const charges = this.totalRetenue();
     let igr;
-    console.log("net impo"+ Brut);
-    console.log("net impo"+ charges);
-    console.log("net impo"+ this.txPro(Brut));
+    //console.log("Brut"+ Brut);
+    //console.log("Charge"+ charges);
+    //console.log("taxe Pro"+ this.txPro(Brut));
     this.netImpo = Brut - charges - this.txPro(Brut);
-    console.log("net impo"+ this.netImpo);
+    //console.log("net impo"+ this.netImpo);
     igr = this.igr(this.netImpo);
     this.totalRetenues = this.totalRetenues + this.txPro(Brut);
 
@@ -140,7 +156,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   }
 
   storRubrics() {
-    const rubrics: Rubric[]=[];
+    const rubrics: Rubric[] = [];
     const totalRet = new Rubric('totalRet', 0, true, this.totalRetenue(), 999);
     const totalGain = new Rubric('totalGain', 0, true, this.totalGain(), 999);
     const netApaye = new Rubric('netApaye', 0, true, this.netAPaye, 999);
@@ -157,8 +173,10 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
         value = this.labels[label]['G'];
       }
       const rub = new Rubric(label, this.labels[label]['T'], GainRet, Number(value), this.labels[label]['B']);
+      if(!isNaN(rub.value)){
+        rubrics.push(rub);
+      }
 
-      rubrics.push(rub);
 
     }
     rubrics.push(totalGain, totalRet, netApaye, netImpo);
@@ -167,15 +185,15 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
 
   savePaysLip(employee: EmployeeModel) {
 
-    const periode1: Date[] = [];
+    const periode: Date[] = [];
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    periode1.push(new Date(y, m, 1), new Date(y, m + 1, 0));
-    //console.log(periode1);
-    const paysLip1 = new PaysLip('1', employee, periode1, this.storRubrics());
-    //console.log(paysLip1);
-    this.payslipService.allPaysLips.push(paysLip1);
-    this.payslipService.onAddPaysLip.next(paysLip1);
+    periode.push(new Date(y, m, 1), new Date(y, m + 1, 0));
+    ////console.log(periode1);
+    const paysLip = new PaysLip('1', employee, periode, this.storRubrics());
+    console.log(paysLip);
+    this.payslipService.allPaysLips.push(paysLip);
   }
+
   anciente(dateEmb: Date) {
     if (new Date().getFullYear() - dateEmb.getFullYear() < 3) {
       return 5;
@@ -191,9 +209,7 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   }
 
   igr(netImp: number) {
-    this.labels['IGR']['B'] = '';
-    this.labels['IGR']['T'] = '';
-    this.labels['IGR']['R'] ='';
+
     if (netImp > 2500 && netImp < 4166.68) {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 10;
@@ -229,10 +245,8 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
   }
 
 
-
-
   saveAllPaysLips(employees: EmployeeModel[]) {
-    //cons.log('onSave ALL');
+    console.log('onSave ALL');
     for (const employee of employees) {
       console.log(employee);
       this.labelRubrics = this.payslipService.listRubrique;
@@ -241,19 +255,24 @@ export class AllPaysLipComponent implements OnInit, OnDestroy {
       this.validate();
       this.savePaysLip(employee);
     }
-    this.ListpaysLip = this.payslipService.allPaysLips;
-    console.log(this.ListpaysLip);
+
+    //console.log(this.listPaysLip);
   }
 
-  ngOnDestroy(): void {
-    console.log("destroy");
-    this.labelRubrics = [];
-    this.labels = '';
-    this.netAPaye = 0;
-    this.netImpo = 0;
-    this.totalGains = 0;
-    this.totalRetenues = 0;
+  generatePaysLip(paysLips: PaysLip[]) {
+    let index=0;
+    const jspdf = new jsPDF();
+    for(const paysLip of paysLips){
+      let id='#HTMLPaysLip_'+index;
+      console.log(id);
+      html2canvas(document.querySelector(id)).then(
+        canvas => {
+          jspdf.addPage().addImage(canvas.toDataURL('image/png'), 4, 10);
+        }
+      );
+      index++;
+    }
+    jspdf.save("Fiches de Paies du "+ paysLips[0].period[0].getMonth() + '/' + paysLips[0].period[0].getFullYear());
   }
-
 
 }

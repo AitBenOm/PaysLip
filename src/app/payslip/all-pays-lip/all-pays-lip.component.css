@@ -1,0 +1,80 @@
+img{
+  text-align: center;
+  height: 2cm;
+  width: 3cm;
+  margin-left: 2cm;
+}
+#headPaysLip{
+  background-color: whitesmoke;
+}
+#logo {
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left:0;
+  top:0; /*If you want it at the bottom you probably want bottom:0 instead*/
+  z-index: 100;
+  opacity: 0.1;
+
+}
+
+p{
+  height: 2mm;
+  text-align: left;
+}
+.card-body>div{
+
+  border-bottom: solid;
+  border-top: solid;
+  border-left: solid;
+  border-right: solid;
+  border-width: 0.2mm;
+  border-color: darkslategrey;
+  text-align: center;
+
+}
+.card{
+  font-size: smaller;
+
+}
+
+.card-body>div>div{
+
+  border-bottom: solid;
+
+  border-left: solid;
+  border-right: solid;
+  border-width: 0.2mm;
+  border-color: darkslategrey;
+}
+.content{
+  padding-top: 4mm;
+  float: left;
+}
+input{
+  height:6mm;
+  border-color: darkslategrey;
+}
+.validate{
+  height: 5mm;
+}
+
+.card-header{padding: 0}
+#saveBtn {
+  margin-top: 5mm;margin-bottom: 5mm;
+  border-bottom: none;
+
+  border-left: none;
+  border-right: none;
+}
+.modal-body{
+  padding-right: 30cm;
+}
+
+h3{
+  font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+
+  font-weight: bold;
+}

@@ -15,10 +15,11 @@ import * as jsPDF from 'jspdf';
 export class ViewPaysLipComponent implements OnInit {
 
   labelRubrics: LabelsRubric[];
+  rubricLabels: any;
   @Input() employee: EmployeeModel = null;
   @Input() paysLipToshow: PaysLip;
   labels: any;
-  rubricLabels: any;
+
   AMO = 2;
   CNSS = 4.48;
   IGR = 1;
