@@ -35,6 +35,7 @@ export class ViewPaysLipComponent implements OnInit {
   }
 
   generatePaysLip() {
+    console.log(document.querySelector('#HTMLPaysLip'));
     html2canvas(document.querySelector('#HTMLPaysLip')).then(
       canvas => {
         //console.log(canvas.toDataURL('image/png'));

@@ -65,7 +65,8 @@ export class AllPaysLipComponent implements OnInit {
 
     this.listPaysLip = this.payslipService.allPaysLips;
     if(this.listPaysLip.length!=0){
-      this.generatePaysLip(this.listPaysLip);
+      this.generatePaysLip1();
+      // this.generatePaysLip1(this.listPaysLip);
     }
 
     this.employees=this.employeeService.getListEmployee();
@@ -259,14 +260,34 @@ export class AllPaysLipComponent implements OnInit {
     //console.log(this.listPaysLip);
   }
 
+  generatePaysLip1() {
+    let index=0;
+    for (const paysLip of this.listPaysLip){
+      let id='#HTMLPaysLip_'+index;
+      console.log(document.querySelector('.logo'));
+      console.log("===========================");
+      index++;
+    }
+
+    // html2canvas(document.querySelector('#HTMLPaysLip_0')).then(
+    //   canvas => {
+    //     //console.log(canvas.toDataURL('image/png'));
+    //     const jspdf = new jsPDF();
+    //     jspdf.addImage(canvas.toDataURL('image/png'), 4, 10);
+    //     jspdf.save('test');
+    //   }
+    // );
+  }
+
   generatePaysLip(paysLips: PaysLip[]) {
     let index=0;
     const jspdf = new jsPDF();
     for(const paysLip of paysLips){
       let id='#HTMLPaysLip_'+index;
-      console.log(id);
-      html2canvas(document.querySelector(id)).then(
+      console.log(id.toString());
+      html2canvas(document.getElementById('#HTMLPaysLip_0')).then(
         canvas => {
+          console.log("Canvas "  +canvas);
           jspdf.addPage().addImage(canvas.toDataURL('image/png'), 4, 10);
         }
       );
