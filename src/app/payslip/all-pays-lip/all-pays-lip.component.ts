@@ -34,7 +34,7 @@ export class AllPaysLipComponent implements OnInit {
   labelRubrics: LabelsRubric[];
 
   rubricLabels: any;
-  jspdf= new jsPDF();
+  jspdf = new jsPDF();
 
   listPaysLip: PaysLip[] = [];
   employees: EmployeeModel[];
@@ -267,11 +267,12 @@ export class AllPaysLipComponent implements OnInit {
       const paysLipDOM = document.querySelector('#HTMLPaysLip_' + index.toString());
       html2canvas(paysLipDOM).then(
         canvas => {
-          this.jspdf.addPage();
+
           this.jspdf.setPage(index);
           console.log("Canvas " + canvas);
-          console.log("=========================== "+index);
-          this.jspdf.addImage(canvas.toDataURL('image/png',0.5), 4, 10);
+          console.log("=========================== " + index);
+          this.jspdf.addImage(canvas.toDataURL('image/jpeg', 0.4), 4, 10);
+          this.jspdf.addPage();
         }
       );
       index++;
