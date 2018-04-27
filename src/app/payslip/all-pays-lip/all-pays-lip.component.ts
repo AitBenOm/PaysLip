@@ -9,6 +9,7 @@ import {Rubric} from "../PaysLipToolsShared/rubric";
 import {PaysLip} from "../PaysLipToolsShared/pays-lip";
 import {isNumeric} from "rxjs/util/isNumeric";
 import * as jsPDF from 'jspdf';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -27,14 +28,15 @@ export class AllPaysLipComponent implements OnInit {
   AMO = 2.28;
   CNSS = 4.29;
   IGR = 1;
-  Title= 'HTMLPaysLip_';
+  Title = 'HTMLPaysLip_';
 
 
   labelRubrics: LabelsRubric[];
 
   rubricLabels: any;
+  jspdf= new jsPDF();
 
-  listPaysLip: PaysLip[]=[];
+  listPaysLip: PaysLip[] = [];
   employees: EmployeeModel[];
 
 
@@ -59,17 +61,13 @@ export class AllPaysLipComponent implements OnInit {
 
         this.saveAllPaysLips(this.employeeService.getListEmployee());
 
-        console.log( this.listPaysLip);
+        console.log(this.listPaysLip);
       }
     );
 
     this.listPaysLip = this.payslipService.allPaysLips;
-    if(this.listPaysLip.length!=0){
-      this.generatePaysLip1();
-      // this.generatePaysLip1(this.listPaysLip);
-    }
 
-    this.employees=this.employeeService.getListEmployee();
+    this.employees = this.employeeService.getListEmployee();
   }
 
   initialisation(employee: EmployeeModel) {
@@ -174,7 +172,7 @@ export class AllPaysLipComponent implements OnInit {
         value = this.labels[label]['G'];
       }
       const rub = new Rubric(label, this.labels[label]['T'], GainRet, Number(value), this.labels[label]['B']);
-      if(!isNaN(rub.value)){
+      if (!isNaN(rub.value)) {
         rubrics.push(rub);
       }
 
@@ -191,7 +189,7 @@ export class AllPaysLipComponent implements OnInit {
     periode.push(new Date(y, m, 1), new Date(y, m + 1, 0));
     ////console.log(periode1);
     const paysLip = new PaysLip('1', employee, periode, this.storRubrics());
-    console.log(paysLip);
+    // console.log(paysLip);
     this.payslipService.allPaysLips.push(paysLip);
   }
 
@@ -247,9 +245,9 @@ export class AllPaysLipComponent implements OnInit {
 
 
   saveAllPaysLips(employees: EmployeeModel[]) {
-    console.log('onSave ALL');
+    //   console.log('onSave ALL');
     for (const employee of employees) {
-      console.log(employee);
+      //  console.log(employee);
       this.labelRubrics = this.payslipService.listRubrique;
 
       this.initialisation(employee);
@@ -260,40 +258,32 @@ export class AllPaysLipComponent implements OnInit {
     //console.log(this.listPaysLip);
   }
 
-  generatePaysLip1() {
-    let index=0;
-    for (const paysLip of this.listPaysLip){
-      let id='#HTMLPaysLip_'+index;
-      console.log(document.querySelector('.logo'));
-      console.log("===========================");
-      index++;
-    }
 
-    // html2canvas(document.querySelector('#HTMLPaysLip_0')).then(
-    //   canvas => {
-    //     //console.log(canvas.toDataURL('image/png'));
-    //     const jspdf = new jsPDF();
-    //     jspdf.addImage(canvas.toDataURL('image/png'), 4, 10);
-    //     jspdf.save('test');
-    //   }
-    // );
-  }
+  generatePaysLip() {
 
-  generatePaysLip(paysLips: PaysLip[]) {
-    let index=0;
-    const jspdf = new jsPDF();
-    for(const paysLip of paysLips){
-      let id='#HTMLPaysLip_'+index;
-      console.log(id.toString());
-      html2canvas(document.getElementById('#HTMLPaysLip_0')).then(
+
+    let index = 0;
+    for (const paysLip of this.listPaysLip) {
+      const paysLipDOM = document.querySelector('#HTMLPaysLip_' + index.toString());
+      html2canvas(paysLipDOM).then(
         canvas => {
-          console.log("Canvas "  +canvas);
-          jspdf.addPage().addImage(canvas.toDataURL('image/png'), 4, 10);
+          this.jspdf.addPage();
+          this.jspdf.setPage(index);
+          console.log("Canvas " + canvas);
+          console.log("=========================== "+index);
+          this.jspdf.addImage(canvas.toDataURL('image/png',0.5), 4, 10);
         }
       );
       index++;
+
+
     }
-    jspdf.save("Fiches de Paies du "+ paysLips[0].period[0].getMonth() + '/' + paysLips[0].period[0].getFullYear());
+
+    this.jspdf.autoPrint();
+    // jspdf.save("Fiches de Paies du " + new Date().getMonth() + '/' + new Date().getFullYear());
   }
 
+  oKPdf() {
+    this.jspdf.save("Fiches de Paies du " + new Date().getMonth() + '/' + new Date().getFullYear());
+  }
 }

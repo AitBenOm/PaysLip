@@ -35,10 +35,13 @@ export class ViewPaysLipComponent implements OnInit {
   }
 
   generatePaysLip() {
-    console.log(document.querySelector('#HTMLPaysLip'));
-    html2canvas(document.querySelector('#HTMLPaysLip')).then(
+    let index = 0;
+    let id = '#HTMLPaysLip_' + index;
+    console.log(document.querySelector(id.toString()));
+    html2canvas(document.querySelector(id)).then(
       canvas => {
-        //console.log(canvas.toDataURL('image/png'));
+        console.log(canvas.toDataURL('image/png'));
+        console.log("Canvas " + canvas);
         const jspdf = new jsPDF();
         jspdf.addImage(canvas.toDataURL('image/png'), 4, 10);
         jspdf.save(this.employee.nom + ' ' + this.employee.prenom + ' ' + this.paysLipToshow.period[0].getMonth() + '/' + this.paysLipToshow.period[0].getFullYear());
