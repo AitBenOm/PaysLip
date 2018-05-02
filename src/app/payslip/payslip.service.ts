@@ -7,6 +7,8 @@ import {Subject} from "rxjs/Subject";
 @Injectable()
 export class PayslipService {
   onGenerateAllPaysLip = new Subject<boolean>();
+  paysLipsGenerated = new Subject<boolean>();
+
 
   constructor() {
   }

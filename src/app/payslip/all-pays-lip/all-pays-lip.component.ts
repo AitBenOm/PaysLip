@@ -22,9 +22,11 @@ export class AllPaysLipComponent implements OnInit {
   labels = this.payslipService.labelsVariabls;
 
   netAPaye: number = 0;
+  progress: number = 10;
   netImpo: number = 0;
   totalGains: number = 0;
   totalRetenues: number = 0;
+  processStart: boolean = false;
   AMO = 2.28;
   CNSS = 4.29;
   IGR = 1;
@@ -34,16 +36,25 @@ export class AllPaysLipComponent implements OnInit {
   labelRubrics: LabelsRubric[];
 
   rubricLabels: any;
-  jspdf = new jsPDF();
+  jspdf = new jsPDF('p', 'pt', 'a4', true);
 
   listPaysLip: PaysLip[] = [];
   employees: EmployeeModel[];
 
 
   constructor(private payslipService: PayslipService, private employeeService: EmployeeService) {
+    this.payslipService.paysLipsGenerated.subscribe(
+      (generated: boolean) => {
+        if (generated) {
+          this.oKPdf();
+        }
+
+      }
+    );
   }
 
   ngOnInit() {
+
     this.labelRubrics = [];
     this.labelRubrics = this.payslipService.listRubrique;
     this.rubricLabels = this.payslipService.rubricsTitles;
@@ -260,19 +271,28 @@ export class AllPaysLipComponent implements OnInit {
 
 
   generatePaysLip() {
-
+    const paysLipsDOM = document.querySelectorAll('.HTMLPaysLip');
 
     let index = 0;
-    for (const paysLip of this.listPaysLip) {
+    this.processStart=true;
+    for (const payslip of this.listPaysLip) {
       const paysLipDOM = document.querySelector('#HTMLPaysLip_' + index.toString());
+      console.log(paysLipDOM);
       html2canvas(paysLipDOM).then(
         canvas => {
 
           this.jspdf.setPage(index);
-          console.log("Canvas " + canvas);
-          console.log("=========================== " + index);
-          this.jspdf.addImage(canvas.toDataURL('image/jpeg', 0.4), 4, 10);
+          // console.log("Canvas " + canvas);
+
+          this.jspdf.addImage(canvas.toDataURL('image/jpeg', 0.7), 4, 10);
           this.jspdf.addPage();
+
+          this.progress=(this.jspdf.internal.getNumberOfPages()/(paysLipsDOM.length + 1) )*100;
+          console.log("Progress "+this.progress);
+          if (paysLipsDOM.length + 1 === this.jspdf.internal.getNumberOfPages()) {
+            this.payslipService.paysLipsGenerated.next(true);
+          }
+
         }
       );
       index++;
@@ -280,8 +300,28 @@ export class AllPaysLipComponent implements OnInit {
 
     }
 
-    this.jspdf.autoPrint();
+
+    // this.jspdf.autoPrint();
     // jspdf.save("Fiches de Paies du " + new Date().getMonth() + '/' + new Date().getFullYear());
+  }
+
+  oKPdf2() {
+
+    html2canvas(document.querySelector('#HTMLPaysLip_0')).then(
+      canvas => {
+
+
+        console.log("Canvas " + canvas);
+        // console.log("=========================== " + index);
+        const img = canvas.toDataURL('image/jpeg', 0.4);
+        console.log(img);
+        window.open(img);
+
+        this.jspdf.addImage(canvas.toDataURL(img), 4, 10);
+        this.jspdf.addPage();
+      }
+    );
+
   }
 
   oKPdf() {

@@ -27,6 +27,8 @@ import { ViewPaysLipComponent } from './payslip/list-payslip/view-pays-lip/view-
 import { HomeComponent } from './home/home.component';
 import { FilterByDatePipe } from './Shared/filter-by-date.pipe';
 import {AllPaysLipComponent} from "./payslip/all-pays-lip/all-pays-lip.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatProgressBarModule, MatProgressSpinnerModule} from "@angular/material";
 
 
 
@@ -61,7 +63,10 @@ import {AllPaysLipComponent} from "./payslip/all-pays-lip/all-pays-lip.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [EmployeeService, PayslipService, HeaderService],
   bootstrap: [AppComponent]
