@@ -36,12 +36,12 @@ p{
 
 }
 .card{
-  font-size: x-small;
+  font-size: xx-small;
 
 }
-/*.rub{*/
-  /*height: 7mm;*/
-/*}*/
+.rub{
+  height: 7mm;
+}
 .card-body>div>div{
 
   border-bottom: solid;
@@ -52,7 +52,7 @@ p{
   border-color: darkslategrey;
 }
 .content{
-  padding-top: 4mm;
+  padding-top: 2mm;
   float: left;
 }
 input{
@@ -73,6 +73,7 @@ input{
 }
 .modal-body{
   /*padding-right: 30cm;*/
+  max-width: 682px;
 }
 
 h3{

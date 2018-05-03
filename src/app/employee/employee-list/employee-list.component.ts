@@ -69,7 +69,8 @@ export class EmployeeListComponent implements OnInit {
   }
   generateAllPaysLip(){
     console.log('onClick generate ALL');
-    this.paysLipService.onGenerateAllPaysLip.next(true);
     this.router.navigate(['All PaysLip']);
+    this.paysLipService.onGenerateAllPaysLip.next(true);
+
   }
 }
