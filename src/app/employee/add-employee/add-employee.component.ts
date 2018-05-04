@@ -21,8 +21,8 @@ export class AddEmployeeComponent implements OnInit {
     this.listFonction = this.employeeService.getListFunction();
   }
 
-  addEmployee() {
-    console.log(this.employee);
+  addEmployee(employee: any) {
+    console.log(employee);
     this.employee.matricule = this.employeeService.getListEmployee().length+1;
     this.employeeService.onAddEmployee(this.employee);
     this.employeeService.onEmployeeAdded.next(this.employee);

@@ -9,28 +9,47 @@
         <form  method="" action="">
           <div >
             <div class="form-group">
+              <label >Sex</label>
+              <select class="custom-select custom-select-lg mb-3"  >
+                <option >Mr.</option>
+                <option >Mme.</option>
+                <option >Mell.</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label >Nom</label>
-              <input required type="text" class="form-control" (ngModel)="employee.nom" >
+              <input required type="text" class="form-control"  >
             </div>
             <div class="form-group" >
               <label >Prenom</label>
-              <input required type="text" class="form-control" (ngModel)="employee.prenom" >
+              <input required type="text" class="form-control"  >
             </div>
             <div class="form-group" >
               <label >Date de Naissance</label>
-              <input required type="date" class="form-control" (ngModel)="employee.date_de_naissance">
+              <input required type="date" class="form-control" >
+            </div>
+            <div class="form-group" >
+              <label >Situation Familiale</label>
+              <select class="custom-select custom-select-lg mb-3" >
+                <option >Marié</option>
+                <option >Célibataire</option>
+              </select>
+            </div>
+            <div class="form-group" >
+              <label >Nombre d'enfants</label>
+              <input required type="number" class="form-control" >
             </div>
             <div class="form-group" >
               <label>Adresse</label>
-              <input required type="text" class="form-control"  (ngModel)="employee.adresse" >
+              <input required type="text" class="form-control"   >
             </div>
             <div class="form-group" >
               <label>Téléphone</label>
-              <input required type="text" class="form-control" (ngModel)="employee.telephone">
+              <input required type="text" class="form-control" >
             </div>
             <div class="form-group" >
               <label>E-Mail</label>
-              <input required type="text" class="form-control" (ngModel)="employee.email">
+              <input required type="text" class="form-control" >
             </div>
 
           </div>
@@ -45,23 +64,23 @@
     <div class="card border-secondary mb-3">
       <div class="card-header">Informations Profesionelles</div>
       <div class="card-body text-secondary">
-        <form #newEmployee="ngForm"  (ngSubmit)="addEmployee()">
+        <form #newEmployee="ngForm"  (ngSubmit)="addEmployee(newEmployee)">
           <div >
             <div class="form-group">
               <label >N° CIN</label>
-              <input required type="text" class="form-control" (ngModel)="employee.numCin" >
+              <input required type="text" class="form-control" >
             </div>
             <div class="form-group" >
               <label >N° C.N.S.S</label>
-              <input required type="text" class="form-control" (ngModel)="employee.numCNSS" >
+              <input required type="text" class="form-control"  >
             </div>
             <div class="form-group" >
               <label >Date d'embauche</label>
-              <input required type="date" class="form-control" (ngModel)="employee.date_emb">
+              <input required type="date" class="form-control" >
             </div>
             <div class="form-group" >
               <label>Fonction</label>
-              <select class="custom-select custom-select-lg mb-3" (ngModel)="employee.fonction" >
+              <select class="custom-select custom-select-lg mb-3" >
                 <option *ngFor="let function of listFonction"
                         value="{{function.fonction}}">{{function.fonction}}</option>
 
@@ -70,7 +89,7 @@
 
             <div class="form-group" >
               <label>Salare de Base</label>
-              <input  type="text" class="form-control" id="NbrMaxFile" (ngModel)="employee.salaireDeBase" >
+              <input  type="text" class="form-control" id="NbrMaxFile"  >
             </div>
             <hr>
             <div class="form-group" >

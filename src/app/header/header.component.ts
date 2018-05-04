@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService, private headerService: HeaderService
   ) { }
-
+path="/assets/Logo.PNG";
   ngOnInit() {
   }
 

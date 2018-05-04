@@ -65,12 +65,13 @@ export class EmployeeListComponent implements OnInit {
 
   }
   testUrl(){
+    console.log(this.route.toString().split("'"));
     return this.route.toString().split("'")[1]==='paysLip';
   }
   generateAllPaysLip(){
     console.log('onClick generate ALL');
     this.router.navigate(['All PaysLip']);
-    this.paysLipService.onGenerateAllPaysLip.next(true);
+   // this.paysLipService.onGenerateAllPaysLip.next(true);
 
   }
 }

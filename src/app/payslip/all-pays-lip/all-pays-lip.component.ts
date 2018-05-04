@@ -45,17 +45,7 @@ export class AllPaysLipComponent implements OnInit {
 
 
   constructor(private payslipService: PayslipService, private employeeService: EmployeeService,private router: Router, private route: ActivatedRoute) {
-    this.payslipService.onGenerateAllPaysLip.subscribe(
-      (onGenerate: boolean) => {
-        this.router.navigate(['All PaysLip']);
-        this.labels = this.payslipService.labelsVariabls;
 
-        this.saveAllPaysLips(this.employeeService.getListEmployee());
-
-        console.log(this.listPaysLip);
-
-      }
-    );
 
     console.log("Constructor");
     this.payslipService.paysLipsGenerated.subscribe(
@@ -70,8 +60,27 @@ export class AllPaysLipComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("OnInit");
+    this.payslipService.onGenerateAllPaysLip.subscribe(
+      (onGenerate: boolean) => {
+      //  this.router.navigate(['All PaysLip']);
+        this.labels = this.payslipService.labelsVariabls;
+
+        this.saveAllPaysLips(this.employeeService.getListEmployee());
+
+        console.log(this.listPaysLip);
+
+      }
+    );
+
     $('#showAllPaysLip').modal('show');
+    if(this.listPaysLip.length===0){
+      console.log("OnInit");
+      this.labels = this.payslipService.labelsVariabls;
+
+      this.saveAllPaysLips(this.employeeService.getListEmployee());
+
+      console.log(this.listPaysLip);
+    }
 
     this.labelRubrics = [];
     this.labelRubrics = this.payslipService.listRubrique;
