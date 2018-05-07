@@ -18,7 +18,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {CurrentPayslipComponent} from './payslip/current-payslip/current-payslip.component';
 import {ListPayslipComponent} from './payslip/list-payslip/list-payslip.component';
 import {PayslipService} from './payslip/payslip.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FilterByNamePipe } from './Shared/filter-by-name.pipe';
 import { ProRecordComponent } from './employee/pro-record/pro-record.component';
 import {HeaderService} from "./header/header.service";
@@ -64,6 +64,7 @@ import {MatProgressBarModule, MatProgressSpinnerModule} from "@angular/material"
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    // ReactiveFormsModule, // <-- #2 add to @NgModule imports
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule

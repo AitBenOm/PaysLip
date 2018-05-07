@@ -56,7 +56,7 @@ export class EmployeeListComponent implements OnInit {
   cleanUpInput() {
     this.keyWord = '';
     this.employeeService.onKewWordChanged.next('');
-    console.log((this.router.url).split('/'));
+    // console.log((this.router.url).split('/'));
     if ((this.router.url).split('/')[1] === 'paysLip') {
       this.router.navigate(['paysLip']);
     } else {
@@ -65,11 +65,11 @@ export class EmployeeListComponent implements OnInit {
 
   }
   testUrl(){
-    console.log(this.route.toString().split("'"));
+    // console.log(this.route.toString().split("'"));
     return this.route.toString().split("'")[1]==='paysLip';
   }
   generateAllPaysLip(){
-    console.log('onClick generate ALL');
+    // console.log('onClick generate ALL');
     this.router.navigate(['All PaysLip']);
    // this.paysLipService.onGenerateAllPaysLip.next(true);
 
