@@ -4,6 +4,7 @@ import {EmployeeModel} from "../employee-model";
 import {Fonction} from "../fonction";
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {getLocaleDateFormat} from "@angular/common";
 
 declare const $: any;
 
@@ -22,12 +23,12 @@ export class AddEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.listFonction = this.employeeService.getListFunction();
-    this.employeeForm=this.formBuilder.group(
+    this.employeeForm = this.formBuilder.group(
       {
         'nom': new FormControl(null, Validators.required),
         'sex': new FormControl(null, Validators.required),
         'prenom': new FormControl(null, Validators.required),
-        'date_de_naissance': new FormControl(null, Validators.required),
+        'date_de_naissance': new FormControl(null, [Validators.required, this.dateValidator.bind(this)]),
         'situationFamiliale': new FormControl(null, Validators.required),
         'nbEnfant': new FormControl(null, Validators.required),
         'adresse': new FormControl(null, Validators.required),
@@ -35,15 +36,27 @@ export class AddEmployeeComponent implements OnInit {
         'email': new FormControl(null, Validators.required),
         'numCin': new FormControl(null, Validators.required),
         'numCNSS': new FormControl(null, Validators.required),
-        'date_emb': new FormControl(null, Validators.required),
+        'date_emb': new FormControl(null, [Validators.required, this.dateValidator.bind(this)]),
         'fonction': new FormControl(null, Validators.required),
         'salaireDeBase': new FormControl(null, [Validators.required, Validators.min(10)]),
       }
     );
   }
 
+  dateValidator(date: FormControl) {
+    const toDay = new Date();
+    console.log(toDay);
+    console.log(new Date(date.value));
+    console.log(new Date(date.value) > toDay);
+    if (      new Date(date.value) > toDay  ) {
+      if(new Date(date.value).getFullYear()<1900){
+        return {'dateNoOk': true};
+      }
+    }  return null;
+  }
+
   addEmployee() {
-console.log(this.employeeForm);
+    console.log(this.employeeForm);
     const matricule = this.employeeService.getListEmployee().length + 1;
 
     // this.employeeService.onAddEmployee(
