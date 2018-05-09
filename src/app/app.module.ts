@@ -64,7 +64,7 @@ import {MatProgressBarModule, MatProgressSpinnerModule} from "@angular/material"
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    // ReactiveFormsModule, // <-- #2 add to @NgModule imports
+     ReactiveFormsModule, // <-- #2 add to @NgModule imports
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule

@@ -1,5 +1,5 @@
 
-  <form  #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
+  <form  [formGroup]="employeeForm" (ngSubmit)="addEmployee()"  >
 
     <div class="row">
       <div class="col-md-1"></div>
@@ -12,7 +12,7 @@
           <div >
             <div class="form-group">
               <label >Sex</label>
-              <select class="custom-select custom-select-lg mb-3"  ngModel name="sex" required >
+              <select class="custom-select custom-select-lg mb-3"   formControlName="sex" required >
                 <option >Mr.</option>
                 <option >Mme.</option>
                 <option >Mell.</option>
@@ -20,38 +20,38 @@
             </div>
             <div class="form-group">
               <label >Nom</label>
-              <input    type="text" class="form-control"   ngModel name="nom" required >
+              <input    type="text" class="form-control"    formControlName="nom" required >
             </div>
             <div class="form-group" >
               <label >Prenom</label>
-              <input   type="text" class="form-control"   ngModel name="prenom"  required >
+              <input   type="text" class="form-control"    formControlName="prenom"  required >
             </div>
             <div class="form-group" >
               <label >Date de Naissance</label>
-              <input   type="date" class="form-control"   ngModel name="date_de_naissance" required >
+              <input   type="date" class="form-control"    formControlName="date_de_naissance" required >
             </div>
             <div class="form-group" >
               <label >Situation Familiale</label>
-              <select class="custom-select custom-select-lg mb-3"   ngModel name="situationFamiliale" required >
+              <select class="custom-select custom-select-lg mb-3"    formControlName="situationFamiliale" required >
                 <option value="M" >Marié</option>
                 <option value="C">Célibataire</option>
               </select>
             </div>
             <div class="form-group" >
               <label >Nombre d'enfants</label>
-              <input   type="number" class="form-control" value="0"   ngModel name="nbEnfant" required min="0" >
+              <input   type="number" class="form-control" value="0"    formControlName="nbEnfant" required min="0" >
             </div>
             <div class="form-group" >
               <label>Adresse</label>
-              <input   type="text" class="form-control"   ngModel name="adresse"  required >
+              <input   type="text" class="form-control"    formControlName="adresse"  required >
             </div>
             <div class="form-group" >
               <label>Téléphone</label>
-              <input   type="text" class="form-control"   ngModel name="telephone" required >
+              <input   type="text" class="form-control"    formControlName="telephone" required >
             </div>
             <div class="form-group" >
               <label>E-Mail</label>
-              <input   type="text"  class="form-control"   ngModel name="email" required email>
+              <input   type="email"  class="form-control"    formControlName="email" required email>
             </div>
 
           </div>
@@ -70,19 +70,19 @@
           <div >
             <div class="form-group">
               <label >N° CIN</label>
-              <input   type="text" class="form-control"   ngModel name="numCin" required >
+              <input   type="text" class="form-control"    formControlName="numCin" required >
             </div>
             <div class="form-group" >
               <label >N° C.N.S.S</label>
-              <input   type="text" class="form-control"   ngModel name="numCNSS" required >
+              <input   type="text" class="form-control"    formControlName="numCNSS" required >
             </div>
             <div class="form-group" >
               <label >Date d'embauche</label>
-              <input   type="date" class="form-control"   ngModel name="date_emb" required >
+              <input   type="date" class="form-control"    formControlName="date_emb" required >
             </div>
             <div class="form-group" >
               <label>Fonction</label>
-              <select class="custom-select custom-select-lg mb-3"  ngModel name="fonction" required>
+              <select class="custom-select custom-select-lg mb-3"   formControlName="fonction" required>
                 <option *ngFor="let function of listFonction"
                         value="{{function.fonction}}">{{function.fonction}}</option>
 
@@ -91,14 +91,18 @@
 
             <div class="form-group" >
               <label>Salare de Base</label>
-              <input   type="text" class="form-control" #SDB  ngModel name="salaireDeBase" required  min="0">
-              {{SDB.value}}
+              <input   type="text" class="form-control" #SDB   formControlName="salaireDeBase" required >
+              {{!SDB.value<0 && SDB.value===''}}
+              <div [hidden]="!SDB.value<0 && SDB.value===''"
+                   class="alert alert-danger">
+                Name is required
+              </div>
 
             </div>
             <hr>
             <div class="form-group" >
 
-              <button   type="submit" class="btn btn-outline-success float-right" [disabled]="!employeeForm.form.valid" >Ajouter</button>
+              <button   type="submit" class="btn btn-outline-success float-right"  >Ajouter</button>
             </div>
 
           </div>
