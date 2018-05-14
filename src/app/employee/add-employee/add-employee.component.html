@@ -79,7 +79,8 @@
             <div class="form-group" >
               <label >Date d'embauche</label>
               <input   type="date" class="form-control"  #EMB   formControlName="date_emb" required >
-              {{EMB.value}}
+
+              {{employeeForm.controls['date_emb'].valid}}
             </div>
             <div class="form-group" >
               <label>Fonction</label>
