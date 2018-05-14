@@ -29,3 +29,11 @@ border: 1px solid whitesmoke;
 input :focus{
   offset-after: 10;
 }
+.alert {
+  position: relative;
+ padding: 0px;
+   margin-bottom: 0px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+
+}
