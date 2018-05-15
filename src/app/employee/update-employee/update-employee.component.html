@@ -64,7 +64,7 @@
             </div>
             <div class="form-group" >
               <label >Nombre d'enfants *</label>
-              <input   type="number" class="form-control" value="0"    formControlName="nbEnfant" required min="0" value="{{employee.nbEnfant}}">
+              <input   type="number" class="form-control"   formControlName="nbEnfant" required min="0" value="{{employee.nbEnfant}}">
               <br>  <div *ngIf="!employeeForm.controls['nbEnfant'].valid && employeeForm.controls['nbEnfant'].touched "
                          class="alert alert-danger">
               Name is required
@@ -112,7 +112,7 @@
           <div >
             <div class="form-group">
               <label >N° CIN *</label>
-              <input   type="text" class="form-control"    formControlName="numCin" required value="{{employee.numCin}}">
+              <input   type="text" class="form-control"    formControlName="numCin" required value="{{employee.numCin | uppercase}}">
               <br>  <div *ngIf="!employeeForm.controls['numCin'].valid && employeeForm.controls['numCin'].touched "
                          class="alert alert-danger">
               Le Champs <strong>N° CIN </strong>est requis.
