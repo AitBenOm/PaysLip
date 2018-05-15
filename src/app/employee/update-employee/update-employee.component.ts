@@ -41,17 +41,17 @@ export class UpdateEmployeeComponent implements OnInit {
     );
   }
 
-  addEmployee() {
+  updateEmployee() {
     //  console.log(this.employeeForm);
     if (this.employeeForm.valid) {
-      const matricule = this.employeeService.getListEmployee().length + 1;
 
-      // this.employeeService.onAddEmployee(
-      //   new EmployeeModel(matricule, this.employeeForm.controls.nom.value, this.employeeForm.controls.prenom.value, new Date(this.employeeForm.controls.date_de_naissance.value), new Date(this.employeeForm.controls.date_emb.value),
-      //     this.employeeForm.controls.fonction.value, this.employeeForm.controls.adresse.value, this.employeeForm.controls.telephone.value, this.employeeForm.controls.email.value, this.employeeForm.controls.numCNSS.value,
-      //     this.employeeForm.controls.numCin.value, this.employeeForm.controls.sex.value, this.employeeForm.controls.situationFamiliale.value, this.employeeForm.controls.nbEnfant.value, this.employeeForm.controls.salaireDeBase.value)
-      // );
-      //this.employeeService.onEmployeeAdded.next(this.employee);
+
+      this.employeeService.onUpdateEmployee(
+        new EmployeeModel(this.employee.matricule, this.employeeForm.controls.nom.value, this.employeeForm.controls.prenom.value, new Date(this.employeeForm.controls.date_de_naissance.value), new Date(this.employeeForm.controls.date_emb.value),
+          this.employeeForm.controls.fonction.value, this.employeeForm.controls.adresse.value, this.employeeForm.controls.telephone.value, this.employeeForm.controls.email.value, this.employeeForm.controls.numCNSS.value,
+          this.employeeForm.controls.numCin.value, this.employeeForm.controls.sex.value, this.employeeForm.controls.situationFamiliale.value, this.employeeForm.controls.nbEnfant.value, this.employeeForm.controls.salaireDeBase.value)
+      );
+
       this.router.navigate(['employee-list']);
     } else {
       this.errors = true;

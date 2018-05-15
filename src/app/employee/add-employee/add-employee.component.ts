@@ -31,7 +31,7 @@ export class AddEmployeeComponent implements OnInit {
         prenom: new FormControl(null, Validators.required),
         date_de_naissance: new FormControl(null, [Validators.required, this.employeeService.dateValidator.bind(this)]),
         situationFamiliale: new FormControl(null, Validators.required),
-        nbEnfant: new FormControl(null, Validators.required),
+        nbEnfant: new FormControl(0),
         adresse: new FormControl(null, Validators.required),
         telephone: new FormControl(null, Validators.required),
         email: new FormControl(null),

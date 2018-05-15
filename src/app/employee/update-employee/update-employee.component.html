@@ -1,5 +1,5 @@
 
-<form  [formGroup]="employeeForm" (ngSubmit)="addEmployee()"  >
+<form  [formGroup]="employeeForm" (ngSubmit)="updateEmployee()"  >
 
   <div class="row">
     <div class="col-md-1"></div>
@@ -25,7 +25,9 @@
             <div class="form-group">
               <label >Nom *</label>
               <input    type="text" class="form-control"    formControlName="nom" required  value="{{employee.nom}}">
-              <br>  <div *ngIf="!employeeForm.controls['nom'].valid && employeeForm.controls['nom'].touched "
+              {{employee.nom}}
+              {{employeeForm.controls['nom'].value}}
+              <br>  <div *ngIf="!employeeForm.controls['nom'].valid && employeeForm.controls['nom'].touched && employeeForm.controls['nom']===null"
                          class="alert alert-danger">
               Le Champs <strong>Nom </strong>est requis.
             </div>
