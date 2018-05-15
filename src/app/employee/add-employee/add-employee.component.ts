@@ -17,6 +17,7 @@ export class AddEmployeeComponent implements OnInit {
 
   listFonction: Fonction[];
   employeeForm: FormGroup;
+  errors: boolean;
 
   constructor(private employeeService: EmployeeService, private router: Router, private formBuilder: FormBuilder) {
   }
@@ -33,11 +34,11 @@ export class AddEmployeeComponent implements OnInit {
         nbEnfant: new FormControl(null, Validators.required),
         adresse: new FormControl(null, Validators.required),
         telephone: new FormControl(null, Validators.required),
-        email: new FormControl(null, Validators.required),
+        email: new FormControl(null),
         numCin: new FormControl(null, Validators.required),
         numCNSS: new FormControl(null, Validators.required),
         date_emb: new FormControl(null, [Validators.required, this.dateValidator.bind(this)]),
-        fonction: new FormControl(null, Validators.required),
+        fonction: new FormControl(null),
         salaireDeBase: new FormControl(null, [Validators.required, Validators.min(10)]),
       }
     );
@@ -69,6 +70,7 @@ export class AddEmployeeComponent implements OnInit {
       //this.employeeService.onEmployeeAdded.next(this.employee);
       this.router.navigate(['employee-list']);
     }else{
+      this.errors=true;
       for (const field in this.employeeForm.controls) { // 'field' is a string
         if(this.employeeForm.get(field).invalid ){
          console.log(this.employeeForm.get(field));
