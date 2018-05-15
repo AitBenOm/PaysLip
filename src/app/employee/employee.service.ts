@@ -2,6 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {EmployeeModel} from "./employee-model";
 import {Subject} from "rxjs/Subject";
 import {Fonction} from "./fonction";
+import {FormControl} from "@angular/forms";
 
 @Injectable()
 export class EmployeeService {
@@ -82,6 +83,18 @@ export class EmployeeService {
 
   onAddEmployee(employee: EmployeeModel) {
     this._listEmployee.push(employee);
+  }
+
+  dateValidator(date: FormControl) {
+    const toDay = new Date();
+    console.log(toDay);
+    console.log(new Date(date.value));
+    console.log(new Date(date.value).getTime() > toDay.getTime());
+    if (new Date(date.value).getTime() > toDay.getTime() || new Date(date.value).getFullYear() < 1900) {
+
+      return {'dateNoOk': true};
+    }
+    return null;
   }
 }
 

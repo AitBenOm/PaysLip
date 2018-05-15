@@ -1,81 +1,191 @@
 
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-5">
+<form  [formGroup]="employeeForm" (ngSubmit)="addEmployee()"  >
 
-    <div class="card border-secondary mb-3">
-      <div class="card-header">Informations Personelle</div>
-      <div class="card-body text-secondary">
-        <form  method="" action="">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+
+      <div class="card border-secondary mb-3">
+        <div class="card-header">Informations Personelle</div>
+        <div class="card-body text-secondary">
+
           <div >
             <div class="form-group">
-              <label >Nom</label>
-              <input required type="text" class="form-control" value="{{employee.nom}}" >
+              <label >Sex *</label>
+              <select class="custom-select custom-select-lg mb-3"   formControlName="sex" required >
+                <option >Mr.</option>
+                <option >Mme.</option>
+                <option >Mell.</option>
+              </select>
+              <br>  <div *ngIf="!employeeForm.controls['sex'].valid && employeeForm.controls['sex'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Sex </strong>est requis.
+            </div>
+            </div>
+            <div class="form-group">
+              <label >Nom *</label>
+              <input    type="text" class="form-control"    formControlName="nom" required  value="{{employee.nom}}">
+              <br>  <div *ngIf="!employeeForm.controls['nom'].valid && employeeForm.controls['nom'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Nom </strong>est requis.
+            </div>
             </div>
             <div class="form-group" >
-              <label >Prenom</label>
-              <input required type="text" class="form-control" value="{{employee.prenom}}" >
+              <label >Prenom *</label>
+              <input   type="text" class="form-control"    formControlName="prenom"  required value="{{employee.prenom}}">
+              <br>  <div *ngIf="!employeeForm.controls['prenom'].valid && employeeForm.controls['prenom'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Prenom </strong>est requis.
+            </div>
             </div>
             <div class="form-group" >
-              <label >Date de Naissance</label>
-              <input required type="text" class="form-control" value="{{employee.date_de_naissance}}">
+              <label >Date de Naissance *</label>
+              <input   type="date" class="form-control"    formControlName="date_de_naissance" required value="{{employee.date_de_naissance}}">
+
+              <br>
+              <div *ngIf="!employeeForm.controls['date_de_naissance'].valid && employeeForm.controls['date_de_naissance'].touched "
+                   class="alert alert-danger">
+                <div *ngIf="employeeForm.controls['date_de_naissance'].value===null; else Format"> Le Champs <strong>Date de Naissance </strong>est requis.</div>
+                <ng-template #Format>
+                  <strong> Veuillez Renseigner une date Valide.</strong>
+                </ng-template>
+              </div>
             </div>
             <div class="form-group" >
-              <label>Adresse</label>
-              <input required type="text" class="form-control" id="NbrMaxFile" value="{{employee.adresse}}" >
+              <label >Situation Familiale *</label>
+              <select class="custom-select custom-select-lg mb-3"    formControlName="situationFamiliale" required >
+                <option value="M" >Marié</option>
+                <option value="C">Célibataire</option>
+              </select>
+              <br>  <div *ngIf="!employeeForm.controls['situationFamiliale'].valid && employeeForm.controls['situationFamiliale'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Situation Familiale </strong>est requis.
+            </div>
             </div>
             <div class="form-group" >
-              <label>Téléphone</label>
-              <input required type="text" class="form-control" value="{{employee.telephone}}">
+              <label >Nombre d'enfants *</label>
+              <input   type="number" class="form-control" value="0"    formControlName="nbEnfant" required min="0" value="{{employee.nbEnfant}}">
+              <br>  <div *ngIf="!employeeForm.controls['nbEnfant'].valid && employeeForm.controls['nbEnfant'].touched "
+                         class="alert alert-danger">
+              Name is required
+            </div>
+            </div>
+            <div class="form-group" >
+              <label>Adresse *</label>
+              <input   type="text" class="form-control"    formControlName="adresse"  required value="{{employee.adresse}}">
+              <br>  <div *ngIf="!employeeForm.controls['adresse'].valid && employeeForm.controls['adresse'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Adresse </strong>est requis.
+            </div>
+            </div>
+            <div class="form-group" >
+              <label>Téléphone *</label>
+              <input   type="text" class="form-control"    formControlName="telephone" required value="{{employee.telephone}}">
+              <br>  <div *ngIf="!employeeForm.controls['telephone'].valid && employeeForm.controls['telephone'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Téléphone </strong>est requis.
+            </div>
             </div>
             <div class="form-group" >
               <label>E-Mail</label>
-              <input required type="text" class="form-control" value="{{employee.email}}">
+              <input   type="email"  class="form-control"    formControlName="email"  email value="{{employee.email}}">
+
+              <br>  <div *ngIf="!employeeForm.controls['email'].valid && employeeForm.controls['email'].touched "
+                         class="alert alert-danger">
+              Name is required
+            </div>
             </div>
 
           </div>
 
-        </form>
+
+        </div>
       </div>
+
     </div>
+    <div class="col-md-5">
 
-  </div>
-  <div class="col-md-5">
+      <div class="card border-secondary mb-3">
+        <div class="card-header">Informations Profesionelles</div>
+        <div class="card-body text-secondary">
 
-    <div class="card border-secondary mb-3">
-      <div class="card-header">Informations Profesionelles</div>
-      <div class="card-body text-secondary">
-        <form  method="" action="">
           <div >
             <div class="form-group">
-              <label >N° CIN</label>
-              <input required type="text" class="form-control" value="{{employee.numCin | uppercase}}" >
+              <label >N° CIN *</label>
+              <input   type="text" class="form-control"    formControlName="numCin" required value="{{employee.numCin}}">
+              <br>  <div *ngIf="!employeeForm.controls['numCin'].valid && employeeForm.controls['numCin'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>N° CIN </strong>est requis.
+            </div>
             </div>
             <div class="form-group" >
-              <label >N° C.N.S.S</label>
-              <input required type="text" class="form-control" value="{{employee.numCNSS}}" >
+              <label >N° C.N.S.S *</label>
+              <input   type="text" class="form-control"    formControlName="numCNSS" required  value="{{employee.numCNSS}}">
+              <br>  <div *ngIf="!employeeForm.controls['numCNSS'].valid && employeeForm.controls['numCNSS'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>N° C.N.S.S </strong>est requis.
+            </div>
             </div>
             <div class="form-group" >
-              <label >Date d'embauche</label>
-              <input required type="text" class="form-control" value="{{employee.date_emb}}">
+              <label >Date d'embauche *</label>
+              <input   type="date" class="form-control"  #EMB   formControlName="date_emb" required value="{{employee.date_emb}}">
+              <br>
+              <div *ngIf="!employeeForm.controls['date_emb'].valid && employeeForm.controls['date_emb'].touched "
+                   class="alert alert-danger">
+                <div *ngIf="employeeForm.controls['date_emb'].value===null; else Format"> Le Champs <strong>Date d'Embauche </strong>est requis.</div>
+                <ng-template #Format>
+                  <strong> Veuillez Renseigner une date Valide.</strong>
+                </ng-template>
+              </div>
+
+
             </div>
             <div class="form-group" >
               <label>Fonction</label>
-              <input required type="text" class="form-control" id="" value="{{employee.fonction}}" >
+              <select class="custom-select custom-select-lg mb-3"   formControlName="fonction" >
+                <option *ngFor="let function of listFonction"
+                        value="{{function.fonction}}">{{function.fonction}}</option>
+
+              </select>
+
+              <br>  <div *ngIf="!employeeForm.controls['fonction'].valid && employeeForm.controls['fonction'].touched "
+                         class="alert alert-danger">
+              Name is required
+            </div>
             </div>
 
             <div class="form-group" >
-              <label>Salare de Base</label>
-              <input  type="text" class="form-control" id="NbrMaxFile" value="{{employee.salaireDeBase}} DH" >
+              <label>Salare de Base *</label>
+              <input   type="text" class="form-control" #SDB   formControlName="salaireDeBase" required value="{{employee.salaireDeBase}}">
+              <br>  <div *ngIf="!employeeForm.controls['salaireDeBase'].valid && employeeForm.controls['salaireDeBase'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Salare de Base </strong>est requis.
+            </div>
+
+
+            </div>
+            <hr>
+            <div class="form-group" >
+
+              <button   type="submit" class="btn btn-outline-success float-right"   >Enregistrer</button>
+              <br>
+              <br>
+              <div *ngIf="!employeeForm.valid  && errors"
+                   class="alert alert-danger ">
+                Veuillez renseigner les champs  <strong> obligatoires (*)</strong>
+              </div>
             </div>
 
           </div>
-
-        </form>
+          <div>
+            <br>
+            <span>(*) Champs Obligatoire</span>
+          </div>
+        </div>
       </div>
+
     </div>
 
+    <div class="col-md-1"></div>
   </div>
-  <div class="col-md-1"></div>
-</div>
-
+</form>

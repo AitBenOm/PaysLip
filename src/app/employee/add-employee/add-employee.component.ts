@@ -29,7 +29,7 @@ export class AddEmployeeComponent implements OnInit {
         nom: new FormControl(null, Validators.required),
         sex: new FormControl(null, Validators.required),
         prenom: new FormControl(null, Validators.required),
-        date_de_naissance: new FormControl(null, [Validators.required, this.dateValidator.bind(this)]),
+        date_de_naissance: new FormControl(null, [Validators.required, this.employeeService.dateValidator.bind(this)]),
         situationFamiliale: new FormControl(null, Validators.required),
         nbEnfant: new FormControl(null, Validators.required),
         adresse: new FormControl(null, Validators.required),
@@ -37,7 +37,7 @@ export class AddEmployeeComponent implements OnInit {
         email: new FormControl(null),
         numCin: new FormControl(null, Validators.required),
         numCNSS: new FormControl(null, Validators.required),
-        date_emb: new FormControl(null, [Validators.required, this.dateValidator.bind(this)]),
+        date_emb: new FormControl(null, [Validators.required, this.employeeService.dateValidator.bind(this)]),
         fonction: new FormControl(null),
         salaireDeBase: new FormControl(null, [Validators.required, Validators.min(10)]),
       }
@@ -45,17 +45,6 @@ export class AddEmployeeComponent implements OnInit {
     console.log(this.employeeForm.controls.nom);
   }
 
-  dateValidator(date: FormControl) {
-    const toDay = new Date();
-    console.log(toDay);
-    console.log(new Date(date.value));
-    console.log(new Date(date.value).getTime() > toDay.getTime());
-    if (new Date(date.value).getTime() > toDay.getTime() || new Date(date.value).getFullYear() < 1900) {
-
-      return {'dateNoOk': true};
-    }
-    return null;
-  }
 
   addEmployee() {
     //  console.log(this.employeeForm);
