@@ -1,12 +1,20 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Level} from "./level";
 import {StudentModel} from "./student.model";
 import {FormControl} from "@angular/forms";
+import {Subject} from "rxjs/Subject";
+import {EmployeeModel} from "../employee/employee-model";
 
 @Injectable()
 export class StudentService {
 
   constructor() { }
+
+
+  employeeSelected = new Subject<StudentModel>();
+  onEmployeeAdded = new Subject<EmployeeModel>();
+  studentToShow = new Subject<StudentModel>();
+  onKewWordChanged = new EventEmitter<string>();
   private _listFunction: Level[] = [
     new Level(1, 'Directeur'),
     new Level(2, 'Enseignant'),
@@ -15,16 +23,26 @@ export class StudentService {
     new Level(5, 'Accompagnateur'),
   ];
   private _listStudent: StudentModel[] = [
+    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132','066108901','0661337713'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(2, "Rhallab", "Chaimae", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(3, "Nouhi", "Mohammed", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(4, "Lamnini", "Ilias", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(5, "Lamnini", "issam", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(6, "Hormatollah ", "Erragheb", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+
     new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(2, "Rhallab", "Chaimae", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(3, "Nouhi", "Mohammed", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(4, "Lamnini", "Ilias", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(5, "Lamnini", "issam", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(6, "Hormatollah ", "Erragheb", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+
     new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
-    new StudentModel(1, "Ait benaissa", "Omar", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(2, "Rhallab", "Chaimae", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(3, "Nouhi", "Mohammed", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(4, "Lamnini", "Ilias", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(5, "Lamnini", "issam", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
+    new StudentModel(6, "Hormatollah ", "Erragheb", new Date('1991-04-12'), '5 Rue Maurice Couderchet', ['0664941132'], 'omar.benaissa@outlook.com', 'M', 'CM'),
 
   ];
 

@@ -24,16 +24,16 @@ const appRoutes: Routes = [
   { path: 'paysLip', component: PayslipComponent, children: [
     { path: 'employee-details/:id', component: PayslipComponent }
 ] },
+
   { path: 'employee-list', component: EmployeeComponent,
   children:[
     { path: 'employee-details/:id', component: EmployeeDetailsComponent }
-  ]
-  },
+  ]  },
+
   { path: 'student-list', component: StudentComponent,
   children:[
-    { path: 'student-list/:id', component: StudentDetailsComponent }
-  ]
-  },
+    { path: 'student-details/:id', component: StudentDetailsComponent }
+  ]  },
 
 
 

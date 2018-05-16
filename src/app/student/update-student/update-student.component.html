@@ -1,3 +1,186 @@
-<p>
-  update-student works!
-</p>
+
+<form  [formGroup]="studentForm" (ngSubmit)="updateStudent()"  >
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+
+      <div class="card border-secondary mb-3">
+        <div class="card-header">Informations Personelle</div>
+        <div class="card-body text-secondary">
+
+          <div >
+            <div class="form-group">
+              <label >Sex *</label>
+              <select class="custom-select custom-select-lg mb-3"   formControlName="sex" required >
+                <option >Mr.</option>
+                <option >Mme.</option>
+                <option >Mell.</option>
+              </select>
+              <br>  <div *ngIf="!studentForm.controls['sex'].valid && studentForm.controls['sex'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Sex </strong>est requis.
+            </div>
+            </div>
+            <div class="form-group">
+              <label >Nom *</label>
+              <input    type="text" class="form-control"    formControlName="nom" required  value="{{student.nom}}">
+              {{student.nom}}
+              {{studentForm.controls['nom'].value}}
+              <br>  <div *ngIf="!studentForm.controls['nom'].valid && studentForm.controls['nom'].touched && studentForm.controls['nom']===null"
+                         class="alert alert-danger">
+              Le Champs <strong>Nom </strong>est requis.
+            </div>
+            </div>
+            <div class="form-group" >
+              <label >Prenom *</label>
+              <input   type="text" class="form-control"    formControlName="prenom"  required value="{{student.prenom}}">
+              <br>  <div *ngIf="!studentForm.controls['prenom'].valid && studentForm.controls['prenom'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Prenom </strong>est requis.
+            </div>
+            </div>
+            <div class="form-group" >
+              <label >Date de Naissance *</label>
+              <input   type="date" class="form-control"    formControlName="date_de_naissance" required value="{{student.date_de_naissance}}">
+
+              <br>
+              <div *ngIf="!studentForm.controls['date_de_naissance'].valid && studentForm.controls['date_de_naissance'].touched "
+                   class="alert alert-danger">
+                <div *ngIf="studentForm.controls['date_de_naissance'].value===null; else Format"> Le Champs <strong>Date de Naissance </strong>est requis.</div>
+                <ng-template #Format>
+                  <strong> Veuillez Renseigner une date Valide.</strong>
+                </ng-template>
+              </div>
+            </div>
+
+
+            <div class="form-group" >
+              <label>Adresse *</label>
+              <input   type="text" class="form-control"    formControlName="adresse"  required value="{{student.adresse}}">
+              <br>  <div *ngIf="!studentForm.controls['adresse'].valid && studentForm.controls['adresse'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Adresse </strong>est requis.
+            </div>
+            </div>
+            <div class="form-group" >
+              <label>Téléphone *</label>
+              <input   type="text" class="form-control"    formControlName="telephone" required value="{{student.telephone}}">
+              <br>  <div *ngIf="!studentForm.controls['telephone'].valid && studentForm.controls['telephone'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Téléphone </strong>est requis.
+            </div>
+            </div>
+            <div class="form-group" >
+              <label>E-Mail</label>
+              <input   type="email"  class="form-control"    formControlName="email"  email value="{{student.email}}">
+
+              <br>  <div *ngIf="!studentForm.controls['email'].valid && studentForm.controls['email'].touched "
+                         class="alert alert-danger">
+              Name is required
+            </div>
+            </div>
+            <div class="form-group" >
+              <label >Niveau Scolaire *</label>
+              <select class="custom-select custom-select-lg mb-3"    formControlName="level" required >
+                <option *ngFor="let level of listLevel"
+                        value="{{level.level}}">{{level.level}}</option>
+              </select>
+              <br>  <div *ngIf="!studentForm.controls['level'].valid && studentForm.controls['level'].touched "
+                         class="alert alert-danger">
+              Le Champs <strong>Situation Familiale </strong>est requis.
+            </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-5">
+
+      <!--<div class="card border-secondary mb-3">-->
+        <!--<div class="card-header">Informations Profesionelles</div>-->
+        <!--<div class="card-body text-secondary">-->
+
+          <!--<div >-->
+            <!--<div class="form-group">-->
+              <!--<label >N° CIN *</label>-->
+              <!--<input   type="text" class="form-control"    formControlName="numCin" required value="{{student.numCin | uppercase}}">-->
+              <!--<br>  <div *ngIf="!studentForm.controls['numCin'].valid && studentForm.controls['numCin'].touched "-->
+                         <!--class="alert alert-danger">-->
+              <!--Le Champs <strong>N° CIN </strong>est requis.-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group" >-->
+              <!--<label >N° C.N.S.S *</label>-->
+              <!--<input   type="text" class="form-control"    formControlName="numCNSS" required  value="{{student.numCNSS}}">-->
+              <!--<br>  <div *ngIf="!studentForm.controls['numCNSS'].valid && studentForm.controls['numCNSS'].touched "-->
+                         <!--class="alert alert-danger">-->
+              <!--Le Champs <strong>N° C.N.S.S </strong>est requis.-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group" >-->
+              <!--<label >Date d'embauche *</label>-->
+              <!--<input   type="date" class="form-control"  #EMB   formControlName="date_emb" required value="{{student.date_emb}}">-->
+              <!--<br>-->
+              <!--<div *ngIf="!studentForm.controls['date_emb'].valid && studentForm.controls['date_emb'].touched "-->
+                   <!--class="alert alert-danger">-->
+                <!--<div *ngIf="studentForm.controls['date_emb'].value===null; else Format"> Le Champs <strong>Date d'Embauche </strong>est requis.</div>-->
+                <!--<ng-template #Format>-->
+                  <!--<strong> Veuillez Renseigner une date Valide.</strong>-->
+                <!--</ng-template>-->
+              <!--</div>-->
+
+
+            <!--</div>-->
+            <!--<div class="form-group" >-->
+              <!--<label>Fonction</label>-->
+              <!--<select class="custom-select custom-select-lg mb-3"   formControlName="fonction" >-->
+                <!--<option *ngFor="let function of listFonction"-->
+                        <!--value="{{function.fonction}}">{{function.fonction}}</option>-->
+
+              <!--</select>-->
+
+              <!--<br>  <div *ngIf="!studentForm.controls['fonction'].valid && studentForm.controls['fonction'].touched "-->
+                         <!--class="alert alert-danger">-->
+              <!--Name is required-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group" >-->
+              <!--<label>Salare de Base *</label>-->
+              <!--<input   type="text" class="form-control" #SDB   formControlName="salaireDeBase" required value="{{student.salaireDeBase}}">-->
+              <!--<br>  <div *ngIf="!studentForm.controls['salaireDeBase'].valid && studentForm.controls['salaireDeBase'].touched "-->
+                         <!--class="alert alert-danger">-->
+              <!--Le Champs <strong>Salare de Base </strong>est requis.-->
+            <!--</div>-->
+
+
+            <!--</div>-->
+            <!--<hr>-->
+            <!--<div class="form-group" >-->
+
+              <!--<button   type="submit" class="btn btn-outline-success float-right"   >Enregistrer</button>-->
+              <!--<br>-->
+              <!--<br>-->
+              <!--<div *ngIf="!studentForm.valid  && errors"-->
+                   <!--class="alert alert-danger ">-->
+                <!--Veuillez renseigner les champs  <strong> obligatoires (*)</strong>-->
+              <!--</div>-->
+            <!--</div>-->
+
+          <!--</div>-->
+          <!--<div>-->
+            <!--<br>-->
+            <!--<span>(*) Champs Obligatoire</span>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    </div>
+
+    <div class="col-md-1"></div>
+  </div>
+</form>

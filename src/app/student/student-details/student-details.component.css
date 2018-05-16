@@ -1,0 +1,46 @@
+.nav-item{
+  margin-right: 4mm;
+  text-align: center;
+  font-weight: bold;
+
+  /*border-top:2px solid white ;*/
+  /*border-right: 2px solid white;*/
+  /*border-left: 2px solid white;*/
+  border: 2px solid white;
+  border-radius: 5px 5px 5px 5px ;
+}
+
+
+.nav-item>a {
+  color: white;
+
+}
+.nav-item>a:active {
+  color: #495057;
+
+}
+
+#myTab {
+  margin-left: 8.5%;
+}
+.nav-tabs{
+  border-bottom: none;
+}
+.nav-tabs .nav-link.active{
+  color: rgba(204, 112, 23, 0.86);
+
+}
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid  rgba(38,175,120,0.58);;
+
+}
+.row{
+  border: 1px solid whitesmoke;
+  border-radius: 15px;
+  background-color: rgba(45, 55, 66 ,0.9);
+
+
+}
