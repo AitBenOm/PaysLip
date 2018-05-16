@@ -29,6 +29,13 @@ import { FilterByDatePipe } from './Shared/filter-by-date.pipe';
 import {AllPaysLipComponent} from "./payslip/all-pays-lip/all-pays-lip.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatProgressBarModule, MatProgressSpinnerModule} from "@angular/material";
+import { StudentComponent } from './student/student.component';
+import { AddStudentComponent } from './student/add-student/add-student.component';
+import { StudentListComponent } from './student/student-list/student-list.component';
+import { UpdateStudentComponent } from './student/update-student/update-student.component';
+import { StudentDetailsComponent } from './student/student-details/student-details.component';
+import { StudentInfosComponent } from './student/student-infos/student-infos.component';
+import {StudentService} from "./student/student.service";
 
 
 
@@ -56,7 +63,13 @@ import {MatProgressBarModule, MatProgressSpinnerModule} from "@angular/material"
     HomeComponent,
 
     FilterByDatePipe,
-    AllPaysLipComponent
+    AllPaysLipComponent,
+    StudentComponent,
+    AddStudentComponent,
+    StudentListComponent,
+    UpdateStudentComponent,
+    StudentDetailsComponent,
+    StudentInfosComponent
 
 
   ],
@@ -69,7 +82,7 @@ import {MatProgressBarModule, MatProgressSpinnerModule} from "@angular/material"
     MatProgressBarModule,
     MatProgressSpinnerModule
   ],
-  providers: [EmployeeService, PayslipService, HeaderService],
+  providers: [EmployeeService, PayslipService, HeaderService, StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

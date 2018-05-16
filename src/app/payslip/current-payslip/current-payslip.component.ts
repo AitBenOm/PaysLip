@@ -196,6 +196,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
     this.netAPaye = Brut - igr - charges;
 
+
   }
 
   reset(form: FormGroup) {

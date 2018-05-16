@@ -10,6 +10,8 @@ import {HomeComponent} from "./home/home.component";
 import {CurrentPayslipComponent} from "./payslip/current-payslip/current-payslip.component";
 import {AddEmployeeComponent} from "./employee/add-employee/add-employee.component";
 import {AllPaysLipComponent} from "./payslip/all-pays-lip/all-pays-lip.component";
+import {StudentComponent} from "./student/student.component";
+import {StudentDetailsComponent} from "./student/student-details/student-details.component";
 
 const appRoutes: Routes = [
 
@@ -25,6 +27,11 @@ const appRoutes: Routes = [
   { path: 'employee-list', component: EmployeeComponent,
   children:[
     { path: 'employee-details/:id', component: EmployeeDetailsComponent }
+  ]
+  },
+  { path: 'student-list', component: StudentComponent,
+  children:[
+    { path: 'student-list/:id', component: StudentDetailsComponent }
   ]
   },
 
