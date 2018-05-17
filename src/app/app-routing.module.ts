@@ -13,6 +13,7 @@ import {AllPaysLipComponent} from "./payslip/all-pays-lip/all-pays-lip.component
 import {StudentComponent} from "./student/student.component";
 import {StudentDetailsComponent} from "./student/student-details/student-details.component";
 import {AdministrationComponent} from "./administration/administration.component";
+import {AddStudentComponent} from "./student/add-student/add-student.component";
 
 const appRoutes: Routes = [
 
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'All PaysLip', component: AllPaysLipComponent },
   { path: 'Ajout nouveau salarie', component: AddEmployeeComponent },
+  { path: 'add student', component: AddStudentComponent },
   { path: 'Administration', component: AdministrationComponent },
 
   { path: 'paysLip', component: PayslipComponent, children: [
