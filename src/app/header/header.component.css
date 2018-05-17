@@ -5,9 +5,10 @@ nav{
   height: 1.5cm;
   margin-bottom: 5mm;
 
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-top: none;
-  box-shadow: 2px 2px 2px white;
+  /*border: 1px solid rgba(0, 0, 0, 0.125);*/
+  /*border-left: 1px solid rgba(0, 0, 0, 0.125);*/
+  border-bottom: 2px 2px 2px white;
+  /*box-shadow: 2px 2px 2px white;*/
 }
 
 .navbar-brand{
@@ -25,10 +26,11 @@ nav{
 }
 .nav-item{
   margin-right: 3mm;
-  background-color: rgba(50, 55, 66 ,1);
+
 }
 .nav-item>a{
   color:white;
+  background-color: rgba(50, 55, 66 ,1);
   font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
   text-align: center;
   font-weight: bold;
