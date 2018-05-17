@@ -27,7 +27,7 @@
               <input    type="text" class="form-control"    formControlName="nom" required  value="{{student.nom}}">
               {{student.nom}}
               {{studentForm.controls['nom'].value}}
-              <br>  <div *ngIf="!studentForm.controls['nom'].valid && studentForm.controls['nom'].touched && studentForm.controls['nom']===null"
+              <br>  <div *ngIf="!studentForm.controls['nom'].valid && studentForm.controls['nom'].touched "
                          class="alert alert-danger">
               Le Champs <strong>Nom </strong>est requis.
             </div>

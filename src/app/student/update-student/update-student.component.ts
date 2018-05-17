@@ -24,14 +24,14 @@ export class UpdateStudentComponent implements OnInit {
     this.listLevel = this.studentService.getListLevel();
     this.studentForm = this.formBuilder.group(
       {
-        nom: new FormControl(null, Validators.required),
-        sex: new FormControl(null, Validators.required),
-        adresse: new FormControl(null, Validators.required),
-        prenom: new FormControl(null, Validators.required),
-        date_de_naissance: new FormControl(null, [Validators.required, this.studentService.dateValidator.bind(this)]),
-        telephone: new FormControl(null, Validators.required),
-        email: new FormControl(null),
-        level: new FormControl(null),
+        nom: new FormControl(this.student.nom, Validators.required),
+        sex: new FormControl(this.student.sex, Validators.required),
+        adresse: new FormControl(this.student.adresse, Validators.required),
+        prenom: new FormControl(this.student.prenom, Validators.required),
+        date_de_naissance: new FormControl(this.student.date_de_naissance, [Validators.required, this.studentService.dateValidator.bind(this)]),
+        telephone: new FormControl(this.student.contacts, Validators.required),
+        email: new FormControl(this.student.email),
+        level: new FormControl(this.student.level),
 
       }
     );
