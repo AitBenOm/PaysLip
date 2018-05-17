@@ -15,7 +15,7 @@ export class StudentService {
   onEmployeeAdded = new Subject<EmployeeModel>();
   studentToShow = new Subject<StudentModel>();
   onKewWordChanged = new EventEmitter<string>();
-  private _listFunction: Level[] = [
+  private _listLevel: Level[] = [
     new Level(1, 'Directeur'),
     new Level(2, 'Enseignant'),
     new Level(3, 'Secretaire'),
@@ -51,8 +51,8 @@ export class StudentService {
   }
 
 
-  getListFunction(): Level[] {
-    return this._listFunction;
+  getListLevel(): Level[] {
+    return this._listLevel;
   }
 
   setListStudent(value: StudentModel[]) {

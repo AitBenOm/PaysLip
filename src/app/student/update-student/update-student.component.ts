@@ -21,7 +21,7 @@ export class UpdateStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listLevel = this.studentService.getListFunction();
+    this.listLevel = this.studentService.getListLevel();
     this.studentForm = this.formBuilder.group(
       {
         nom: new FormControl(null, Validators.required),
