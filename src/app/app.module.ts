@@ -37,6 +37,9 @@ import { StudentDetailsComponent } from './student/student-details/student-detai
 import { StudentInfosComponent } from './student/student-infos/student-infos.component';
 import {StudentService} from "./student/student.service";
 import { AdministrationComponent } from './administration/administration.component';
+import { LevelsComponent } from './administration/levels/levels.component';
+import { FonctionsComponent } from './administration/fonctions/fonctions.component';
+import { ServicesComponent } from './administration/services/services.component';
 
 
 
@@ -71,7 +74,10 @@ import { AdministrationComponent } from './administration/administration.compone
     UpdateStudentComponent,
     StudentDetailsComponent,
     StudentInfosComponent,
-    AdministrationComponent
+    AdministrationComponent,
+    LevelsComponent,
+    FonctionsComponent,
+    ServicesComponent
 
 
   ],
