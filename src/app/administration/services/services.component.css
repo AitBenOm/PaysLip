@@ -1,0 +1,60 @@
+tr {
+  cursor: pointer;
+}
+thead{
+  background-color: rgba(38,175,120,0.58);
+  color:white;
+  font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;;
+}
+
+#clean{
+  background-color:#faca55;
+  color: brown;
+}
+#info{
+  color:white;
+}
+
+table {
+  width: 100%;
+
+
+}
+
+thead, tbody, tr, td, th { display: block;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+thead th {
+  height: 1cm;
+
+  /*text-align: left;*/
+}
+
+tbody {
+  min-height: 2cm;
+  max-height: 7cm;
+  overflow-y: auto;
+}
+
+thead th {
+  /* fallback */
+  margin-bottom: 2mm;
+}
+
+
+tbody td, thead th {
+  width: 25%;
+  float: left;
+  border-bottom: none;
+}
+

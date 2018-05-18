@@ -1,3 +1,55 @@
-<p>
-  levels works!
-</p>
+
+<!--<form class="form-inline my-2 my-lg-2 " style="width: 100%; background-color: rgba(173,173,180,0.8); height: 1.5cm" >-->
+
+<!--<input style="margin-left:1cm; width: 25%;" class="form-control mr-sm-2 float-right"-->
+<!--type="Search" placeholder="Chercher un Salarié"-->
+<!--name="keyWord" [(ngModel)]="keyWord" (keyup)="onSearch()" #keyword>-->
+<!--<span  data-toggle="tooltip" data-html="true" title=" Veuillez Taper le Nom ou le Prénom du Salarié"><i class="far fa-question-circle"></i></span>-->
+<!--</form>-->
+<div class="row" >
+  <div class="col-sm-8">
+    <div class="input-group" style="width: 50%;margin-top: 4mm;margin-left: 1cm;" >
+      <input type="text" class="form-control" placeholder="Search for..."
+             name="keyWord" [(ngModel)]="keyWord" (keyup)="onSearch()" #keyword >
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" id="clean" type="button" (click)="cleanUpInput()" > <i class="fas fa-times-circle fa-1x"></i></button>
+      </span>
+      <span style="margin-left: 2mm; margin-top: 2mm;"  id="info" data-toggle="tooltip" data-html="true" title=" Veuillez Taper le Nom ou le Prénom du Salarié"><i class="far fa-question-circle"></i></span>
+    </div>
+  </div>
+  <!--<div class="col-sm-4">-->
+  <!--<div class="input-group" >-->
+
+
+  <!--<button style="margin-top: 4mm;" class="btn btn-secondary " id="all" type="button" (click)="generateAllPaysLip()" ><i class="fas fa-clipboard-list fa-1x"></i> Generer toutes les Fiches ({{students.length}})</button>-->
+
+
+  <!--</div>-->
+  <!--</div>-->
+
+
+
+
+</div>
+
+
+<br>
+
+<table class="table table-hover table-striped ">
+  <thead>
+  <tr>
+    <th class="col-xs-2">N° Service</th>
+    <th class="col-xs-4" >Service</th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let level of levels">
+    <td class="col-xs-2" >{{level.level_Id}}</td>
+    <td class="col-xs-4" >{{level.description}}</td>
+
+  </tr>
+
+  </tbody>
+</table>

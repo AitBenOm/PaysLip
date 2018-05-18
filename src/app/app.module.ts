@@ -40,6 +40,7 @@ import { AdministrationComponent } from './administration/administration.compone
 import { LevelsComponent } from './administration/levels/levels.component';
 import { FonctionsComponent } from './administration/fonctions/fonctions.component';
 import { ServicesComponent } from './administration/services/services.component';
+import {AdministrationService} from "./administration/administration.service";
 
 
 
@@ -90,7 +91,7 @@ import { ServicesComponent } from './administration/services/services.component'
     MatProgressBarModule,
     MatProgressSpinnerModule
   ],
-  providers: [EmployeeService, PayslipService, HeaderService, StudentService],
+  providers: [EmployeeService, PayslipService, HeaderService, StudentService, AdministrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

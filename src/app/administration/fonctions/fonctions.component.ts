@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AdministrationService, Fonction} from "../administration.service";
 
 @Component({
   selector: 'app-fonctions',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FonctionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private administrationService: AdministrationService) {
+  }
+
+  fonctions: Fonction[] = [];
 
   ngOnInit() {
+    this.fonctions = this.administrationService.listFonction;
   }
 
 }

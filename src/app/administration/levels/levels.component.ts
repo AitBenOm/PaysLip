@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AdministrationService, Level} from "../administration.service";
 
 @Component({
   selector: 'app-levels',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LevelsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private administrationService: AdministrationService) {
+  }
+
+  levels: Level[] = [];
 
   ngOnInit() {
+    this.levels = this.administrationService.listLevel;
   }
 
 }

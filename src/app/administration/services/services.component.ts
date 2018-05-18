@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AdministrationService, Service} from "../administration.service";
 
 @Component({
   selector: 'app-services',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private administrationService: AdministrationService) {
+  }
+
+  services: Service[] = [];
 
   ngOnInit() {
+    this.services = this.administrationService.listService;
   }
 
 }
