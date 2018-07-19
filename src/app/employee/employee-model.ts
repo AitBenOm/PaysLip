@@ -16,8 +16,8 @@ export class EmployeeModel {
   public salaireDeBase: number;
 
 
-  constructor(matricule: number, nom: string, prenom: string, date_de_naissance: Date, date_emb: Date, fonction: string, adresse: string, telephone: string, email: string, numCNSS: string, numCin: string, sex: string, situationFamiliale: string, nbEnfant: number, salaireDeBase: number) {
-    this.matricule = matricule;
+  constructor( nom: string, prenom: string, date_de_naissance: Date, date_emb: Date, fonction: string, adresse: string, telephone: string, email: string, numCNSS: string, numCin: string, sex: string, situationFamiliale: string, nbEnfant: number, salaireDeBase: number) {
+
     this.nom = nom;
     this.prenom = prenom;
     this.date_de_naissance = date_de_naissance;

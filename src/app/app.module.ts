@@ -41,6 +41,7 @@ import { LevelsComponent } from './administration/levels/levels.component';
 import { FonctionsComponent } from './administration/fonctions/fonctions.component';
 import { ServicesComponent } from './administration/services/services.component';
 import {AdministrationService} from "./administration/administration.service";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 
 
@@ -89,6 +90,7 @@ import {AdministrationService} from "./administration/administration.service";
      ReactiveFormsModule, // <-- #2 add to @NgModule imports
     BrowserAnimationsModule,
     MatProgressBarModule,
+    HttpClientModule,
     MatProgressSpinnerModule
   ],
   providers: [EmployeeService, PayslipService, HeaderService, StudentService, AdministrationService],

@@ -4,16 +4,18 @@
   */
   background: linear-gradient(135deg, #2c343d,  rgba(0,22,43,0.8));
   font-family: 'Source Sans Pro', sans-serif;
-  min-height: 100vh;
+  /*min-height: 90vh;*/
 }
 .image {
   margin:0;
   padding:0;
-  width: 100%;
-  height: auto;
-  min-height: 100vh;
+  width: auto;
+  height: 100%;
+  /*min-height: 100vh;*/
   background: url('../assets/Background.PNG') no-repeat center fixed;
   background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   -webkit-background-size: cover; /* pour anciens Chrome et Safari */
   /*background-size: cover; !* version standardisée *!*/
 }
