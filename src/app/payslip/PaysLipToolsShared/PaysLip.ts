@@ -5,13 +5,15 @@ export class PaysLip {
 
   public idPyasLip: string;
   public  employee: EmployeeModel
-  public period: Date[];
+  public startPeriod: Date;
+  public endPeriod: Date;
   public  rubrics : Rubric[];
 
-  constructor(idPyasLip: string, employee: EmployeeModel, period: Date[], rubrics: Rubric[]) {
-    this.idPyasLip = idPyasLip;
+
+  constructor(employee: EmployeeModel, startPeriod: Date, endPeriod: Date ) {
     this.employee = employee;
-    this.period = period;
-    this.rubrics = rubrics;
+    this.startPeriod = startPeriod;
+    this.endPeriod = endPeriod;
+
   }
 }

@@ -6,7 +6,7 @@ import {EmployeeService} from "../../employee/employee.service";
 import {FormGroup} from "@angular/forms";
 import {Rubric} from "../PaysLipToolsShared/rubric";
 
-import {PaysLip} from "../PaysLipToolsShared/pays-lip";
+import {PaysLip} from "../PaysLipToolsShared/PaysLip";
 import {isNumeric} from "rxjs/util/isNumeric";
 import * as $ from 'jquery';
 
@@ -206,12 +206,12 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
-  storRubrics() {
+  storRubrics(paysLip: PaysLip) {
     const rubrics: Rubric[]=[];
-    const totalRet = new Rubric('totalRet', 0, true, this.totalRetenue(), 999);
-    const totalGain = new Rubric('totalGain', 0, true, this.totalGain(), 999);
-    const netApaye = new Rubric('netApaye', 0, true, this.netAPaye, 999);
-    const netImpo = new Rubric('netImpo', 0, true, this.netImpo, 999);
+    const totalRet = new Rubric('totalRet', 0, true, this.totalRetenue(), 999, paysLip);
+    const totalGain = new Rubric('totalGain', 0, true, this.totalGain(), 999, paysLip);
+    const netApaye = new Rubric('netApaye', 0, true, this.netAPaye, 999, paysLip);
+    const netImpo = new Rubric('netImpo', 0, true, this.netImpo, 999,paysLip);
 
     for (const label in this.labels) {
       let GainRet: boolean;
@@ -223,7 +223,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
         GainRet = true;
         value = this.labels[label]['G'];
       }
-      const rub = new Rubric(label, this.labels[label]['T'], GainRet, Number(value), this.labels[label]['B']);
+      const rub = new Rubric(label, this.labels[label]['T'], GainRet, Number(value), this.labels[label]['B'],paysLip);
 
       rubrics.push(rub);
 
@@ -234,17 +234,28 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   savePaysLip(employee: EmployeeModel) {
     employee = this.employee;
-    const periode1: Date[] = [];
+    const periode: Date[] = [];
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    periode1.push(new Date(y, m, 1), new Date(y, m + 1, 0));
+    periode.push(new Date(y, m, 1), new Date(y, m + 1, 0));
     //console.log(periode1);
-    const paysLip1 = new PaysLip('1', employee, periode1, this.storRubrics());
-    //console.log(paysLip1);
-    this.payslipService.paysLipsOfEmployee.push(paysLip1);
-    this.payslipService.onAddPaysLip.next(paysLip1);
+    const paysLip = new PaysLip( employee, periode[0],periode[1]);
+    console.log(paysLip);
+    this.payslipService.addPaysLip(paysLip).subscribe(
+      (pl: PaysLip) => {
+        console.log(pl);
+
+       this.payslipService.addRubricsToPaysLip(this.storRubrics(pl)).subscribe(
+         (rubrics: Rubric[])=>{
+           console.log(rubrics);
+        }
+       );
+      }
+    );
+    this.payslipService.onAddPaysLip.next(paysLip);
   }
 
   anciente(dateEmb: Date) {
+   dateEmb = new Date(dateEmb);
     if (new Date().getFullYear() - dateEmb.getFullYear() < 3) {
       return 5;
     } else if (new Date().getFullYear() - dateEmb.getFullYear() < 6) {

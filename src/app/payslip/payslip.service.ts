@@ -1,17 +1,22 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {EmployeeModel} from '../employee/employee-model';
 import {LabelsRubric} from './PaysLipToolsShared/labelsRubric';
-import {PaysLip} from "./PaysLipToolsShared/pays-lip";
-import {Subject} from "rxjs/Subject";
+import {PaysLip} from './PaysLipToolsShared/PaysLip';
+import {Subject} from 'rxjs/Subject';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {Rubric} from './PaysLipToolsShared/rubric';
 
 @Injectable()
 export class PayslipService {
   onGenerateAllPaysLip = new Subject<boolean>();
   paysLipsGenerated = new Subject<boolean>();
 
-
-  constructor() {
+  constructor(private http: HttpClient, private router: Router) {
   }
+
+  paysLipsOfEmployee: PaysLip[] = [];
+  allPaysLips: PaysLip[] = [];
 
   onAddPaysLip = new Subject<PaysLip>();
   listRubrique: LabelsRubric[] = [
@@ -125,9 +130,20 @@ export class PayslipService {
       'PRCHG': 'Personnes a Charge',
     };
 
+  addPaysLip(paysLip: PaysLip) {
+    return this.http.post('http://localhost:9080/PaysLip/Add', paysLip);
 
-  paysLipsOfEmployee: PaysLip[] = [];
-  allPaysLips: PaysLip[] = [];
+  }
+
+  addRubricsToPaysLip(rubrics: Rubric[]) {
+    return this.http.post('http://localhost:9080/Rubric/Add', rubrics);
+
+  }
+
+  getPaysLipByEmployee(matricule: number) {
+    return this.http.get('   http://localhost:9080/PaysLip/List?matricule=' + matricule);
+
+  }
 
 
 }

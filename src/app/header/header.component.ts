@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 path="/assets/Logo.PNG";
   ngOnInit() {
+
   }
 
 }

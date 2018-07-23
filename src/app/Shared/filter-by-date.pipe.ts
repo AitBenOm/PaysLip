@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {PaysLip} from "../payslip/PaysLipToolsShared/pays-lip";
+import {PaysLip} from "../payslip/PaysLipToolsShared/PaysLip";
 
 @Pipe({
   name: 'filterByDate'
@@ -15,10 +15,10 @@ export class FilterByDatePipe implements PipeTransform {
       return value.filter(function (paysLip: PaysLip) {
         let isTrue = false;
         console.log(choosenDate);
-        console.log(paysLip.period[0].getFullYear());
-        console.log(paysLip.period[0].getMonth());
-        if (choosenDate.getFullYear() === paysLip.period[0].getFullYear() &&
-          choosenDate.getMonth() === paysLip.period[0].getMonth()) {
+        console.log(paysLip.startPeriod.getFullYear());
+        console.log(paysLip.startPeriod.getMonth());
+        if (choosenDate.getFullYear() === paysLip.startPeriod.getFullYear() &&
+          choosenDate.getMonth() === paysLip.startPeriod.getMonth()) {
           isTrue = true;
         }
         if (isTrue) {

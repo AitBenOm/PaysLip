@@ -1,8 +1,21 @@
 
 <div class="input-group" style="width: 25%">
-  <input type="date" class="form-control" placeholder="Search for..."
-         name="keyWord" [(ngModel)]="paysLipDate" (change)="0"  >
+  <select class="custom-select custom-select-lg mb-3"   formControlName="sex" required >
+    <option >2018</option>
+    <option >2017</option>
+    <option >2016</option>
+  </select>
 
+  <select class="custom-select custom-select-lg mb-3"   formControlName="sex" required >
+
+    <option *ngFor="let month of months" value="{{month.month}}">{{month.label}}</option>
+
+  </select>
+  <!--<input type="date" class="form-control" placeholder="Search for..."
+         name="keyWord" [(ngModel)]="paysLipDate" (change)="0"  >
+<input type="date" class="form-control" placeholder="Search for..."
+         name="keyWord" [(ngModel)]="paysLipDate" (change)="0"  >
+-->
   <span style="margin-left: 2mm; margin-top: 2mm;"  data-toggle="tooltip" data-html="true" id="info" title=" Veuillez choisir la date de la fiche de paie"><i class="far fa-question-circle"></i></span>
 </div>
 
@@ -23,8 +36,8 @@
   <tr *ngFor="let paysLip of paysLips | filterByDate : paysLipDate"  (click)="showPaysLip(paysLip)">
     <td class="col-xs-2" scope="row" >{{paysLip.idPyasLip}}</td>
     <td class="col-xs-4" >{{employee.prenom}} {{employee.nom}}</td>
-    <td class="col-xs-4">{{paysLip.period[0] | date:'dd/MM/yyy'}}</td>
-    <td class="col-xs-2">{{paysLip.period[1] | date:'dd/MM/yyy'}}</td>
+    <td class="col-xs-4">{{paysLip.startPeriod | date:'dd/MM/yyy'}}</td>
+    <td class="col-xs-2">{{paysLip.endPeriod | date:'dd/MM/yyy'}}</td>
 
   </tr>
 
