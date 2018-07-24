@@ -25,27 +25,38 @@ export class Month {
 export class ListPayslipComponent implements OnInit {
   @Input() employee: EmployeeModel = null;
   paysLipToshow: PaysLip;
-  paysLipDate: Date;
+  paysLipYear=0;
+  paysLipMonth=0;
 
   constructor(private paysLipsService: PayslipService) {
+
+  }
+
+  onSetYear(year: number) {
+    console.log(year);
+    this.paysLipYear = (year);
+  }
+  onSetMonth(month: number) {
+    console.log(month);
+    this.paysLipMonth = (month);
   }
 
   paysLips: PaysLip[];
-  months: Month[]=[
-    new Month('Janvier',1),
-    new Month('Fervrier',2),
-    new Month('Mars',3),
-    new Month('Avril',4),
-    new Month('Mai',5),
-    new Month('Juin',6),
-    new Month('Juillet',7),
-    new Month('Aout',8),
-    new Month('Septembre',9),
-    new Month('Octobre',10),
-    new Month('Novembre',11),
-    new Month('Decembre',12),
+  months: Month[] = [
+    new Month('Janvier', 1),
+    new Month('Fervrier', 2),
+    new Month('Mars', 3),
+    new Month('Avril', 4),
+    new Month('Mai', 5),
+    new Month('Juin', 6),
+    new Month('Juillet', 7),
+    new Month('Aout', 8),
+    new Month('Septembre', 9),
+    new Month('Octobre', 10),
+    new Month('Novembre', 11),
+    new Month('Decembre', 12),
 
-    ];
+  ];
 
   ngOnInit() {
 

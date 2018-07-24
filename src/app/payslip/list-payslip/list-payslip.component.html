@@ -1,13 +1,18 @@
 
 <div class="input-group" style="width: 25%">
-  <select class="custom-select custom-select-lg mb-3"   formControlName="sex" required >
-    <option >2018</option>
-    <option >2017</option>
-    <option >2016</option>
+  <select class="custom-select custom-select-lg mb-3" [(ngModel)]="paysLipYear"  required >
+    <option value="0" selected>Années</option>
+    <option value="2018">2018</option>
+    <option value="2017">2017</option>
+    <option value="2016">2016</option>
+    <option value="2015">2015</option>
+    <option value="2014">2014</option>
+
+
   </select>
 
-  <select class="custom-select custom-select-lg mb-3"   formControlName="sex" required >
-
+  <select class="custom-select custom-select-lg mb-3" [(ngModel)]="paysLipMonth"   required >
+    <option value="0" selected>Mois</option>
     <option *ngFor="let month of months" value="{{month.month}}">{{month.label}}</option>
 
   </select>
@@ -31,9 +36,9 @@
 
   </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="paysLips.length>0">
 
-  <tr *ngFor="let paysLip of paysLips | filterByDate : paysLipDate"  (click)="showPaysLip(paysLip)">
+  <tr *ngFor="let paysLip of paysLips | filterByDate : paysLipYear : paysLipMonth"  (click)="showPaysLip(paysLip)">
     <td class="col-xs-2" scope="row" >{{paysLip.idPyasLip}}</td>
     <td class="col-xs-4" >{{employee.prenom}} {{employee.nom}}</td>
     <td class="col-xs-4">{{paysLip.startPeriod | date:'dd/MM/yyy'}}</td>

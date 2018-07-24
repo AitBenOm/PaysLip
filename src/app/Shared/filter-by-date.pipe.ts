@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {PaysLip} from "../payslip/PaysLipToolsShared/PaysLip";
+import {PaysLip} from '../payslip/PaysLipToolsShared/PaysLip';
 
 @Pipe({
   name: 'filterByDate'
@@ -7,26 +7,36 @@ import {PaysLip} from "../payslip/PaysLipToolsShared/PaysLip";
 export class FilterByDatePipe implements PipeTransform {
 
 
-  transform(value: any, input: string) {
-    console.log(input);
- const choosenDate = new Date(input);
-    if (input) {
+  transform(paysLips: PaysLip[], year: number, month: number) {
 
-      return value.filter(function (paysLip: PaysLip) {
-        let isTrue = false;
-        console.log(choosenDate);
-        console.log(paysLip.startPeriod.getFullYear());
-        console.log(paysLip.startPeriod.getMonth());
-        if (choosenDate.getFullYear() === paysLip.startPeriod.getFullYear() &&
-          choosenDate.getMonth() === paysLip.startPeriod.getMonth()) {
-          isTrue = true;
-        }
-        if (isTrue) {
-          return paysLip;
-        }
+    const inputDate = new Date(year, month);
 
-      });
+
+
+    if (paysLips.length !== 0 && year != 0) {
+      let paysLipsDate: PaysLip [] = [];
+      console.log('Enter Loop');
+      console.log('===========================================');
+      for (const paysLip of paysLips) {
+        const startPeriode = new Date(paysLip.startPeriod);
+
+        if (startPeriode.getFullYear() === inputDate.getFullYear()) {
+          if (startPeriode.getMonth() === inputDate.getMonth() && month != 0) {
+            paysLipsDate = []
+            paysLipsDate.push(paysLip);
+      
+          break;
+          }
+
+          paysLipsDate.push(paysLip);
+        }
+      }
+
+      return paysLipsDate;
+
+    } else {
+      console.log(year);
+      return paysLips;
     }
-return value;
   }
 }
