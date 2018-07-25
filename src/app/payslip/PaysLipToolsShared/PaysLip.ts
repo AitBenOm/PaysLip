@@ -3,7 +3,7 @@ import {EmployeeModel} from "../../employee/employee-model";
 
 export class PaysLip {
 
-  public idPyasLip: string;
+  public idPyasLip: number;
   public  employee: EmployeeModel
   public startPeriod: Date;
   public endPeriod: Date;

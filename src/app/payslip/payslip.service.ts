@@ -144,6 +144,10 @@ export class PayslipService {
     return this.http.get('   http://localhost:9080/PaysLip/List?matricule=' + matricule);
 
   }
+  getRubricsByPaysLip(idPaysLip: number) {
+    return this.http.get('   http://localhost:9080/Rubric/List/' + idPaysLip);
+
+  }
 
 
 }

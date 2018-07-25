@@ -1,53 +1,53 @@
+<div class="col-sm-2"></div>
 
-<div class="input-group" style="width: 25%">
-  <select class="custom-select custom-select-lg mb-3" [(ngModel)]="paysLipYear"  required >
-    <option value="0" selected>Années</option>
-    <option value="2018">2018</option>
-    <option value="2017">2017</option>
-    <option value="2016">2016</option>
-    <option value="2015">2015</option>
-    <option value="2014">2014</option>
+  <div class="input-group" style="width: 25%">
+    <select class="custom-select custom-select-lg mb-3" [(ngModel)]="paysLipYear"  required >
+      <option value="0" selected>Années</option>
+      <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
 
 
-  </select>
+    </select>
 
-  <select class="custom-select custom-select-lg mb-3" [(ngModel)]="paysLipMonth"   required >
-    <option value="0" selected>Mois</option>
-    <option *ngFor="let month of months" value="{{month.month}}">{{month.label}}</option>
+    <select class="custom-select custom-select-lg mb-3" [(ngModel)]="paysLipMonth"   required >
+      <option value="0" selected>Mois</option>
+      <option *ngFor="let month of months" value="{{month.month}}">{{month.label}}</option>
 
-  </select>
-  <!--<input type="date" class="form-control" placeholder="Search for..."
-         name="keyWord" [(ngModel)]="paysLipDate" (change)="0"  >
-<input type="date" class="form-control" placeholder="Search for..."
-         name="keyWord" [(ngModel)]="paysLipDate" (change)="0"  >
--->
-  <span style="margin-left: 2mm; margin-top: 2mm;"  data-toggle="tooltip" data-html="true" id="info" title=" Veuillez choisir la date de la fiche de paie"><i class="far fa-question-circle"></i></span>
-</div>
+    </select>
+    <!--<input type="date" class="form-control" placeholder="Search for..."
+           name="keyWord" [(ngModel)]="paysLipDate" (change)="0"  >
+  <input type="date" class="form-control" placeholder="Search for..."
+           name="keyWord" [(ngModel)]="paysLipDate" (change)="0"  >
+  -->
+    <span style="margin-left: 2mm; margin-top: 2mm;"  data-toggle="tooltip" data-html="true" id="info" title=" Veuillez choisir la date de la fiche de paie"><i class="far fa-question-circle"></i></span>
+  </div>
 
-<br>
+  <br>
 
-<table class="table table-hover  ">
-  <thead>
-  <tr>
-    <th class="col-xs-2" scope="col">#</th>
-    <th class="col-xs-4" scope="col">Nom Salarié</th>
-    <th class="col-xs-4" scope="col">Debut de periode</th>
-    <th class="col-xs-2" scope="col">Fin de periode</th>
+  <table class="table table-hover  ">
+    <thead>
+    <tr>
+      <th class="col-xs-2" scope="col">#</th>
+      <th class="col-xs-4" scope="col">Nom Salarié</th>
+      <th class="col-xs-4" scope="col">Debut de periode</th>
+      <th class="col-xs-2" scope="col">Fin de periode</th>
 
-  </tr>
-  </thead>
-  <tbody *ngIf="paysLips.length>0">
+    </tr>
+    </thead>
+    <tbody *ngIf="paysLips.length>0">
 
-  <tr *ngFor="let paysLip of paysLips | filterByDate : paysLipYear : paysLipMonth"  (click)="showPaysLip(paysLip)">
-    <td class="col-xs-2" scope="row" >{{paysLip.idPyasLip}}</td>
-    <td class="col-xs-4" >{{employee.prenom}} {{employee.nom}}</td>
-    <td class="col-xs-4">{{paysLip.startPeriod | date:'dd/MM/yyy'}}</td>
-    <td class="col-xs-2">{{paysLip.endPeriod | date:'dd/MM/yyy'}}</td>
+    <tr *ngFor="let paysLip of paysLips | filterByDate : paysLipYear : paysLipMonth"  (click)="showPaysLip(paysLip)">
+      <td class="col-xs-2" scope="row" >{{paysLip.idPyasLip}}</td>
+      <td class="col-xs-4" >{{employee.prenom}} {{employee.nom}}</td>
+      <td class="col-xs-4">{{paysLip.startPeriod | date:'dd/MM/yyy'}}</td>
+      <td class="col-xs-2">{{paysLip.endPeriod | date:'dd/MM/yyy'}}</td>
 
-  </tr>
+    </tr>
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+
+
+
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showPaysLip">Large modal</button>
 
 <div id= "showPaysLip" class="modal fade" tabindex="-1" role="document" aria-labelledby="myLargeModalLabel" aria-hidden="true">

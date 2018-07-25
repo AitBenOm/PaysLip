@@ -3,6 +3,7 @@ import {EmployeeModel} from '../../employee/employee-model';
 import {PayslipService} from '../payslip.service';
 import {PaysLip} from '../PaysLipToolsShared/PaysLip';
 import {Rubric} from '../PaysLipToolsShared/rubric';
+import {isNull} from 'util';
 
 export class Month {
   label: string;
@@ -25,10 +26,20 @@ export class Month {
 export class ListPayslipComponent implements OnInit {
   @Input() employee: EmployeeModel = null;
   paysLipToshow: PaysLip;
-  paysLipYear=0;
-  paysLipMonth=0;
+  paysLipYear = 0;
+  paysLipMonth = 0;
+  years: number[] = [];
+
+  // rubrics: Rubric[];
 
   constructor(private paysLipsService: PayslipService) {
+    let toDay = new Date().getFullYear();
+    for (let i = 0; i < 15; i++) {
+      // this.years.push(toDay--);
+      console.log(toDay - i);
+      this.years.push(toDay - i);
+    }
+    // console.log(toDay--);
 
   }
 
@@ -36,6 +47,7 @@ export class ListPayslipComponent implements OnInit {
     console.log(year);
     this.paysLipYear = (year);
   }
+
   onSetMonth(month: number) {
     console.log(month);
     this.paysLipMonth = (month);
@@ -58,6 +70,7 @@ export class ListPayslipComponent implements OnInit {
 
   ];
 
+
   ngOnInit() {
 
     this.paysLipsService.getPaysLipByEmployee(this.employee.matricule).subscribe(
@@ -71,24 +84,32 @@ export class ListPayslipComponent implements OnInit {
   }
 
   showPaysLip(paysLip: PaysLip) {
-    //console.log(paysLip);
-    this.cleanUpRubrics(paysLip.rubrics);
-    //console.log(paysLip);
-    this.paysLipToshow = paysLip;
+
+    this.paysLipsService.getRubricsByPaysLip(paysLip.idPyasLip).subscribe(
+      (rubrics: Rubric[]) => {
+        // console.log(rubrics);
+       // console.log(this.cleanUpRubrics(rubrics));
+        this.paysLipToshow = paysLip;
+        this.paysLipToshow.rubrics = this.cleanUpRubrics(rubrics);
+        console.log(this.paysLipToshow);
+      }
+    );
+
+
   }
 
   cleanUpRubrics(rubrics: Rubric[]) {
 
+
     let i = 0;
     while (i < rubrics.length) {
-      // console.log(rubrics[i].label + "   " + rubrics[i].value + "  " + isNaN(rubrics[i].value));
-      if (isNaN(rubrics[i].value)) {
+      if (isNull(rubrics[i].value) || String(rubrics[i].value) === '0') {
         rubrics.splice(i, 1);
         i--;
       }
       i++;
     }
-
+    return rubrics;
   }
 
 

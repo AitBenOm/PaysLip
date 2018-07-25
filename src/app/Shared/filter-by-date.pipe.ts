@@ -12,20 +12,21 @@ export class FilterByDatePipe implements PipeTransform {
     const inputDate = new Date(year, month);
 
 
-
     if (paysLips.length !== 0 && year != 0) {
       let paysLipsDate: PaysLip [] = [];
       console.log('Enter Loop');
       console.log('===========================================');
+
       for (const paysLip of paysLips) {
         const startPeriode = new Date(paysLip.startPeriod);
-
+        console.log('PaysLip Start Periode Month ' + (startPeriode.getMonth() + 1));
+        console.log('input Month ' + inputDate.getMonth());
         if (startPeriode.getFullYear() === inputDate.getFullYear()) {
-          if (startPeriode.getMonth() === inputDate.getMonth() && month != 0) {
-            paysLipsDate = []
+          if ((startPeriode.getMonth()) + 1 === inputDate.getMonth() && month != 0) {
+            paysLipsDate = [];
             paysLipsDate.push(paysLip);
-      
-          break;
+
+            break;
           }
 
           paysLipsDate.push(paysLip);
