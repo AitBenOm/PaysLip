@@ -3,7 +3,7 @@ import {EmployeeModel} from '../employee/employee-model';
 import {LabelsRubric} from './PaysLipToolsShared/labelsRubric';
 import {PaysLip} from './PaysLipToolsShared/PaysLip';
 import {Subject} from 'rxjs/Subject';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Rubric} from './PaysLipToolsShared/rubric';
 
@@ -153,12 +153,13 @@ export class PayslipService {
 
   printPaysLip(idPaysLip: number, matricule: number) {
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/pdf'
+    });
 
-   return this.http.get('   http://localhost:9080/PaysLip/print?idPaysLip=' + idPaysLip + '&matricule=' + matricule, {
-     responseType: 'blob'
-   });
+    return this.http.get('   http://localhost:9080/PaysLip/print?idPaysLip=' + idPaysLip + '&matricule=' + matricule,
+      {headers: new HttpHeaders({'Content-Type': 'application/json'}), responseType: 'blob'});
 
   }
-
-
 }

@@ -4,9 +4,9 @@ import {LabelsRubric} from '../../PaysLipToolsShared/labelsRubric';
 import {PayslipService} from '../../payslip.service';
 import {EmployeeService} from '../../../employee/employee.service';
 import {PaysLip} from '../../PaysLipToolsShared/PaysLip';
-import * as html2canvas from 'html2canvas';
-import * as jsPDF from 'jspdf';
+import * as FileSaver from 'file-saver';
 import {Rubric} from '../../PaysLipToolsShared/rubric';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-view-pays-lip',
@@ -26,7 +26,7 @@ export class ViewPaysLipComponent implements OnInit {
   IGR = 1;
 
 
-  constructor(private payslipService: PayslipService, private employeeService: EmployeeService) {
+  constructor(private payslipService: PayslipService, private employeeService: EmployeeService, private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -46,8 +46,13 @@ export class ViewPaysLipComponent implements OnInit {
 
   generatePaysLip(idPaysLip: number, matricule: number) {
     this.payslipService.printPaysLip(idPaysLip, matricule).subscribe(
-      (blob: Blob) => {
-        console.log(blob);
+      (data:Blob)=>{
+        const pdfUrl = (window.URL).createObjectURL(new Blob([data], {type: 'application/pdf'}));
+        console.log(pdfUrl);
+        const anchor = document.createElement('a');
+        anchor.download = `test.pdf`;
+        anchor.href = pdfUrl;
+        anchor.click();
       }
     );
   }
