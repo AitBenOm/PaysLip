@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Rubric} from './PaysLipToolsShared/rubric';
 
+
 @Injectable()
 export class PayslipService {
   onGenerateAllPaysLip = new Subject<boolean>();
@@ -144,8 +145,18 @@ export class PayslipService {
     return this.http.get('   http://localhost:9080/PaysLip/List?matricule=' + matricule);
 
   }
+
   getRubricsByPaysLip(idPaysLip: number) {
     return this.http.get('   http://localhost:9080/Rubric/List/' + idPaysLip);
+
+  }
+
+  printPaysLip(idPaysLip: number, matricule: number) {
+
+
+   return this.http.get('   http://localhost:9080/PaysLip/print?idPaysLip=' + idPaysLip + '&matricule=' + matricule, {
+     responseType: 'blob'
+   });
 
   }
 

@@ -36,20 +36,20 @@ export class ListPayslipComponent implements OnInit {
     let toDay = new Date().getFullYear();
     for (let i = 0; i < 15; i++) {
       // this.years.push(toDay--);
-      console.log(toDay - i);
+      //console.log(toDay - i);
       this.years.push(toDay - i);
     }
-    // console.log(toDay--);
+    // //console.log(toDay--);
 
   }
 
   onSetYear(year: number) {
-    console.log(year);
+    //console.log(year);
     this.paysLipYear = (year);
   }
 
   onSetMonth(month: number) {
-    console.log(month);
+    //console.log(month);
     this.paysLipMonth = (month);
   }
 
@@ -76,7 +76,7 @@ export class ListPayslipComponent implements OnInit {
     this.paysLipsService.getPaysLipByEmployee(this.employee.matricule).subscribe(
       (paysLips: PaysLip[]) => {
         this.paysLips = paysLips;
-        console.log(paysLips);
+        //console.log(paysLips);
       }
     );
     // this.paysLips = this.paysLipsService.paysLips;
@@ -87,11 +87,11 @@ export class ListPayslipComponent implements OnInit {
 
     this.paysLipsService.getRubricsByPaysLip(paysLip.idPyasLip).subscribe(
       (rubrics: Rubric[]) => {
-        // console.log(rubrics);
-       // console.log(this.cleanUpRubrics(rubrics));
+        // //console.log(rubrics);
+       // //console.log(this.cleanUpRubrics(rubrics));
         this.paysLipToshow = paysLip;
         this.paysLipToshow.rubrics = this.cleanUpRubrics(rubrics);
-        console.log(this.paysLipToshow);
+        //console.log(this.paysLipToshow);
       }
     );
 

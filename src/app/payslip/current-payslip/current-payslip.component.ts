@@ -2,12 +2,12 @@ import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, Si
 import {EmployeeModel} from '../../employee/employee-model';
 import {PayslipService} from '../payslip.service';
 import {LabelsRubric} from '../PaysLipToolsShared/labelsRubric';
-import {EmployeeService} from "../../employee/employee.service";
-import {FormGroup} from "@angular/forms";
-import {Rubric} from "../PaysLipToolsShared/rubric";
+import {EmployeeService} from '../../employee/employee.service';
+import {FormGroup} from '@angular/forms';
+import {Rubric} from '../PaysLipToolsShared/rubric';
 
-import {PaysLip} from "../PaysLipToolsShared/PaysLip";
-import {isNumeric} from "rxjs/util/isNumeric";
+import {PaysLip} from '../PaysLipToolsShared/PaysLip';
+import {isNumeric} from 'rxjs/util/isNumeric';
 import * as $ from 'jquery';
 
 
@@ -31,17 +31,16 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   labelRubrics: LabelsRubric[];
 
 
-
   @Input() employee: EmployeeModel = null;
   @Output() Cancel = new EventEmitter<boolean>();
 
   ngOnChanges(employee: SimpleChanges): void {
-    this.labelRubrics=[];
+    this.labelRubrics = [];
     this.labelRubrics = this.payslipService.listRubrique;
     this.labels['IGR']['B'] = '';
     this.labels['IGR']['T'] = '';
-    this.labels['IGR']['R'] ='';
-    this.netAPaye= 0;
+    this.labels['IGR']['R'] = '';
+    this.netAPaye = 0;
     this.netImpo = 0;
     this.totalGains = 0;
     this.totalRetenues = 0;
@@ -69,10 +68,10 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
 
   ngOnDestroy(): void {
-    console.log("destroy");
+    //console.log('destroy');
 
-    this.labelRubrics=[];
-    this.netAPaye= 0;
+    this.labelRubrics = [];
+    this.netAPaye = 0;
     this.netImpo = 0;
     this.totalGains = 0;
     this.totalRetenues = 0;
@@ -80,17 +79,17 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
 
-    this.labelRubrics=[];
+    this.labelRubrics = [];
     this.labelRubrics = this.payslipService.listRubrique;
 
-    this.netAPaye= 0;
+    this.netAPaye = 0;
     this.netImpo = 0;
     this.totalGains = 0;
     this.totalRetenues = 0;
     this.initialisation(this.employee);
     this.employeeService.employeeToShow.subscribe(
       (employee: EmployeeModel) => {
-   this.initialisation(employee);
+        this.initialisation(employee);
       }
     );
 
@@ -137,7 +136,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   calculate(rubLib: string, form: FormGroup) {
-    let indem:number=0;
+    let indem: number = 0;
 
     this.labels[rubLib]['G'] = this.labels[rubLib]['B'] * this.labels[rubLib]['T'];
     indem = indem + this.labels[rubLib]['G'];
@@ -149,8 +148,8 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
     this.labels['AMO']['R'] = Number((this.labels['AMO']['B'] * this.labels['AMO']['T'])) / 100;
     $(document).ready(function () {
 
-      $("#" + rubLib + '_B').prop("disabled", true);
-      $("#" + rubLib + '_T').prop("disabled", true);
+      $('#' + rubLib + '_B').prop('disabled', true);
+      $('#' + rubLib + '_T').prop('disabled', true);
     });
   }
 
@@ -186,11 +185,11 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
     const Brut = this.totalGain();
     const charges = this.totalRetenue();
     let igr;
-    console.log("Brut"+ Brut);
-    console.log("Charge"+ charges);
-    console.log("taxe Pro"+ this.txPro(Brut));
+    //console.log('Brut' + Brut);
+    //console.log('Charge' + charges);
+    //console.log('taxe Pro' + this.txPro(Brut));
     this.netImpo = Brut - charges - this.txPro(Brut);
-    console.log("net impo"+ this.netImpo);
+    //console.log('net impo' + this.netImpo);
     igr = this.igr(this.netImpo);
     this.totalRetenues = this.totalRetenues + this.txPro(Brut);
 
@@ -206,12 +205,24 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
+  getLabelRubrics(labelRubrics: any[], label: string) {
+    labelRubrics = this.payslipService.listRubrique;
+    ////console.log(labelRubrics);
+    for (const labelRub of labelRubrics) {
+      ////console.log(labelRub['libelle']);
+      if (labelRub['libelle'] === label) {
+        return labelRub.nbOrTaux;
+      }
+    }
+
+  }
+
   storRubrics(paysLip: PaysLip) {
-    const rubrics: Rubric[]=[];
-    const totalRet = new Rubric('totalRet', 0, true, this.totalRetenue(), 999, paysLip);
-    const totalGain = new Rubric('totalGain', 0, true, this.totalGain(), 999, paysLip);
-    const netApaye = new Rubric('netApaye', 0, true, this.netAPaye, 999, paysLip);
-    const netImpo = new Rubric('netImpo', 0, true, this.netImpo, 999,paysLip);
+    const rubrics: Rubric[] = [];
+    const totalRet = new Rubric('totalRet', 0, 'nb', false, this.totalRetenue(), 999, paysLip);
+    const totalGain = new Rubric('totalGain', 0, 'nb', true, this.totalGain(), 999, paysLip);
+    const netApaye = new Rubric('netApaye', 0, 'nb', true, this.netAPaye, 999, paysLip);
+    const netImpo = new Rubric('netImpo', 0, 'nb', true, this.netImpo, 999, paysLip);
 
     for (const label in this.labels) {
       let GainRet: boolean;
@@ -223,12 +234,16 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
         GainRet = true;
         value = this.labels[label]['G'];
       }
-      const rub = new Rubric(label, this.labels[label]['T'], GainRet, Number(value), this.labels[label]['B'],paysLip);
-
-      rubrics.push(rub);
+      const rub = new Rubric(label, this.labels[label]['T'], this.getLabelRubrics(this.labelRubrics, label), GainRet, Number(value), this.labels[label]['B'], paysLip);
+      if (this.labels[label]['B'] !== '' && (isNumeric(this.labels[label]['R']) || isNumeric(this.labels[label]['B'])))
+        rubrics.push(rub);
 
     }
+    console.log(totalRet.value);
+    totalRet.value -= this.labels['TXPRO']['R'];
+    console.log(totalRet.value);
     rubrics.push(totalGain, totalRet, netApaye, netImpo);
+    console.log(this.txPro(netImpo.value));
     return rubrics;
   }
 
@@ -238,24 +253,24 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
     periode.push(new Date(y, m, 1), new Date(y, m + 1, 0));
     //console.log(periode1);
-    const paysLip = new PaysLip( employee, periode[0],periode[1]);
-    console.log(paysLip);
+    const paysLip = new PaysLip(employee, periode[0], periode[1]);
+    //console.log(paysLip);
     this.payslipService.addPaysLip(paysLip).subscribe(
       (pl: PaysLip) => {
-        console.log(pl);
+        //console.log(pl);
 
-       this.payslipService.addRubricsToPaysLip(this.storRubrics(pl)).subscribe(
-         (rubrics: Rubric[])=>{
-           console.log(rubrics);
-        }
-       );
+        this.payslipService.addRubricsToPaysLip(this.storRubrics(pl)).subscribe(
+          (rubrics: Rubric[]) => {
+            //console.log(rubrics);
+          }
+        );
       }
     );
     this.payslipService.onAddPaysLip.next(paysLip);
   }
 
   anciente(dateEmb: Date) {
-   dateEmb = new Date(dateEmb);
+    dateEmb = new Date(dateEmb);
     if (new Date().getFullYear() - dateEmb.getFullYear() < 3) {
       return 5;
     } else if (new Date().getFullYear() - dateEmb.getFullYear() < 6) {
@@ -272,7 +287,7 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
   igr(netImp: number) {
     this.labels['IGR']['B'] = '';
     this.labels['IGR']['T'] = '';
-    this.labels['IGR']['R'] ='';
+    this.labels['IGR']['R'] = '';
     if (netImp > 2500 && netImp < 4166.68) {
       this.labels['IGR']['B'] = netImp;
       this.labels['IGR']['T'] = 10;
@@ -304,9 +319,9 @@ export class CurrentPayslipComponent implements OnInit, OnChanges, OnDestroy {
     this.labels['TXPRO']['B'] = netImposabel;
     this.labels['TXPRO']['T'] = 20;
     this.labels['TXPRO']['R'] = (Number((this.labels['TXPRO']['B'] * this.labels['TXPRO']['T'])) / 100);
+
     return this.labels['TXPRO']['R'];
   }
-
 
 
 }

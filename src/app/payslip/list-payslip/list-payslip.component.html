@@ -58,7 +58,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
       </div>
-      <div class="modal-body">
+      <div class="modal-body" *ngIf="paysLipToshow!=null">
         <app-view-pays-lip [employee]="employee" [paysLipToshow]="paysLipToshow"></app-view-pays-lip>
       </div>
 

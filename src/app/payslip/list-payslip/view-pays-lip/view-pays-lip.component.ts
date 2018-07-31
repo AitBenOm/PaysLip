@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EmployeeModel} from "../../../employee/employee-model";
-import {LabelsRubric} from "../../PaysLipToolsShared/labelsRubric";
-import {PayslipService} from "../../payslip.service";
-import {EmployeeService} from "../../../employee/employee.service";
-import {PaysLip} from "../../PaysLipToolsShared/PaysLip";
+import {EmployeeModel} from '../../../employee/employee-model';
+import {LabelsRubric} from '../../PaysLipToolsShared/labelsRubric';
+import {PayslipService} from '../../payslip.service';
+import {EmployeeService} from '../../../employee/employee.service';
+import {PaysLip} from '../../PaysLipToolsShared/PaysLip';
 import * as html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
+import {Rubric} from '../../PaysLipToolsShared/rubric';
 
 @Component({
   selector: 'app-view-pays-lip',
@@ -29,22 +30,24 @@ export class ViewPaysLipComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.paysLipToshow);
+    //console.log(this.paysLipToshow);
+    this.payslipService.getRubricsByPaysLip(this.paysLipToshow.idPyasLip).subscribe(
+      (rubrics: Rubric[]) => {
+        //console.log(rubrics);
+        if (rubrics[0].label !== 'SDB') {
+          rubrics.reverse();
+        }
+        this.paysLipToshow.rubrics = rubrics;
+      }
+    );
     this.labelRubrics = this.payslipService.listRubrique;
     this.rubricLabels = this.payslipService.rubricsTitles;
   }
 
-  generatePaysLip() {
-    let index = 0;
-    let id = '#HTMLPaysLip_' + index;
-    console.log(document.querySelector(id.toString()));
-    html2canvas(document.querySelector(id)).then(
-      canvas => {
-        console.log(canvas.toDataURL('image/png'));
-        console.log("Canvas " + canvas);
-        const jspdf = new jsPDF();
-        jspdf.addImage(canvas.toDataURL('image/png'), 4, 10);
-        jspdf.save(this.employee.nom + ' ' + this.employee.prenom + ' ' + this.paysLipToshow.startPeriod.getMonth() + '/' + this.paysLipToshow.startPeriod.getFullYear());
+  generatePaysLip(idPaysLip: number, matricule: number) {
+    this.payslipService.printPaysLip(idPaysLip, matricule).subscribe(
+      (blob: Blob) => {
+        console.log(blob);
       }
     );
   }
